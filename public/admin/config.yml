@@ -1,0 +1,100 @@
+backend:
+  # Using the local test-repo backend for initial development
+  name: git-gateway  # Change from test-repo
+  branch: main
+
+local_backend: true  # Add this line
+
+# Setting publish_mode: editorial_workflow requires the 'main' branch to be defined, 
+# but we remove it for the test-repo backend to work flawlessly.
+# publish_mode: editorial_workflow
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  # ----------------------------------
+  # 1. Course Collection (Needs create: true)
+  # ----------------------------------
+  - name: "course"
+    label: "Courses"
+    folder: "content/courses"
+    identifier_field: "title"
+    format: "frontmatter"
+    create: true # <--- FIX: This enables the 'New Entry' button
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        required: true
+      - label: "Instructor Name"
+        name: "instructor"
+        widget: "string"
+      - label: "Average Rating (0-5)"
+        name: "rating"
+        widget: "number"
+        value_type: "float"
+        min: 0
+        max: 5
+      - label: "Course Image"
+        name: "heroImage"
+        widget: "image"
+      - label: "Price/Format"
+        name: "price"
+        widget: "string"
+        hint: "e.g., Live: $25 or Self-Paced"
+      - label: "Course Description"
+        name: "body"
+        widget: "markdown"
+        required: false
+
+  # ----------------------------------
+  # 2. Location Collection (Needs create: true)
+  # ----------------------------------
+  - name: "location"
+    label: "Center Locations"
+    folder: "content/locations"
+    identifier_field: "centerName"
+    format: "frontmatter"
+    create: true # <--- FIX: This enables the 'New Entry' button
+    fields:
+      - label: "Center Name"
+        name: "centerName"
+        widget: "string"
+        required: true
+      - label: "Subdomain Slug"
+        name: "slug"
+        widget: "string"
+        required: true
+      - label: "Contact Information"
+        name: "contact"
+        widget: "object"
+        fields:
+          - label: "Phone Number"
+            name: "phoneNumber"
+            widget: "string"
+          - label: "Street Address"
+            name: "streetAddress"
+            widget: "string"
+          - label: "Google Maps Embed Link"
+            name: "mapLink"
+            widget: "string"
+      - label: "Director Spotlight"
+        name: "director"
+        widget: "object"
+        fields:
+          - label: "Director Name"
+            name: "name"
+            widget: "string"
+          - label: "Director Title"
+            name: "title"
+            widget: "string"
+          - label: "Director Photo"
+            name: "photo"
+            widget: "image"
+          - label: "Welcome Message"
+            name: "welcomeMessage"
+            widget: "markdown"
+      - label: "Center Facility Photo (Hero Image)"
+        name: "heroPhoto"
+        widget: "image"

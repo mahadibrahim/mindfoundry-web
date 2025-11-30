@@ -1,0 +1,72 @@
+---
+// Component for the Center Site (springfield.mindfoundry.com)
+// Now receives a full 'location' object AND a rich text content component.
+
+interface LocationData {
+    director: {
+        name: string;
+        title: string;
+        photo: string; // Decap CMS stores image paths here
+        welcomeMessage: string;
+    }
+}
+
+interface Props {
+    location: LocationData; // Expects a single location object
+    DirectorWelcomeContent?: any; // The rich text content component if MDX/Markdown is used
+    linkUrl?: string; // The static link to the team page
+}
+
+const { location, DirectorWelcomeContent, linkUrl="/team" } = Astro.props;
+
+const directorName = location.director.name;
+const directorTitle = location.director.title;
+const photoUrl = location.director.photo || 'https://placehold.co/160x160/FF6600/FFFFFF?text=Director';
+const welcomeMessage = location.director.welcomeMessage;
+---
+
+<div class="p-8 bg-white rounded-xl shadow-xl border-t-4 border-center-secondary grid grid-cols-1 md:grid-cols-4 gap-8 items-center transition duration-300 hover:shadow-2xl">
+    
+    <!-- 1. Director Photo (Local, Authentic Imagery) -->
+    <div class="md:col-span-1 flex justify-center">
+        <div class="w-40 h-40 rounded-full overflow-hidden shadow-lg border-4 border-center-primary">
+            <img 
+                src={photoUrl} 
+                alt={`Photo of ${directorName}`} 
+                class="w-full h-full object-cover"
+                onerror="this.onerror=null;this.src='https://placehold.co/160x160/FF6600/FFFFFF?text=Director';"
+            />
+        </div>
+    </div>
+
+    <!-- 2. Message and CTA -->
+    <div class="md:col-span-3 text-center md:text-left">
+        <h3 class="text-h3 text-text-dark font-display mb-2">
+            A Personal Welcome from {directorName}
+        </h3>
+        
+        <!-- Render Rich Text if available (using the Content component) -->
+        {DirectorWelcomeContent ? (
+            <div class="prose prose-sm font-center-body text-text-body italic mb-4 max-w-none mx-auto md:mx-0">
+                <DirectorWelcomeContent />
+            </div>
+        ) : (
+            <!-- Fallback to plain text if rich text component is not passed -->
+            <p class="text-body-base text-gray-700 font-center-body mb-4 italic">
+                "{welcomeMessage}"
+            </p>
+        )}
+
+        <p class="text-sm font-bold text-center-accent mb-4">
+            — {directorName}, {directorTitle}
+        </p>
+
+        <a 
+            href={linkUrl} 
+            class="inline-flex items-center text-center-primary font-bold hover:text-center-secondary transition duration-300 group"
+        >
+            View Full Bio & Team
+            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+    </div>
+</div>

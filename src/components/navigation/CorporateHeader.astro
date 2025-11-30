@@ -1,0 +1,35 @@
+---
+// Corporate site navigation: Families/Orgs/Franchise and Center Finder. Bright, conceptual.
+const navItems = [
+    { name: 'Families', href: '/families' },
+    { name: 'Organizations', href: '/organizations' },
+    { name: 'Franchise', href: '/franchise' },
+];
+---
+<header class="sticky top-0 z-50 bg-corporate-bg-dark border-b border-corporate-primary/50 shadow-lg">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center max-w-7xl">
+        <a href="/" class="text-white text-h3 font-display tracking-wider">
+            MINDFOUNDRY
+        </a>
+        
+        <nav class="hidden md:flex space-x-8 items-center text-lg font-corp-body">
+            {navItems.map(item => (
+                <a href={item.href} class="text-white hover:text-corporate-secondary transition duration-300">
+                    {item.name}
+                </a>
+            ))}
+            
+            <a 
+                href="/find-a-center" 
+                class="bg-corporate-primary text-white text-body-base px-5 py-2 rounded-lg shadow-md hover:bg-corporate-primary/80 transition duration-300"
+            >
+                Find a Center
+            </a>
+        </nav>
+        
+        <!-- Mobile Menu Placeholder -->
+        <button class="md:hidden text-white text-2xl">
+            ☰
+        </button>
+    </div>
+</header>

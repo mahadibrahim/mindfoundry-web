@@ -1,0 +1,47 @@
+---
+// Visual display for star ratings (1-5 stars)
+interface Props {
+    rating: number;
+    isCorporateStyle: boolean;
+}
+
+const { rating, isCorporateStyle } = Astro.props;
+const maxStars = 5;
+const fullStars = Math.floor(rating);
+const hasHalfStar = rating - fullStars >= 0.25 && rating - fullStars <= 0.75;
+const emptyStars = maxStars - fullStars - (hasHalfStar ? 1 : 0);
+
+// Use Tailwind colors for stars
+const starColor = isCorporateStyle ? 'text-yellow-400' : 'text-center-primary';
+const emptyColor = 'text-gray-500';
+
+// Lucide icons for stars (using inline SVG for simplicity and speed)
+const StarIcon = (color: string) => `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${color}">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+    </svg>
+`;
+
+const HalfStarIcon = (color: string) => `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${color}">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z"></path>
+    </svg>
+`;
+---
+
+<div class="flex space-x-0.5">
+    <!-- Full Stars -->
+    {Array(fullStars).fill(0).map(() => (
+        <div set:html={StarIcon(starColor)} />
+    ))}
+
+    <!-- Half Star -->
+    {hasHalfStar && (
+        <div set:html={HalfStarIcon(starColor)} />
+    )}
+
+    <!-- Empty Stars -->
+    {Array(emptyStars).fill(0).map(() => (
+        <div set:html={StarIcon(emptyColor)} />
+    ))}
+</div>

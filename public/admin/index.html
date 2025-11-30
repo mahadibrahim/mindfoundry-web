@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mind Foundry CMS Admin</title>
+  <!-- Load Decap CMS library from a CDN (Content Delivery Network) -->
+  <!-- Note: The 'async' attribute is added to prevent render blocking, and we rely on the final script placement for initialization timing. -->
+  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js" async></script>
+</head>
+<body>
+  <!-- 
+    The Decap CMS editor often attaches itself to a root element or the body. 
+    We include a dedicated container for clear separation, though the placement of the final script is key.
+  -->
+  <div id="cms-root"></div>
+  
+  <script>
+    // FIX: This script is now placed at the very end of the body, which is the safest spot 
+    // to ensure that the decap-cms.js library (loaded above) has fully defined the 
+    // 'window.CMS' object before we try to call 'window.CMS.init()'.
+    
+    // Use an event listener on the Decap library itself (if available) or rely on window.onload
+    window.onload = function() {
+        if (window.CMS) {
+            // Initialize the CMS. It will automatically look for config.yml in public/admin/
+            window.CMS.init();
+        } else {
+            // This error should now be resolved, but we keep the fallback.
+            console.error("Decap CMS library not found after window load.");
+        }
+    };
+  </script>
+</body>
+</html>

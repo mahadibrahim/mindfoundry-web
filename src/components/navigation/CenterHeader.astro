@@ -1,0 +1,37 @@
+---
+// Center site navigation: Local focus, prominent phone number.
+const centerName = "Springfield"; // Placeholder - this will be dynamic from TinaCMS later
+const phoneNumber = "(555) 123-4567"; // Placeholder
+const navItems = [
+    { name: 'Programs', href: '/programs' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Meet the Director', href: '/director' },
+];
+---
+<header class="sticky top-0 z-50 bg-center-bg-light border-b border-gray-200 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center max-w-7xl">
+        <a href="/" class="text-center text-text-dark text-h3 font-display tracking-wider">
+            Mind Foundry <span class="block text-center text-center-accent text-lg font-bold">{centerName}</span>
+        </a>
+        
+        <nav class="hidden md:flex space-x-6 items-center text-lg font-center-body">
+            {navItems.map(item => (
+                <a href={item.href} class="text-text-body hover:text-center-primary transition duration-300">
+                    {item.name}
+                </a>
+            ))}
+            
+            <a 
+                href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`}
+                class="bg-center-primary text-center-accent text-body-base font-bold px-5 py-2 rounded-lg shadow-xl hover:bg-center-primary/90 transition duration-300 whitespace-nowrap"
+            >
+                📞 {phoneNumber}
+            </a>
+        </nav>
+        
+        <!-- Mobile Menu Placeholder -->
+        <button class="md:hidden text-text-dark text-2xl">
+            ☰
+        </button>
+    </div>
+</header>

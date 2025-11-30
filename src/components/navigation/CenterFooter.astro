@@ -1,0 +1,45 @@
+---
+// Center site footer: Uses light background, focuses on local contact/address.
+const currentYear = new Date().getFullYear();
+const centerName = "Springfield Center"; // Placeholder
+const address = "123 Main Street, Springfield, OH 45501"; // Placeholder
+const phoneNumber = "(555) 123-4567"; // Placeholder
+---
+<footer class="bg-center-bg-light text-text-body pt-12 border-t border-center-primary/50">
+    <div class="container mx-auto px-4 max-w-7xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10">
+            <div>
+                <h4 class="text-h3 text-center-primary mb-4 font-display">Mind Foundry</h4>
+                <p class="text-body-base font-center-body font-bold mb-2">{centerName}</p>
+                <p class="text-body-base mb-1">{address}</p>
+                <p class="text-body-base mb-4 font-bold">Call Us: <a href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`} class="hover:text-center-secondary">{phoneNumber}</a></p>
+                <a href="#" class="text-center-accent font-bold hover:text-center-secondary text-body-base underline transition duration-300">
+                    Get Directions
+                </a>
+            </div>
+            {/* Quick Links Section */}
+            <div>
+                <h5 class="text-lg font-bold mb-4 text-text-dark">Quick Links</h5>
+                <ul class="space-y-2 font-center-body text-body-base">
+                    <li><a href="/programs" class="hover:text-center-primary transition duration-300">Browse Programs</a></li>
+                    <li><a href="/about" class="hover:text-center-primary transition duration-300">About Us</a></li>
+                    <li><a href="/faq" class="hover:text-center-primary transition duration-300">FAQ & Policies</a></li>
+                </ul>
+            </div>
+            {/* Hours Section Placeholder */}
+             <div>
+                <h5 class="text-lg font-bold mb-4 text-text-dark">Center Hours</h5>
+                <ul class="space-y-2 font-center-body text-body-base">
+                    <li>Mon - Fri: 3 PM - 7 PM</li>
+                    <li>Saturday: 9 AM - 1 PM</li>
+                    <li>Sunday: Closed</li>
+                </ul>
+            </div>
+            {/* Empty column for alignment */}
+            <div></div> 
+        </div>
+        <div class="text-center border-t border-gray-300 py-4 text-sm text-gray-500 font-corp-body">
+            &copy; {currentYear} {centerName}. All rights reserved.
+        </div>
+    </div>
+</footer>

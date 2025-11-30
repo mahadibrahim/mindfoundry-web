@@ -1,0 +1,30 @@
+/*
+ * This file imports the Tailwind base layers and sets up global font declarations.
+ * It is imported by BaseLayout.astro.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Note: Google Fonts were moved to BaseLayout.astro's <head> to resolve
+ * PostCSS 'must precede all other statements' warnings.
+ */
+
+
+/* Fallback/Shared font: Helvetica/Inter */
+body {
+    /* Use the font-corp-body (Helvetica fallback) as the site default */
+    font-family: theme('fontFamily.corp-body');
+    /* Apply base body text color */
+    color: theme('colors.text-body'); 
+    /* Disable ugly scroll behavior */
+    scroll-behavior: smooth;
+}
+
+/* Base style for heading elements to enforce the Quattrocento font */
+h1, h2, h3, h4, h5, h6 {
+    font-family: theme('fontFamily.display');
+    /* Ensure headings are the dark text color */
+    color: theme('colors.text-dark');
+}

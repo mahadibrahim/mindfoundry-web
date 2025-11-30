@@ -1,0 +1,47 @@
+---
+interface TestimonialProps {
+  quote: string;
+  author: string;
+  context: string;
+}
+
+interface Props {
+  testimonials: TestimonialProps[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<section class="py-16 bg-center-bg-light">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-text-dark">
+      What Our Local Families Say
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      {testimonials.map((testimonial) => (
+        <div class="bg-white shadow-lg border border-gray-100 rounded-lg p-6 transition-shadow hover:shadow-xl">
+          <div class="relative mb-4">
+            <span class="absolute -top-2 -left-2 text-6xl text-center-primary opacity-20 font-serif leading-none">"</span>
+            <p class="text-lg italic text-text-dark relative z-10 pt-4">
+              {testimonial.quote}
+            </p>
+          </div>
+          <div class="text-right mt-6">
+            <p class="font-bold text-center-accent">{testimonial.author}</p>
+            <p class="text-sm text-gray-600">{testimonial.context}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a 
+        href="/reviews" 
+        class="inline-block bg-center-secondary text-text-dark font-semibold px-8 py-3 rounded-full transition-transform hover:scale-105"
+      >
+        Read All Reviews
+      </a>
+    </div>
+  </div>
+</section>

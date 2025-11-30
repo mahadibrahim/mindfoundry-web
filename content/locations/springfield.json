@@ -1,0 +1,13 @@
+# Placeholder JSON file for Location (using .json as configured)
+echo '{
+"centerName": "Springfield Center",
+"slug": "springfield",
+"contact": {
+  "phoneNumber": "(555) 123-4567",
+  "streetAddress": "123 Main Street, Springfield, OH 45501"
+},
+"director": {
+  "name": "Sarah Johnson",
+  "title": "Center Director"
+}
+}' > content/locations/springfield.json

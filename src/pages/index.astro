@@ -1,16 +1,104 @@
 ---
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+import CourseCard from '../components/CourseCard.astro';
+import SearchFilterBar from '../components/SearchFilterBar.jsx';
 
+// --- FINAL VERSION: READING FROM CMS CONTENT FILES ---
+// Re-enabling the content collection read using the absolute path.
+// This now expects files like content/courses/math-intro.md
+const courseFiles = import.meta.glob('/content/courses/*.md', { eager: true });
+const allCourseFiles = Object.values(courseFiles);
+
+// Map the fetched files to the structure CourseCard expects
+const featuredCourses = allCourseFiles.map(file => ({
+    title: file.frontmatter.title,
+    instructor: file.frontmatter.instructor,
+    rating: file.frontmatter.rating,
+    price: file.frontmatter.price,
+    heroImage: file.frontmatter.heroImage,
+    linkUrl: `/course/${file.file.split('/').pop().replace('.md', '')}`, // Use file.file for the slug
+}));
+
+// Placeholder content for Feature Grid (unchanged)
+interface FeatureProps {
+    icon: string;
+    title: string;
+    description: string;
+}
+const features: FeatureProps[] = [
+    {
+        icon: '🔍',
+        title: 'Discover Your Path',
+        description: 'Browse thousands of live classes, self-paced courses, or find a local center based on your child\'s age and interests.',
+    },
+    {
+        icon: '🔗',
+        title: 'Connect with Experts',
+        description: 'Vetted instructors and partners deliver high-quality, badge-based curricula designed to build core skills in every child.',
+    },
+    {
+        icon: '🚀',
+        title: 'Learn & Achieve',
+        description: 'Track progress through digital badges and portfolios, building confidence and real-world skills through gamified learning.',
+    },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<CorporateLayout title="Home - National Marketplace">
+	<div class="container mx-auto px-4 max-w-4xl text-center">
+		<!-- Interactive Search/Filter Bar (React Island) -->
+        <div class="mb-12">
+            <SearchFilterBar client:load /> 
+        </div>
+        
+        <h1 class="text-h1 text-white mb-4">Badge-Based Learning for Every Child</h1>
+		<p class="text-body-lg text-corporate-secondary mb-12">
+			The national platform connects you to centers, at-home guides, and group learning opportunities across the country.
+		</p>
+
+		<!-- 1. Pathway CTAs -->
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+			<a href="/centers" class="bg-corporate-primary text-white p-6 rounded-xl shadow-2xl hover:bg-corporate-primary/80 transition duration-300 transform hover:scale-[1.02]">
+				<h3 class="text-h3">Centers</h3>
+				<p class="text-sm mt-1">In-person learning</p>
+			</a>
+			<a href="/books" class="bg-corporate-light text-white p-6 rounded-xl shadow-2xl hover:bg-corporate-light/80 transition duration-300 transform hover:scale-[1.02]">
+				<h3 class="text-h3">Books</h3>
+				<p class="text-sm mt-1">At-home learning</p>
+			</a>
+			<a href="/orgs" class="bg-corporate-primary text-white p-6 rounded-xl shadow-2xl hover:bg-corporate-primary/80 transition duration-300 transform hover:scale-[1.02]">
+				<h3 class="text-h3">Organizations</h32>
+				<p class="text-sm mt-1">Group learning</p>
+			</a>
+		</div>
+
+        <!-- 2. Featured Course Grid (NOW USES CONTENT FILES) -->
+        <h2 class="text-h2 text-white mb-8 text-left">Featured Online Pathways</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            {featuredCourses.slice(0, 3).map((course) => (
+                <CourseCard
+                    course={course}
+                    isCorporateStyle={true}
+                />
+            ))}
+        </div>
+
+        <!-- 3. How It Works Feature Grid -->
+        <div class="mt-20 pt-16 border-t border-corporate-primary/50">
+            <h2 class="text-h2 text-white mb-12">How Mind Foundry Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {features.map((feature) => (
+                    <div class="p-6 rounded-xl border-2 border-corporate-primary bg-corporate-bg-dark text-white text-left shadow-2xl transition duration-300 hover:bg-corporate-bg-dark/80">
+                        <span class="text-4xl block mb-4">{feature.icon}</span>
+                        <h3 class="text-h3 text-corporate-secondary mb-2">{feature.title}</h3>
+                        <p class="text-body-base font-corp-body text-gray-300">{feature.description}</p>
+                    </div>
+                ))}
+            </div>
+            
+            <a href="/about" class="inline-block mt-12 text-lg text-corporate-secondary underline hover:text-white transition duration-300">
+                Learn more about our mission & platform →
+            </a>
+        </div>
+	</div>
+</CorporateLayout>

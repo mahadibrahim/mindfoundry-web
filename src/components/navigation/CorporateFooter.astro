@@ -1,0 +1,34 @@
+---
+// Corporate site footer: Uses deep navy color as per style guide.
+const currentYear = new Date().getFullYear();
+const footerLinks = [
+    { title: 'Company', links: ['About', 'Careers', 'Press'] },
+    { title: 'Learn', links: ['Browse Courses', 'Resources', 'Tutoring'] },
+    { title: 'Support', links: ['Help Center', 'Safety', 'Terms'] },
+];
+---
+<footer class="bg-corporate-bg-dark text-white pt-12 border-t border-corporate-primary/50">
+    <div class="container mx-auto px-4 max-w-7xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10">
+            <div>
+                <h4 class="text-h3 text-corporate-secondary mb-4 font-display">Mind Foundry</h4>
+                <p class="text-sm font-corp-body max-w-xs">
+                    Badge-Based Learning for Every Child. Connecting families with innovative learning pathways.
+                </p>
+            </div>
+            {footerLinks.map(section => (
+                <div>
+                    <h5 class="text-lg font-bold mb-4">{section.title}</h5>
+                    <ul class="space-y-2">
+                        {section.links.map(link => (
+                            <li><a href="#" class="text-sm hover:text-corporate-secondary transition duration-300">{link}</a></li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+        <div class="text-center border-t border-gray-700 py-4 text-sm text-gray-400">
+            &copy; {currentYear} Mind Foundry. All rights reserved.
+        </div>
+    </div>
+</footer>

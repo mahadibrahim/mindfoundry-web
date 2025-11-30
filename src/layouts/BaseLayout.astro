@@ -1,0 +1,41 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Mind Foundry - Interactive Learning Platform" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title} | Mind Foundry</title>
+		
+		<!-- 
+            FIX: Moved Google Font imports here to resolve PostCSS warnings 
+            in global.css (Vite/PostCSS requires @import to be the very first rule)
+        -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap" rel="stylesheet">
+		
+		<!-- Import our global styles which includes the Tailwind base layers and font definitions -->
+		<style>
+			@import '../styles/global.css';
+		</style>
+		
+		<!-- Optional: Add Astro View Transitions for smoother page navigation -->
+		<ViewTransitions />
+	</head>
+	<body class="min-h-screen antialiased">
+		<!-- The slot is where all the page-specific content will be rendered -->
+		<slot />
+	</body>
+</html>

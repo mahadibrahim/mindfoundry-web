@@ -1,0 +1,131 @@
+---
+import CenterLayout from '../layouts/CenterLayout.astro';
+import CourseCard from '../components/CourseCard.astro';
+import DirectorSpotlight from '../components/DirectorSpotlight.astro';
+import TestimonialBlock from '../components/TestimonialBlock.astro';
+
+// 1. Fetch specific location data for Springfield (content/locations/springfield.md)
+// FIX: Now importing .md file and using frontmatter and Content
+const locationFiles = import.meta.glob('/content/locations/springfield.md', { eager: true });
+const locationFile = Object.values(locationFiles)[0];
+
+const locationData = locationFile ? locationFile.frontmatter : null;
+const DirectorWelcomeContent = locationFile ? locationFile.Content : null;
+
+// 2. Fetch ALL courses managed by Decap CMS
+const courseFiles = import.meta.glob('/content/courses/*.md', { eager: true });
+const allCourseFiles = Object.values(courseFiles);
+
+// Map the fetched files to the structure CourseCard expects
+const featuredCourses = allCourseFiles.map(file => ({
+    title: file.frontmatter.title,
+    instructor: file.frontmatter.instructor,
+    rating: file.frontmatter.rating,
+    price: file.frontmatter.price,
+    heroImage: file.frontmatter.heroImage,
+    linkUrl: `/course/${file.file.split('/').pop().replace('.md', '')}`,
+}));
+
+// Use fallback data if content file is not found
+const fallbackLocation = {
+    centerName: 'Springfield Center',
+    contact: { phoneNumber: '(555) 123-4567', streetAddress: '123 Main Street, Springfield, OH 45501' },
+    director: { name: 'Sarah Johnson', title: 'Center Director', welcomeMessage: 'A warm welcome from our local director.' }
+};
+
+const location = locationData || fallbackLocation;
+
+// Placeholder content for Testimonials
+const localTestimonials = [
+    { quote: "The best learning center in Springfield! My child's math scores went up immediately.", author: "Jennifer M.", context: "Springfield Parent" },
+    { quote: "Wonderful, personalized attention. Sarah the Director knows every kid by name.", author: "Mark L.", context: "Springfield Parent" },
+    { quote: "My son used to hate science, but now he loves the badge challenges. Highly recommend!", author: "Tanya P.", context: "Neighboring City Parent" },
+];
+---
+
+<CenterLayout title={`${location.centerName} - Local Community Center`}>
+	<div class="container mx-auto px-4 max-w-5xl">
+		<!-- Actual center photo placeholder -->
+		<div class="h-96 w-full rounded-2xl overflow-hidden shadow-2xl mb-8" style="background-image: url('https://placehold.co/1000x400/FFC72C/1E1E1E?text=Actual+Springfield+Center+Photo'); background-size: cover; background-position: center;">
+		</div>
+		
+		<div class="text-center mb-12">
+			<h1 class="text-h1 text-text-dark mb-4">Where <span class="text-center-primary">Springfield Kids</span> Become Confident Learners</h1>
+			<p class="text-body-lg text-text-body max-w-3xl mx-auto mb-8">
+				We are a local community center dedicated to building core skills in a friendly, approachable environment.
+			</p>
+
+			<!-- Primary CTA: Schedule a Visit -->
+			<a 
+				href="/schedule-visit" 
+				class="inline-block bg-center-primary text-text-dark text-body-base font-bold px-10 py-4 rounded-full shadow-2xl transition duration-300 transform hover:scale-[1.05] hover:shadow-3xl"
+			>
+				Schedule a Visit
+			</a>
+			
+			<p class="mt-4 text-sm text-gray-500 font-center-body">
+				Or <a href="/enroll" class="text-center-accent hover:text-center-secondary font-bold underline">Browse Programs</a>
+			</p>
+		</div>
+
+		<!-- Director Spotlight Component (Now uses dynamic data) -->
+        <div class="mt-16 mb-20">
+            <DirectorSpotlight 
+                location={location}
+                // Pass the rich text content component to the spotlight for rendering
+                DirectorWelcomeContent={DirectorWelcomeContent}
+            />
+        </div>
+
+        <!-- Local Program Grid (Now loads from content/courses) -->
+        <h2 class="text-h2 text-text-dark mb-8 text-center">Local Programs & Tutoring</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            {featuredCourses.slice(0, 3).map((course) => (
+                <CourseCard
+                    course={course}
+                    isCorporateStyle={false}
+                />
+            ))}
+        </div>
+
+        <!-- Testimonials Section -->
+        <TestimonialBlock testimonials={localTestimonials} />
+        
+
+        <!-- Facility Showcase & Location Map -->
+        <div class="mt-20 pt-16 border-t border-gray-300">
+            <h2 class="text-h2 text-text-dark mb-10 text-center">Our Safe & Modern Facility</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <!-- Facility Gallery Placeholder -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-h3 text-text-dark mb-4 border-b border-center-secondary pb-2">Photo Tour</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="h-40 rounded-xl shadow-md" style="background-image: url('https://placehold.co/300x160/F5F5F5/1E1E1E?text=Classroom+1'); background-size: cover;"></div>
+                        <div class="h-40 rounded-xl shadow-md" style="background-image: url('https://placehold.co/300x160/FFC72C/1E1E1E?text=Coding+Lab'); background-size: cover;"></div>
+                        <div class="h-40 rounded-xl shadow-md" style="background-image: url('https://placehold.co/300x160/FF6600/FFFFFF?text=Lobby+Area'); background-size: cover;"></div>
+                        <a href="/springfield/gallery" class="flex items-center justify-center h-40 rounded-xl shadow-md bg-center-bg-light border-2 border-center-primary text-text-dark font-bold hover:bg-center-primary/20 transition duration-300">
+                            See All Photos →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Location Map Placeholder (Uses dynamic contact info) -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-h3 text-text-dark mb-4 border-b border-center-secondary pb-2">Visit Us Today</h3>
+                    <div class="w-full h-64 rounded-xl overflow-hidden shadow-lg border border-gray-300 mb-4">
+                        <!-- Placeholder for Google Maps Embed -->
+                        <div class="flex items-center justify-center w-full h-full bg-gray-100 text-gray-500 font-center-body">
+                             [Placeholder for Google Map Embed]
+                        </div>
+                    </div>
+                    <p class="text-body-base font-bold text-text-dark">{location.contact.streetAddress}</p>
+                    <a href="#" class="text-center-primary font-bold hover:text-center-secondary text-body-base underline transition duration-300">
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+	</div>
+</CenterLayout>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CenterHeader from '../components/navigation/CenterHeader.astro';
+import CenterFooter from '../components/navigation/CenterFooter.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<BaseLayout title={title}>
+	<!-- Apply the light center background color to the entire body -->
+	<div class="min-h-screen bg-center-bg-light">
+		<CenterHeader />
+
+		<main class="py-8 md:py-16">
+			<!-- Main content for the page -->
+			<slot />
+		</main>
+
+		<CenterFooter />
+	</div>
+</BaseLayout>
