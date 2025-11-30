@@ -1,0 +1,57 @@
+---
+// Clean pathway cards with icons and descriptions
+interface Pathway {
+  title: string;
+  description: string;
+  icon: string;
+  href: string;
+  color: string;
+}
+
+interface Props {
+  pathways: Pathway[];
+}
+
+const { pathways } = Astro.props;
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Learning Path</h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Find the perfect learning experience for your child, whether online, in-person, or at home
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {pathways.map((pathway) => (
+        <a 
+          href={pathway.href}
+          class="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-corporate-primary"
+        >
+          <!-- Icon circle with color accent -->
+          <div class={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${pathway.color} bg-opacity-10 group-hover:bg-opacity-20 transition-colors duration-300`}>
+            <span class="text-4xl">{pathway.icon}</span>
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-corporate-primary transition-colors duration-300">
+            {pathway.title}
+          </h3>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            {pathway.description}
+          </p>
+
+          <!-- Arrow CTA -->
+          <div class="flex items-center text-corporate-primary font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+            <span>Explore {pathway.title.toLowerCase()}</span>
+            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

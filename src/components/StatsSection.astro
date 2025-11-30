@@ -1,0 +1,36 @@
+---
+// Social proof stats section with clean design
+interface Stat {
+  number: string;
+  label: string;
+  icon: string;
+}
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <div class="text-center">
+          <div class="flex justify-center mb-4">
+            <div class="w-12 h-12 rounded-xl bg-corporate-secondary/10 flex items-center justify-center">
+              <span class="text-2xl">{stat.icon}</span>
+            </div>
+          </div>
+          <div class="text-4xl md:text-5xl font-bold text-corporate-primary mb-2">
+            {stat.number}
+          </div>
+          <div class="text-gray-600 font-medium">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
