@@ -1,0 +1,46 @@
+---
+// Benefits section highlighting why families choose this center
+interface Benefit {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  benefits: Benefit[];
+}
+
+const { title, subtitle, benefits } = Astro.props;
+---
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">{title}</h2>
+      {subtitle && (
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+      )}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {benefits.map((benefit) => (
+        <div class="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-center-primary/30 transition-all duration-300">
+          <!-- Icon -->
+          <div class="w-14 h-14 rounded-xl bg-center-primary/10 flex items-center justify-center mb-4">
+            <span class="text-3xl">{benefit.icon}</span>
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            {benefit.title}
+          </h3>
+          <p class="text-gray-600 leading-relaxed">
+            {benefit.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

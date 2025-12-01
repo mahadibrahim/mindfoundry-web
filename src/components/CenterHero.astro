@@ -1,0 +1,68 @@
+---
+// Clean hero section for center pages with image, headline, and CTAs
+interface Props {
+  centerName: string;
+  headline: string;
+  description: string;
+  heroImage: string;
+  primaryCTA: {
+    text: string;
+    href: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+  };
+}
+
+const { centerName, headline, description, heroImage, primaryCTA, secondaryCTA } = Astro.props;
+---
+
+<section class="bg-white">
+  <div class="container mx-auto px-4 max-w-6xl py-12">
+    <!-- Hero Image -->
+    <div class="relative h-[400px] md:h-[500px] w-full rounded-3xl overflow-hidden shadow-xl mb-8">
+      <img 
+        src={heroImage}
+        alt={`${centerName} facility`}
+        class="w-full h-full object-cover"
+        onerror="this.onerror=null;this.src='https://placehold.co/1200x500/FFC72C/1E1E1E?text=Learning+Center';"
+      />
+      <!-- Gradient overlay for better text readability if needed -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        {headline}
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed">
+        {description}
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a 
+          href={primaryCTA.href}
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-text-dark bg-center-primary rounded-full shadow-lg hover:bg-center-primary/90 hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+        >
+          {primaryCTA.text}
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
+        
+        {secondaryCTA && (
+          <a 
+            href={secondaryCTA.href}
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-center-accent bg-white border-2 border-center-accent rounded-full hover:bg-center-accent/5 transition-all duration-200"
+          >
+            {secondaryCTA.text}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

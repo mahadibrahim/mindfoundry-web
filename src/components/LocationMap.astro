@@ -1,0 +1,111 @@
+---
+// Google Maps embed component
+interface Props {
+  address: string;
+  centerName: string;
+  mapLink?: string; // Optional custom Google Maps link
+}
+
+const { address, centerName, mapLink } = Astro.props;
+
+// Generate Google Maps embed URL
+const embedUrl = mapLink || `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${encodeURIComponent(address)}`;
+const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+---
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      
+      <!-- Map -->
+      <div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Find Us</h3>
+        <div class="relative w-full h-[400px] rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+          <!-- Note: You'll need to add your Google Maps API key to make this work -->
+          <!-- For now, using a static map placeholder -->
+          <iframe
+            width="100%"
+            height="100%"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src={`https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
+          >
+          </iframe>
+        </div>
+        <div class="mt-4">
+          <p class="text-gray-700 font-semibold mb-2">{address}</p>
+          <a 
+            href={directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center text-center-primary font-semibold hover:text-center-accent transition-colors"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+            </svg>
+            Get Directions
+          </a>
+        </div>
+      </div>
+
+      <!-- Additional Info or Parking Details -->
+      <div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Visiting Our Center</h3>
+        <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-sm border border-gray-100">
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-center-primary/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-center-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900 mb-1">Easy to Find</h4>
+                <p class="text-gray-600 text-sm">Located in the heart of downtown with clear signage</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-center-primary/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-center-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900 mb-1">Free Parking</h4>
+                <p class="text-gray-600 text-sm">Ample parking available in our dedicated lot</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-center-primary/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-center-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900 mb-1">Safe & Secure</h4>
+                <p class="text-gray-600 text-sm">Monitored facility with controlled access</p>
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-gray-200">
+              <a 
+                href="/schedule-visit"
+                class="inline-flex items-center justify-center w-full px-6 py-3 text-center-accent bg-center-primary rounded-full font-semibold hover:bg-center-primary/90 transition-all duration-200"
+              >
+                Schedule a Visit
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
