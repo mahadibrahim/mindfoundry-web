@@ -1,37 +1,120 @@
 ---
-// Center site navigation: Local focus, prominent phone number.
-const centerName = "Springfield"; // Placeholder - this will be dynamic from TinaCMS later
-const phoneNumber = "(555) 123-4567"; // Placeholder
+// Updated center header with actual Mind Foundry logo
+interface Props {
+    centerName?: string;
+    phoneNumber?: string;
+}
+
+const { 
+    centerName = "Springfield", 
+    phoneNumber = "(555) 123-4567" 
+} = Astro.props;
+
 const navItems = [
     { name: 'Programs', href: '/programs' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Meet the Director', href: '/director' },
+    { name: 'About', href: '/about' },
+    { name: 'Schedule Visit', href: '/schedule-visit' },
 ];
 ---
-<header class="sticky top-0 z-50 bg-center-bg-light border-b border-gray-200 shadow-md">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center max-w-7xl">
-        <a href="/" class="text-center text-text-dark text-h3 font-display tracking-wider">
-            Mind Foundry <span class="block text-center text-center-accent text-lg font-bold">{centerName}</span>
-        </a>
-        
-        <nav class="hidden md:flex space-x-6 items-center text-lg font-center-body">
-            {navItems.map(item => (
-                <a href={item.href} class="text-text-body hover:text-center-primary transition duration-300">
-                    {item.name}
-                </a>
-            ))}
+
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <div class="container mx-auto px-4 py-3 max-w-7xl">
+        <div class="flex justify-between items-center">
+            <!-- Logo & Location with actual Mind Foundry logo -->
+            <a href="/" class="flex items-center gap-3 group">
+                <img 
+                    src="/images/mind-foundry-logo.png"
+                    alt="Mind Foundry Logo"
+                    class="h-10 w-auto"
+                />
+                <div>
+                    <span class="text-lg font-bold text-gray-900 block leading-none group-hover:text-center-primary transition-colors">Mind Foundry</span>
+                    <span class="text-xs text-center-accent font-semibold leading-none">{centerName}</span>
+                </div>
+            </a>
             
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-6">
+                {navItems.map(item => (
+                    <a 
+                        href={item.href} 
+                        class="text-gray-700 hover:text-center-primary font-medium transition-colors"
+                    >
+                        {item.name}
+                    </a>
+                ))}
+            </nav>
+
+            <!-- Phone CTA (Desktop) -->
             <a 
                 href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`}
-                class="bg-center-primary text-center-accent text-body-base font-bold px-5 py-2 rounded-lg shadow-xl hover:bg-center-primary/90 transition duration-300 whitespace-nowrap"
+                class="hidden md:flex items-center gap-2 px-6 py-2.5 bg-center-primary text-text-dark font-bold rounded-full hover:bg-center-primary/90 shadow-sm hover:shadow-md transition-all duration-200"
             >
-                📞 {phoneNumber}
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                {phoneNumber}
             </a>
-        </nav>
-        
-        <!-- Mobile Menu Placeholder -->
-        <button class="md:hidden text-text-dark text-2xl">
-            ☰
-        </button>
+
+            <!-- Mobile: Phone Icon + Menu Button -->
+            <div class="flex md:hidden items-center gap-2">
+                <a 
+                    href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`}
+                    class="p-2 text-center-accent hover:bg-center-primary/10 rounded-lg transition-colors"
+                    aria-label="Call us"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                </a>
+                
+                <button 
+                    id="center-mobile-menu-button"
+                    class="p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                    aria-label="Toggle menu"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="center-mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-gray-200 mt-3">
+            <nav class="flex flex-col gap-2">
+                {navItems.map(item => (
+                    <a 
+                        href={item.href} 
+                        class="px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-center-primary rounded-lg font-medium transition-colors"
+                    >
+                        {item.name}
+                    </a>
+                ))}
+                
+                <!-- Phone number in mobile menu -->
+                <a 
+                    href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`}
+                    class="mt-2 px-4 py-3 bg-center-primary text-text-dark font-bold rounded-lg hover:bg-center-primary/90 text-center transition-colors flex items-center justify-center gap-2"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    Call {phoneNumber}
+                </a>
+            </nav>
+        </div>
     </div>
 </header>
+
+<script>
+    // Mobile menu toggle for center header
+    document.addEventListener('DOMContentLoaded', () => {
+        const button = document.getElementById('center-mobile-menu-button');
+        const menu = document.getElementById('center-mobile-menu');
+        
+        button?.addEventListener('click', () => {
+            menu?.classList.toggle('hidden');
+        });
+    });
+</script>
