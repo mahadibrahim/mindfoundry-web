@@ -1,0 +1,66 @@
+---
+// Test page to see if Whereby classroom works
+// Visit: http://localhost:4321/test-classroom
+
+import SimpleClassroom from '../components/SimpleClassroom.astro';
+
+// CHANGE THIS to your actual Whereby room URL
+const ROOM_URL = "https://mind-foundry-learning.whereby.com/test-classroom2b07f8d0-84b1-4fb5-854d-0bcd119cfa6e";
+
+// Test data
+const classData = {
+  courseName: "Python Basics for Kids",
+  instructorName: "Sarah Johnson",
+  sessionNumber: 3,
+  totalSessions: 8
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Classroom - {classData.courseName}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem 1rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+      min-height: 100vh;
+    }
+    
+    .test-banner {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 1rem;
+      background: #fef3c7;
+      border: 2px solid #fbbf24;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+    
+    .test-banner strong {
+      color: #92400e;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Test Banner -->
+  <div class="test-banner">
+    <strong>🧪 Test Mode</strong> - This is a test page to verify your Whereby integration works
+  </div>
+
+  <!-- The Classroom -->
+  <SimpleClassroom 
+    roomUrl={ROOM_URL}
+    courseName={classData.courseName}
+    instructorName={classData.instructorName}
+    sessionNumber={classData.sessionNumber}
+    totalSessions={classData.totalSessions}
+  />
+
+</body>
+</html>

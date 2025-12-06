@@ -1,0 +1,100 @@
+---
+// Instructor/Host view of the classroom
+// Visit: http://localhost:4321/teach-classroom
+
+import SimpleClassroom from '../components/SimpleClassroom.astro';
+
+// INSTRUCTOR (HOST) URL - Include the roomKey parameter
+// Get this from Whereby dashboard when you create the room
+const HOST_URL = "https://mind-foundry-learning.whereby.com/test-classroom2b07f8d0-84b1-4fb5-854d-0bcd119cfa6e?roomKey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZWV0aW5nSWQiOiIxMTcwMjA0NzMiLCJyb29tUmVmZXJlbmNlIjp7InJvb21OYW1lIjoiL3Rlc3QtY2xhc3Nyb29tMmIwN2Y4ZDAtODRiMS00ZmI1LTg1NGQtMGJjZDExOWNmYTZlIiwib3JnYW5pemF0aW9uSWQiOiIzMzA1MjcifSwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50cy5zcnYud2hlcmVieS5jb20iLCJpYXQiOjE3NjUwNTY0NjgsInJvb21LZXlUeXBlIjoibWVldGluZ0hvc3QifQ.ZHF0H4CUE3NkPzEKN821wnPOZOQP1F_spZfQdyiPK0o";
+
+// Same test data
+const classData = {
+  courseName: "Python Basics for Kids",
+  instructorName: "Sarah Johnson (You!)",
+  sessionNumber: 3,
+  totalSessions: 8
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor View - {classData.courseName}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem 1rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+      min-height: 100vh;
+    }
+    
+    .instructor-banner {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 1rem;
+      background: #dbeafe;
+      border: 2px solid #3b82f6;
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+    
+    .instructor-banner strong {
+      color: #1e40af;
+    }
+    
+    .host-controls-info {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 1rem;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0.5rem;
+    }
+    
+    .host-controls-info h3 {
+      margin: 0 0 0.5rem 0;
+      color: #92400e;
+    }
+    
+    .host-controls-info ul {
+      margin: 0.5rem 0 0 1.5rem;
+      color: #78350f;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Instructor Banner -->
+  <div class="instructor-banner">
+    <strong>👨‍🏫 INSTRUCTOR VIEW</strong> - You have host controls (lock room, remove participants, etc.)
+  </div>
+
+  <!-- Host Controls Info -->
+  <div class="host-controls-info">
+    <h3>🎛️ Host Controls Available</h3>
+    <ul>
+      <li>Lock the room (no new participants can join)</li>
+      <li>Remove disruptive participants</li>
+      <li>End meeting for everyone</li>
+      <li>Start/stop recording (if enabled)</li>
+    </ul>
+    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">
+      <strong>Look for the "..." menu in the video call</strong> - that's where host controls appear
+    </p>
+  </div>
+
+  <!-- The Classroom -->
+  <SimpleClassroom 
+    roomUrl={HOST_URL}
+    courseName={classData.courseName}
+    instructorName={classData.instructorName}
+    sessionNumber={classData.sessionNumber}
+    totalSessions={classData.totalSessions}
+  />
+
+</body>
+</html>
