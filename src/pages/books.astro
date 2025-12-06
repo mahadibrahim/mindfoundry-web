@@ -1,0 +1,373 @@
+---
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import StatsSection from '../components/StatsSection.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import TestimonialBlock from '../components/TestimonialBlock.astro';
+import CTASection from '../components/CTASection.astro';
+import BookCard from '../components/BookCard.astro';
+
+// Sample book data - would eventually come from CMS
+const books = [
+    {
+        title: "Math Mastery: Multiplication & Division",
+        subtitle: "Build confidence with badge-based practice",
+        coverImage: "https://placehold.co/400x600/011F4B/FFFFFF?text=Math+Mastery",
+        ageRange: "7-10",
+        skillsCount: 24,
+        badgeCount: 12,
+        price: "$24.99",
+        amazonLink: "https://amazon.com",
+        directLink: "/checkout/math-mastery",
+        bestseller: true,
+    },
+    {
+        title: "Reading Adventures: Comprehension Builder",
+        subtitle: "Level up reading skills through engaging stories",
+        coverImage: "https://placehold.co/400x600/00A8E8/FFFFFF?text=Reading+Adventures",
+        ageRange: "6-9",
+        skillsCount: 30,
+        badgeCount: 15,
+        price: "$24.99",
+        amazonLink: "https://amazon.com",
+        directLink: "/checkout/reading-adventures",
+        bestseller: true,
+    },
+    {
+        title: "Science Explorers: Hands-On Experiments",
+        subtitle: "Learn scientific method through real experiments",
+        coverImage: "https://placehold.co/400x600/011F4B/FFFFFF?text=Science+Explorers",
+        ageRange: "8-12",
+        skillsCount: 18,
+        badgeCount: 9,
+        price: "$29.99",
+        amazonLink: "https://amazon.com",
+        directLink: "/checkout/science-explorers",
+    },
+    {
+        title: "Coding Fundamentals: JavaScript for Kids",
+        subtitle: "Start coding with fun, interactive projects",
+        coverImage: "https://placehold.co/400x600/00A8E8/FFFFFF?text=Coding+Fundamentals",
+        ageRange: "10-14",
+        skillsCount: 20,
+        badgeCount: 10,
+        price: "$27.99",
+        amazonLink: "https://amazon.com",
+        directLink: "/checkout/coding-fundamentals",
+    },
+    {
+        title: "Writing Workshop: Creative Storytelling",
+        subtitle: "Develop writing skills through creative projects",
+        coverImage: "https://placehold.co/400x600/011F4B/FFFFFF?text=Writing+Workshop",
+        ageRange: "9-13",
+        skillsCount: 16,
+        badgeCount: 8,
+        price: "$24.99",
+        amazonLink: "https://amazon.com",
+        directLink: "/checkout/writing-workshop",
+    },
+    {
+        title: "Critical Thinking: Logic & Problem Solving",
+        subtitle: "Sharpen reasoning with puzzles and challenges",
+        coverImage: "https://placehold.co/400x600/00A8E8/FFFFFF?text=Critical+Thinking",
+        ageRange: "11-15",
+        skillsCount: 22,
+        badgeCount: 11,
+        price: "$26.99",
+        amazonLink: "https://amazon.com",
+        directLink: "/checkout/critical-thinking",
+    },
+];
+
+// Stats
+const stats = [
+    { number: '50K+', label: 'Books Sold', icon: '📚' },
+    { number: '4.8★', label: 'Average Rating', icon: '⭐' },
+    { number: '92%', label: 'Parent Satisfaction', icon: '👍' },
+    { number: '30 Days', label: 'Skill Mastery', icon: '🎯' },
+];
+
+// Why choose our books
+const features = [
+    {
+        icon: '🎯',
+        title: 'Badge-Based Progression',
+        description: 'Kids earn digital badges as they master each skill, building confidence and motivation through gamified learning.',
+    },
+    {
+        icon: '📱',
+        title: 'Companion Digital App',
+        description: 'Track progress, unlock bonus content, and share achievements through our free mobile app.',
+    },
+    {
+        icon: '✍️',
+        title: 'Research-Backed Methods',
+        description: 'Developed by educators using proven pedagogical approaches that make learning stick.',
+    },
+];
+
+// Benefits comparison
+const benefits = [
+    {
+        icon: '✅',
+        title: 'Self-Paced Learning',
+        description: 'Work at your own speed without pressure or deadlines.',
+    },
+    {
+        icon: '💰',
+        title: 'One-Time Purchase',
+        description: 'No subscriptions or recurring fees - just buy once and keep forever.',
+    },
+    {
+        icon: '👨‍👩‍👧',
+        title: 'Parent-Friendly',
+        description: 'Clear instructions and answer keys included for easy guidance.',
+    },
+    {
+        icon: '🏆',
+        title: 'Proven Results',
+        description: '90% of users report improved confidence within 30 days.',
+    },
+    {
+        icon: '📦',
+        title: 'Complete Curriculum',
+        description: 'Everything needed to master the topic, no additional purchases required.',
+    },
+    {
+        icon: '🔄',
+        title: '60-Day Guarantee',
+        description: 'Not satisfied? Return for a full refund within 60 days.',
+    },
+];
+
+// Testimonials
+const testimonials = [
+    {
+        quote: "My son went from struggling with multiplication to finishing the entire workbook in 3 weeks. The badge system kept him motivated!",
+        author: "Rachel T.",
+        context: "Mom of 8-year-old",
+    },
+    {
+        quote: "Finally, a workbook that doesn't feel like homework. My daughter asks to do her 'badge challenges' every night.",
+        author: "Michael P.",
+        context: "Dad of 9-year-old",
+    },
+    {
+        quote: "Clear instructions, engaging activities, and real progress. Worth every penny!",
+        author: "Jennifer L.",
+        context: "Homeschool Parent",
+    },
+];
+
+// FAQ items
+const faqs = [
+    {
+        question: "How long does it take to complete a book?",
+        answer: "Most students complete a book in 30-60 days with 15-20 minutes of daily practice. However, kids can work at their own pace.",
+    },
+    {
+        question: "Do I need the digital app?",
+        answer: "No, the books are complete on their own. The free companion app adds badge tracking and bonus content but isn't required.",
+    },
+    {
+        question: "What if my child finds it too easy or too hard?",
+        answer: "We offer a 60-day money-back guarantee. If the level isn't right, you can exchange for a different book or get a full refund.",
+    },
+    {
+        question: "Are answer keys included?",
+        answer: "Yes! Every book includes complete answer keys and teaching tips for parents.",
+    },
+    {
+        question: "Can I buy in bulk for a classroom?",
+        answer: "Absolutely! Contact us at schools@mindfoundry.com for bulk pricing and educator discounts.",
+    },
+];
+---
+
+<CorporateLayout title="At-Home Learning Books - Mind Foundry">
+    <!-- Hero -->
+    <HeroSection 
+        title="Master Skills at Home"
+        subtitle="Badge-based workbooks that make learning fun, with proven results in 30 days or less"
+        primaryCTA={{ text: "Browse Our Books", href: "#books" }}
+        secondaryCTA={{ text: "See Sample Pages", href: "#preview" }}
+    />
+
+    <!-- Stats -->
+    <StatsSection stats={stats} />
+
+    <!-- Books Grid -->
+    <section id="books" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Book Collection</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Choose from our bestselling titles, each designed to build mastery through engaging, badge-based learning
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {books.map((book) => (
+                    <BookCard book={book} />
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- What Makes Our Books Different -->
+    <FeatureGrid 
+        title="What Makes Our Books Different"
+        subtitle="More than just worksheets - a complete learning system"
+        features={features}
+    />
+
+    <!-- Benefits Grid -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Parents Choose Mind Foundry Books</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Effective learning without the hassle
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {benefits.map((benefit) => (
+                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 shadow-sm border border-gray-100">
+                        <div class="w-12 h-12 rounded-xl bg-corporate-secondary/10 flex items-center justify-center mb-4">
+                            <span class="text-2xl">{benefit.icon}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">
+                            {benefit.title}
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            {benefit.description}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <TestimonialBlock testimonials={testimonials} />
+
+    <!-- Sample Pages Preview -->
+    <section id="preview" class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">See Inside Our Books</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Get a preview of what makes our workbooks engaging and effective
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                    <img 
+                        src="https://placehold.co/600x800/F5F5F5/1E1E1E?text=Sample+Page+1"
+                        alt="Sample page showing badge progression"
+                        class="w-full h-auto"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Clear badge milestones</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                    <img 
+                        src="https://placehold.co/600x800/F5F5F5/1E1E1E?text=Sample+Page+2"
+                        alt="Sample page showing engaging activities"
+                        class="w-full h-auto"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Engaging activities</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                    <img 
+                        src="https://placehold.co/600x800/F5F5F5/1E1E1E?text=Sample+Page+3"
+                        alt="Sample page showing progress tracking"
+                        class="w-full h-auto"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Track progress</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a 
+                    href="/sample-pages.pdf"
+                    class="inline-flex items-center text-corporate-primary font-semibold text-lg hover:text-corporate-primary/80 transition-colors"
+                >
+                    Download Full Sample PDF (5.2 MB)
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Common Questions</h2>
+                <p class="text-xl text-gray-600">
+                    Everything you need to know about our books
+                </p>
+            </div>
+
+            <div class="space-y-6">
+                {faqs.map((faq) => (
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">
+                            {faq.question}
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            {faq.answer}
+                        </p>
+                    </div>
+                ))}
+            </div>
+
+            <div class="text-center mt-10">
+                <a 
+                    href="/help"
+                    class="inline-flex items-center text-corporate-primary font-semibold hover:text-corporate-secondary transition-colors"
+                >
+                    More questions? Visit our Help Center
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Money-Back Guarantee Banner -->
+    <section class="py-12 bg-gradient-to-r from-corporate-primary to-corporate-primary/80">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center text-white">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3">60-Day Money-Back Guarantee</h3>
+                <p class="text-lg text-white/90 max-w-2xl mx-auto">
+                    Try any book risk-free. If you're not completely satisfied with your child's progress, return it within 60 days for a full refund. No questions asked.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <CTASection 
+        title="Start Your Child's Learning Journey Today"
+        description="Join thousands of families building confidence and mastering skills with our badge-based workbooks"
+        primaryCTA={{ text: "Browse All Books", href: "#books" }}
+        secondaryCTA={{ text: "Download Sample Pages", href: "#preview" }}
+    />
+</CorporateLayout>
