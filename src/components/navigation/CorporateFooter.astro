@@ -1,15 +1,15 @@
 ---
-// Updated corporate footer with actual Mind Foundry logo
+// Updated corporate footer with Organizations section added
 const currentYear = new Date().getFullYear();
 
 const footerSections = [
     { 
         title: 'Learning Paths', 
         links: [
-            { name: 'Find a Center', href: '/centers' },
-            { name: 'At-Home Books', href: '/books' },
-            { name: 'Group Programs', href: '/organizations' },
-            { name: 'Browse Courses', href: '/courses' },
+            { name: 'Learn In Person', href: '/centers' },
+            { name: 'Learn At Home', href: '/books' },
+            { name: 'Learn Online', href: '/online' },
+            { name: 'Find a Center', href: '/find-a-center' },
         ]
     },
     { 
@@ -19,6 +19,16 @@ const footerSections = [
             { name: 'Our Mission', href: '/mission' },
             { name: 'Careers', href: '/careers' },
             { name: 'Press', href: '/press' },
+        ]
+    },
+    { 
+        title: 'For Organizations', 
+        links: [
+            { name: 'School Programs', href: '/organizations/schools' },
+            { name: 'Community Groups', href: '/organizations/community' },
+            { name: 'Corporate Partnerships', href: '/organizations/corporate' },
+            { name: 'Bulk Pricing', href: '/organizations/pricing' },
+            { name: 'Request a Quote', href: '/organizations/quote' },
         ]
     },
     { 
@@ -73,7 +83,7 @@ const socialLinks = [
         <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
             
             <!-- Brand Column with actual logo -->
-            <div class="col-span-2">
+            <div class="col-span-2 md:col-span-1">
                 <div class="flex items-center gap-3 mb-4">
                     <img 
                         src="/images/mind-foundry-logo.png"
@@ -153,6 +163,7 @@ const socialLinks = [
                     <a href="/privacy" class="text-sm text-gray-600 hover:text-corporate-primary transition-colors">Privacy Policy</a>
                     <a href="/terms" class="text-sm text-gray-600 hover:text-corporate-primary transition-colors">Terms</a>
                     <a href="/cookies" class="text-sm text-gray-600 hover:text-corporate-primary transition-colors">Cookie Policy</a>
+                    <a href="/accessibility" class="text-sm text-gray-600 hover:text-corporate-primary transition-colors">Accessibility</a>
                 </div>
             </div>
         </div>

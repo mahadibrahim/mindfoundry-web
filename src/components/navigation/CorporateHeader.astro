@@ -1,10 +1,25 @@
 ---
-// Updated corporate header with actual Mind Foundry logo
+// Updated corporate header with new navigation structure
 const navItems = [
-    { name: 'Centers', href: '/centers' },
-    { name: 'At-Home Books', href: '/books' },
-    { name: 'Organizations', href: '/organizations' },
-    { name: 'About', href: '/about' },
+    { 
+        name: 'Learn In Person', 
+        href: '/centers',
+        description: 'Local learning centers near you'
+    },
+    { 
+        name: 'Learn At Home', 
+        href: '/books',
+        description: 'Self-paced workbooks & materials'
+    },
+    { 
+        name: 'Learn Online', 
+        href: '/online',
+        description: 'Digital courses & badge platform'
+    },
+    { 
+        name: 'About', 
+        href: '/about' 
+    },
 ];
 ---
 
@@ -30,6 +45,7 @@ const navItems = [
                     <a 
                         href={item.href} 
                         class="text-gray-700 hover:text-corporate-primary font-medium transition-colors relative group"
+                        title={item.description}
                     >
                         {item.name}
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-corporate-primary group-hover:w-full transition-all duration-300"></span>
@@ -59,10 +75,10 @@ const navItems = [
 
                 <!-- Primary CTA -->
                 <a 
-                    href="/find-a-center" 
+                    href="/get-started" 
                     class="inline-flex items-center px-6 py-2.5 bg-corporate-primary text-white font-semibold rounded-full hover:bg-corporate-primary/90 shadow-sm hover:shadow-md transition-all duration-200"
                 >
-                    Find a Center
+                    Get Started
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
@@ -89,14 +105,17 @@ const navItems = [
                         href={item.href} 
                         class="px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-corporate-primary rounded-lg font-medium transition-colors"
                     >
-                        {item.name}
+                        <div class="font-semibold">{item.name}</div>
+                        {item.description && (
+                            <div class="text-xs text-gray-500 mt-0.5">{item.description}</div>
+                        )}
                     </a>
                 ))}
                 <a 
-                    href="/find-a-center" 
+                    href="/get-started" 
                     class="mt-2 px-4 py-3 bg-corporate-primary text-white font-semibold rounded-lg hover:bg-corporate-primary/90 text-center transition-colors"
                 >
-                    Find a Center
+                    Get Started
                 </a>
             </nav>
         </div>
