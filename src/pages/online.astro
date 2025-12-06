@@ -1,0 +1,505 @@
+---
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+import BadgeShowcase from '../components/BadgeShowcase.astro';
+import StatsSection from '../components/StatsSection.astro';
+
+// Sample badges - using emojis as placeholders (easy to swap with custom SVGs later)
+const sampleBadges = [
+    // Math badges
+    { id: 'math-1', name: 'Math Explorer', icon: '🔢', color: 'from-blue-400 to-blue-600', category: 'Math' },
+    { id: 'math-2', name: 'Calculator Pro', icon: '🧮', color: 'from-indigo-400 to-indigo-600', category: 'Math' },
+    { id: 'math-3', name: 'Geometry Ace', icon: '📐', color: 'from-purple-400 to-purple-600', category: 'Math' },
+    
+    // Science badges
+    { id: 'sci-1', name: 'Lab Scientist', icon: '🔬', color: 'from-green-400 to-green-600', category: 'Science' },
+    { id: 'sci-2', name: 'Space Explorer', icon: '🚀', color: 'from-cyan-400 to-cyan-600', category: 'Science' },
+    { id: 'sci-3', name: 'Nature Watch', icon: '🌱', color: 'from-emerald-400 to-emerald-600', category: 'Science' },
+    
+    // Coding badges
+    { id: 'code-1', name: 'Code Starter', icon: '💻', color: 'from-orange-400 to-orange-600', category: 'Coding' },
+    { id: 'code-2', name: 'Bug Hunter', icon: '🐛', color: 'from-red-400 to-red-600', category: 'Coding' },
+    { id: 'code-3', name: 'App Builder', icon: '📱', color: 'from-pink-400 to-pink-600', category: 'Coding' },
+    
+    // Arts badges
+    { id: 'art-1', name: 'Artist', icon: '🎨', color: 'from-yellow-400 to-yellow-600', category: 'Arts' },
+    { id: 'art-2', name: 'Music Maker', icon: '🎵', color: 'from-amber-400 to-amber-600', category: 'Arts' },
+    { id: 'art-3', name: 'Storyteller', icon: '📖', color: 'from-rose-400 to-rose-600', category: 'Arts' },
+    
+    // Life Skills badges
+    { id: 'life-1', name: 'Chef', icon: '👨‍🍳', color: 'from-lime-400 to-lime-600', category: 'Life Skills' },
+    { id: 'life-2', name: 'Money Smart', icon: '💰', color: 'from-teal-400 to-teal-600', category: 'Life Skills' },
+    { id: 'life-3', name: 'Team Player', icon: '🤝', color: 'from-sky-400 to-sky-600', category: 'Life Skills' },
+    { id: 'life-4', name: 'Problem Solver', icon: '🧩', color: 'from-violet-400 to-violet-600', category: 'Life Skills' },
+    
+    // Locked badges (coming soon)
+    { id: 'lock-1', name: '???', icon: '🔒', color: '', category: '', locked: true },
+    { id: 'lock-2', name: '???', icon: '🔒', color: '', category: '', locked: true },
+    { id: 'lock-3', name: '???', icon: '🔒', color: '', category: '', locked: true },
+    { id: 'lock-4', name: '???', icon: '🔒', color: '', category: '', locked: true },
+    { id: 'lock-5', name: '???', icon: '🔒', color: '', category: '', locked: true },
+    { id: 'lock-6', name: '???', icon: '🔒', color: '', category: '', locked: true },
+    { id: 'lock-7', name: '???', icon: '🔒', color: '', category: '', locked: true },
+    { id: 'lock-8', name: '???', icon: '🔒', color: '', category: '', locked: true },
+];
+
+// Skill pathways
+const pathways = [
+    {
+        name: 'Math & Logic',
+        icon: '🔢',
+        color: 'bg-blue-500',
+        badgeCount: 24,
+        description: 'Master numbers, patterns, and problem-solving',
+    },
+    {
+        name: 'Science',
+        icon: '🔬',
+        color: 'bg-green-500',
+        badgeCount: 18,
+        description: 'Explore experiments, nature, and discovery',
+    },
+    {
+        name: 'Coding',
+        icon: '💻',
+        color: 'bg-orange-500',
+        badgeCount: 20,
+        description: 'Build apps, games, and websites',
+    },
+    {
+        name: 'Arts & Design',
+        icon: '🎨',
+        color: 'bg-pink-500',
+        badgeCount: 16,
+        description: 'Create art, music, and stories',
+    },
+    {
+        name: 'Reading & Writing',
+        icon: '📚',
+        color: 'bg-purple-500',
+        badgeCount: 22,
+        description: 'Boost comprehension and creativity',
+    },
+    {
+        name: 'Life Skills',
+        icon: '🌟',
+        color: 'bg-teal-500',
+        badgeCount: 14,
+        description: 'Learn cooking, money, and teamwork',
+    },
+];
+
+// How it works steps
+const steps = [
+    {
+        number: '1',
+        title: 'Pick a Skill',
+        description: 'Choose from hundreds of fun challenges in math, science, coding, arts, and more',
+        icon: '🎯',
+    },
+    {
+        number: '2',
+        title: 'Complete Challenges',
+        description: 'Finish 3 interactive challenges to prove you\'ve mastered the skill',
+        icon: '⚡',
+    },
+    {
+        number: '3',
+        title: 'Earn Badges',
+        description: 'Collect colorful badges, track your progress, and show off your achievements',
+        icon: '🏆',
+    },
+];
+
+// Stats
+const stats = [
+    { number: '200+', label: 'Skills to Master', icon: '🎯' },
+    { number: '500+', label: 'Fun Challenges', icon: '⚡' },
+    { number: '100+', label: 'Badges to Earn', icon: '🏆' },
+    { number: '24/7', label: 'Learn Anytime', icon: '⏰' },
+];
+---
+
+<CorporateLayout title="Learn Online - Mind Foundry">
+    <!-- Hero Section (Vibrant & Badge-Focused) -->
+    <section class="relative bg-gradient-to-br from-corporate-primary via-corporate-primary to-corporate-light py-20 md:py-28 overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-corporate-secondary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 max-w-6xl relative z-10">
+            <div class="text-center">
+                <!-- Coming Soon Badge -->
+                <div class="inline-flex items-center gap-2 bg-corporate-secondary px-4 py-2 rounded-full mb-6 text-white font-bold text-sm animate-bounce">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    LAUNCHING SOON
+                </div>
+
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                    Learn. Play. <span class="text-corporate-secondary">Collect Badges.</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    The gamified online platform where kids master real skills through fun challenges and earn colorful badges they'll actually want to show off
+                </p>
+
+                <!-- Sample Badge Preview (3 large ones) -->
+                <div class="flex justify-center gap-6 mb-10">
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-5xl shadow-2xl transform hover:scale-110 hover:rotate-6 transition-all duration-300 cursor-pointer">
+                        🔢
+                    </div>
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-5xl shadow-2xl transform hover:scale-110 hover:rotate-6 transition-all duration-300 cursor-pointer">
+                        🔬
+                    </div>
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-5xl shadow-2xl transform hover:scale-110 hover:rotate-6 transition-all duration-300 cursor-pointer">
+                        💻
+                    </div>
+                </div>
+
+                <!-- Email Signup -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto border border-white/20">
+                    <h3 class="text-2xl font-bold text-white mb-3">
+                        Be First to Join the Beta
+                    </h3>
+                    <p class="text-white/90 mb-6">
+                        Get early access + 10 free badges when we launch
+                    </p>
+                    <form class="flex flex-col sm:flex-row gap-3">
+                        <input 
+                            type="email" 
+                            placeholder="Enter your email"
+                            class="flex-1 px-4 py-4 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-corporate-secondary bg-white/20 backdrop-blur text-white placeholder-white/60 font-medium"
+                            required
+                        />
+                        <button 
+                            type="submit"
+                            class="px-8 py-4 bg-corporate-secondary text-white font-bold rounded-xl hover:bg-corporate-secondary/90 shadow-lg hover:shadow-xl transition-all duration-200 whitespace-nowrap"
+                        >
+                            Notify Me! 🚀
+                        </button>
+                    </form>
+                    <p class="text-xs text-white/70 mt-3">
+                        Join 2,500+ parents already on the waitlist
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <StatsSection stats={stats} />
+
+    <!-- Badge Showcase -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Collect 100+ Amazing Badges
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Each badge represents a real skill mastered. Start collecting!
+                </p>
+            </div>
+
+            <BadgeShowcase badges={sampleBadges} />
+
+            <div class="text-center mt-8">
+                <p class="text-gray-600 mb-4">
+                    <span class="font-bold text-corporate-primary">Complete 3 challenges</span> to unlock each badge
+                </p>
+                <div class="inline-flex items-center gap-2 text-sm text-gray-500">
+                    <span>🔒 More badges unlock as you progress</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Pathways -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Choose Your Learning Path
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Explore different subjects and earn badges in each
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {pathways.map((pathway) => (
+                    <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-corporate-primary/30 transition-all duration-300 cursor-pointer">
+                        <!-- Icon Circle -->
+                        <div class={`w-16 h-16 ${pathway.color} rounded-2xl flex items-center justify-center text-3xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                            {pathway.icon}
+                        </div>
+
+                        <!-- Content -->
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-corporate-primary transition-colors">
+                            {pathway.name}
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            {pathway.description}
+                        </p>
+
+                        <!-- Badge Count -->
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="font-bold text-corporate-primary">{pathway.badgeCount} badges</span>
+                            <span class="text-gray-500">to collect</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works (3 Steps like DIY.org) -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    How Badge Learning Works
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    It's simple, fun, and actually works
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {steps.map((step, index) => (
+                    <div class="relative text-center">
+                        <!-- Big Number -->
+                        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-corporate-primary to-corporate-light text-white text-3xl font-bold mb-6 shadow-xl">
+                            {step.number}
+                        </div>
+
+                        <!-- Icon -->
+                        <div class="text-6xl mb-4">
+                            {step.icon}
+                        </div>
+
+                        <!-- Content -->
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                            {step.title}
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            {step.description}
+                        </p>
+
+                        <!-- Connector Arrow (hidden on last item and mobile) -->
+                        {index < steps.length - 1 && (
+                            <div class="hidden md:block absolute top-10 -right-4 text-4xl text-corporate-secondary">
+                                →
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Left: Feature List -->
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                        Why Kids Love Badge Learning
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-corporate-secondary/10 flex items-center justify-center flex-shrink-0 text-2xl">
+                                🎮
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1">Feels Like Gaming</h3>
+                                <p class="text-gray-600">Challenges, achievements, and rewards make learning addictively fun</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-corporate-secondary/10 flex items-center justify-center flex-shrink-0 text-2xl">
+                                📊
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1">Track Everything</h3>
+                                <p class="text-gray-600">See exactly what they've mastered with visual progress tracking</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-corporate-secondary/10 flex items-center justify-center flex-shrink-0 text-2xl">
+                                🏆
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1">Build Confidence</h3>
+                                <p class="text-gray-600">Each badge proves they can succeed and master new skills</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-corporate-secondary/10 flex items-center justify-center flex-shrink-0 text-2xl">
+                                ⏰
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1">Learn Anytime</h3>
+                                <p class="text-gray-600">Available 24/7 on any device - learn at their own pace</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Demo (Placeholder) -->
+                <div class="bg-gradient-to-br from-corporate-primary/5 to-corporate-secondary/5 rounded-3xl p-8 flex items-center justify-center min-h-[400px]">
+                    <div class="text-center">
+                        <div class="text-8xl mb-6">🎯</div>
+                        <p class="text-2xl font-bold text-gray-900 mb-2">Platform Demo</p>
+                        <p class="text-gray-600">Visual coming soon</p>
+                        <div class="mt-6 grid grid-cols-4 gap-3">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-2xl shadow-lg">🔢</div>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-2xl shadow-lg">🔬</div>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-2xl shadow-lg">💻</div>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-2xl shadow-lg">🎨</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon Timeline -->
+    <section class="py-20 bg-gradient-to-br from-corporate-primary to-corporate-light">
+        <div class="container mx-auto px-4 max-w-4xl text-center text-white">
+            <h2 class="text-4xl font-bold mb-6">
+                Launch Timeline
+            </h2>
+            <div class="bg-white/10 backdrop-blur rounded-2xl p-8 mb-8">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-corporate-secondary flex items-center justify-center font-bold flex-shrink-0">✓</div>
+                        <div class="text-left">
+                            <div class="font-bold text-lg">Beta Signups Open</div>
+                            <div class="text-white/80">Join 2,500+ families already on the list</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 opacity-75">
+                        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold flex-shrink-0">2</div>
+                        <div class="text-left">
+                            <div class="font-bold text-lg">Beta Launch - Q1 2026</div>
+                            <div class="text-white/80">First 1,000 users get lifetime founder pricing</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 opacity-75">
+                        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold flex-shrink-0">3</div>
+                        <div class="text-left">
+                            <div class="font-bold text-lg">Public Launch - Q2 2026</div>
+                            <div class="text-white/80">Full platform with 100+ badges live</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a 
+                href="#signup"
+                class="inline-flex items-center px-8 py-4 bg-corporate-secondary text-white font-bold text-lg rounded-full hover:bg-corporate-secondary/90 shadow-xl hover:shadow-2xl transition-all duration-200"
+            >
+                Get Early Access →
+            </a>
+        </div>
+    </section>
+
+    <!-- Cross-Promotion to Other Options -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">
+                    Can't Wait? Try Our Other Options
+                </h2>
+                <p class="text-gray-600">
+                    We have learning solutions available right now
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <a 
+                    href="/centers"
+                    class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-center-primary transition-all duration-300"
+                >
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-center-primary/10 flex items-center justify-center text-3xl">
+                            🏫
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-center-primary transition-colors">
+                                Learn In Person
+                            </h3>
+                            <p class="text-sm text-gray-600">50+ local centers</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-3">
+                        Structured classes with certified instructors and hands-on activities
+                    </p>
+                    <span class="text-center-primary font-semibold group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                        Find a Center <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+                    </span>
+                </a>
+
+                <a 
+                    href="/books"
+                    class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-center-accent transition-all duration-300"
+                >
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-center-accent/10 flex items-center justify-center text-3xl">
+                            📚
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-center-accent transition-colors">
+                                Learn At Home
+                            </h3>
+                            <p class="text-sm text-gray-600">Self-paced workbooks</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-3">
+                        Badge-based workbooks you can use offline, on your schedule
+                    </p>
+                    <span class="text-center-accent font-semibold group-hover:gap-2 inline-flex items-center gap-1 transition-all">
+                        Browse Books <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Email Capture -->
+    <section id="signup" class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="bg-gradient-to-br from-corporate-primary to-corporate-light rounded-3xl p-10 text-center text-white shadow-2xl">
+                <div class="text-6xl mb-6">🚀</div>
+                <h2 class="text-4xl font-bold mb-4">
+                    Ready to Join?
+                </h2>
+                <p class="text-xl text-white/90 mb-8">
+                    Be among the first 1,000 families to experience badge learning
+                </p>
+                
+                <form class="max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-3 mb-4">
+                        <input 
+                            type="email" 
+                            placeholder="Your email address"
+                            class="flex-1 px-5 py-4 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-corporate-secondary bg-white/20 backdrop-blur text-white placeholder-white/70 font-medium text-lg"
+                            required
+                        />
+                        <button 
+                            type="submit"
+                            class="px-8 py-4 bg-corporate-secondary text-white font-bold text-lg rounded-xl hover:bg-corporate-secondary/90 shadow-lg hover:shadow-xl transition-all duration-200"
+                        >
+                            Join Waitlist
+                        </button>
+                    </div>
+                    <p class="text-sm text-white/80">
+                        ✨ Get 10 free badges when we launch + lifetime founder pricing
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+</CorporateLayout>

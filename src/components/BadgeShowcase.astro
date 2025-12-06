@@ -1,0 +1,65 @@
+---
+// Badge showcase component - displays sample badges in DIY.org style
+interface Badge {
+    id: string;
+    name: string;
+    icon: string;
+    color: string;
+    category: string;
+    locked?: boolean;
+}
+
+interface Props {
+    title?: string;
+    badges: Badge[];
+    showLocked?: boolean;
+}
+
+const { title = "Earn Amazing Badges", badges, showLocked = true } = Astro.props;
+---
+
+<div class="py-12">
+    {title && (
+        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">
+            {title}
+        </h3>
+    )}
+    
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+        {badges.map((badge) => (
+            <div class="flex flex-col items-center group cursor-pointer">
+                <!-- Badge Circle -->
+                <div 
+                    class={`
+                        w-16 h-16 sm:w-20 sm:h-20 rounded-full 
+                        flex items-center justify-center text-2xl sm:text-3xl
+                        shadow-lg transform transition-all duration-300
+                        ${badge.locked 
+                            ? 'bg-gray-200 grayscale opacity-50' 
+                            : `bg-gradient-to-br ${badge.color}`}
+                        group-hover:scale-110 group-hover:shadow-xl
+                        ${!badge.locked && 'group-hover:rotate-6'}
+                    `}
+                >
+                    {badge.locked ? '🔒' : badge.icon}
+                </div>
+                
+                <!-- Badge Name -->
+                <span class={`
+                    text-xs sm:text-sm font-semibold text-center mt-2 px-1
+                    ${badge.locked ? 'text-gray-400' : 'text-gray-700'}
+                    group-hover:text-corporate-primary transition-colors
+                `}>
+                    {badge.name}
+                </span>
+                
+                <!-- Category Tag (optional) -->
+                {badge.category && !badge.locked && (
+                    <span class="text-xs text-gray-500 mt-0.5">
+                        {badge.category}
+                    </span>
+                )}
+            </div>
+        ))}
+    </div>
+</div>
