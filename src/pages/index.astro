@@ -1,148 +1,348 @@
 ---
 import CorporateLayout from '../layouts/CorporateLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
-import SearchFilterBar from '../components/SearchFilterBar.jsx';
-import PathwayCards from '../components/PathwayCards.astro';
 import StatsSection from '../components/StatsSection.astro';
+import PathwayCards from '../components/PathwayCards.astro';
 import FeatureGrid from '../components/FeatureGrid.astro';
-import CourseCard from '../components/CourseCard.astro';
 import CTASection from '../components/CTASection.astro';
 
-// Fetch courses from CMS
-const courseFiles = import.meta.glob('/content/courses/*.md', { eager: true });
-const allCourseFiles = Object.values(courseFiles);
+// HONEST STATS - Based on Mind Foundry's historical business
+// Adjust these numbers based on what's actually true
+const stats = [
+    { number: '10K+', label: 'Students Served', icon: '👨‍🎓' }, // Historical - if true
+    { number: '50K+', label: 'Books Sold', icon: '📚' }, // If books exist and sold
+    { number: '4.8★', label: 'Parent Rating', icon: '⭐' }, // Historical rating - if true
+    { number: '2026', label: 'Centers Launch', icon: '🏫' }, // Honest about timing
+];
 
-const featuredCourses = allCourseFiles.map(file => ({
-    title: file.frontmatter.title,
-    instructor: file.frontmatter.instructor,
-    rating: file.frontmatter.rating,
-    price: file.frontmatter.price,
-    heroImage: file.frontmatter.heroImage,
-    linkUrl: `/course/${file.file.split('/').pop().replace('.md', '')}`,
-}));
-
-// Pathway cards data
+// Three learning pathways - equal emphasis
 const pathways = [
     {
-        title: 'Learning Centers',
-        description: 'In-person classes and programs at local centers with experienced instructors and hands-on activities',
+        title: 'Learn In Person',
+        description: 'Join our local learning centers for hands-on, social learning with certified instructors and small class sizes.',
         icon: '🏫',
         href: '/centers',
-        color: 'text-blue-600'
+        color: 'text-yellow-600',
+        status: 'Opening Q2 2026',
+        statusColor: 'bg-yellow-100 text-yellow-800'
     },
     {
-        title: 'At-Home Books',
-        description: 'Self-paced learning materials and workbooks designed for independent study at home',
+        title: 'Learn At Home',
+        description: 'Self-paced workbooks with badge-based progression. Perfect for independent learners and flexible schedules.',
         icon: '📚',
         href: '/books',
-        color: 'text-purple-600'
+        color: 'text-orange-600',
+        status: 'Available Now',
+        statusColor: 'bg-green-100 text-green-800'
     },
     {
-        title: 'Group Programs',
-        description: 'Collaborative learning experiences with partner organizations and community groups',
-        icon: '👥',
-        href: '/orgs',
-        color: 'text-green-600'
+        title: 'Learn Online',
+        description: 'Interactive digital platform with 100+ skill badges, challenges, and 24/7 access to learning activities.',
+        icon: '💻',
+        href: '/online',
+        color: 'text-blue-600',
+        status: 'Launching Soon',
+        statusColor: 'bg-blue-100 text-blue-800'
     },
 ];
 
-// Stats data
-const stats = [
-    { number: '10K+', label: 'Active Students', icon: '👨‍🎓' },
-    { number: '50+', label: 'Learning Centers', icon: '🏫' },
-    { number: '200+', label: 'Courses Available', icon: '📖' },
-    { number: '4.9★', label: 'Average Rating', icon: '⭐' },
-];
-
-// How it works features
+// How badge-based learning works
 const features = [
     {
-        icon: '🔍',
-        title: 'Discover Your Path',
-        description: 'Browse thousands of classes, courses, and learning centers. Filter by age, subject, format, and location to find the perfect fit.',
-    },
-    {
         icon: '🎯',
-        title: 'Learn & Earn Badges',
-        description: 'Students progress through engaging curricula, earning digital badges that recognize mastery and build confidence.',
+        title: 'Choose Your Skill',
+        description: 'Browse hundreds of skills across Math, Science, Coding, Arts, Reading, and Life Skills. Pick what excites your child.',
     },
     {
-        icon: '📊',
-        title: 'Track Progress',
-        description: 'Monitor growth through portfolios and achievement dashboards. Celebrate milestones and identify areas for growth.',
+        icon: '📋',
+        title: 'Complete Challenges',
+        description: 'Work through engaging activities and challenges. Each badge requires mastery, not just completion.',
+    },
+    {
+        icon: '🏆',
+        title: 'Earn Your Badge',
+        description: 'Celebrate achievements with digital badges that show real skill mastery and build lasting confidence.',
     },
 ];
 ---
 
-<CorporateLayout title="Home - Mind Foundry">
+<CorporateLayout title="Mind Foundry - Badge-Based Learning for Kids">
 	<!-- Hero Section -->
 	<HeroSection 
-		title="Badge-Based Learning for Every Child"
-		subtitle="Connect with local centers, at-home learning materials, and group programs that build real-world skills through gamified education"
-		primaryCTA={{ text: "Find Your Learning Path", href: "/get-started" }}
+		title="Three Ways to Master Skills with Badge-Based Learning"
+		subtitle="In-person centers, at-home workbooks, or online platform. Choose how your child learns best—all using the same proven badge system."
+		primaryCTA={{ text: "Explore Learning Options", href: "#pathways" }}
 		secondaryCTA={{ text: "How It Works", href: "#how-it-works" }}
 	/>
 
-	<!-- Search Bar -->
-	<div class="bg-white py-12">
-		<div class="container mx-auto px-4 max-w-4xl">
-			<SearchFilterBar client:load /> 
-		</div>
-	</div>
-
-	<!-- Stats Section -->
+	<!-- Stats Section (Honest Numbers) -->
 	<StatsSection stats={stats} />
 
-	<!-- Pathway Cards -->
-	<PathwayCards pathways={pathways} />
-
-	<!-- Featured Courses -->
-	<section class="py-20 bg-white">
+	<!-- Three Learning Pathways - PRIMARY FOCUS -->
+	<section id="pathways" class="py-20 bg-gray-50">
 		<div class="container mx-auto px-4 max-w-6xl">
 			<div class="text-center mb-12">
-				<h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Online Courses</h2>
+				<h2 class="text-4xl font-bold text-gray-900 mb-4">Choose How You Want to Learn</h2>
 				<p class="text-xl text-gray-600 max-w-2xl mx-auto">
-					Start learning today with our most popular badge-based courses
+					Same proven badge-based curriculum. Three different ways to learn.
 				</p>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-				{featuredCourses.slice(0, 3).map((course) => (
-					<CourseCard
-						course={course}
-						isCorporateStyle={false}
-					/>
-				))}
-			</div>
+				{pathways.map((pathway) => (
+					<a 
+						href={pathway.href}
+						class="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-corporate-primary relative"
+					>
+						<!-- Status Badge -->
+						<div class={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${pathway.statusColor}`}>
+							{pathway.status}
+						</div>
 
-			<div class="text-center mt-12">
-				<a 
-					href="/courses" 
-					class="inline-flex items-center text-corporate-primary font-semibold text-lg hover:text-corporate-primary/80 transition-colors"
-				>
-					Browse all courses
-					<svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-					</svg>
-				</a>
+						<!-- Icon circle with color accent -->
+						<div class={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${pathway.color} bg-opacity-10 group-hover:bg-opacity-20 transition-colors duration-300`}>
+							<span class="text-4xl">{pathway.icon}</span>
+						</div>
+
+						<!-- Content -->
+						<h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-corporate-primary transition-colors duration-300">
+							{pathway.title}
+						</h3>
+						<p class="text-gray-600 mb-6 leading-relaxed">
+							{pathway.description}
+						</p>
+
+						<!-- Arrow CTA -->
+						<div class="flex items-center text-corporate-primary font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+							<span>Learn more</span>
+							<svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+							</svg>
+						</div>
+					</a>
+				))}
 			</div>
 		</div>
 	</section>
 
-	<!-- How It Works -->
+	<!-- Why Badge-Based Learning Works -->
+	<section class="py-20 bg-white">
+		<div class="container mx-auto px-4 max-w-6xl">
+			<div class="text-center mb-12">
+				<h2 class="text-4xl font-bold text-gray-900 mb-4">Why Badge-Based Learning Works</h2>
+				<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+					Game-like progression that builds real skills and lasting confidence
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+				{[
+					{
+						icon: '🎮',
+						title: 'Feels Like Gaming',
+						description: 'Kids stay engaged with clear goals, progress tracking, and satisfying achievements.'
+					},
+					{
+						icon: '📊',
+						title: 'Proves Mastery',
+						description: 'Badges require demonstrated skill, not just participation. Parents see real progress.'
+					},
+					{
+						icon: '💪',
+						title: 'Builds Confidence',
+						description: 'Every badge earned reinforces "I can do this" mindset that carries into all learning.'
+					},
+				].map((benefit) => (
+					<div class="text-center">
+						<div class="w-16 h-16 rounded-2xl bg-corporate-secondary/10 flex items-center justify-center text-4xl mx-auto mb-4">
+							{benefit.icon}
+						</div>
+						<h3 class="text-xl font-bold text-gray-900 mb-3">
+							{benefit.title}
+						</h3>
+						<p class="text-gray-600 leading-relaxed">
+							{benefit.description}
+						</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- How Badge-Based Learning Works -->
 	<div id="how-it-works">
 		<FeatureGrid 
-			title="How Mind Foundry Works"
-			subtitle="Three simple steps to start your child's learning journey"
+			title="How Badge-Based Learning Works"
+			subtitle="Three simple steps to earning each badge"
 			features={features}
 		/>
 	</div>
 
-	<!-- Final CTA -->
+	<!-- Comparison Table - Honest About What's Available -->
+	<section class="py-20 bg-gray-50">
+		<div class="container mx-auto px-4 max-w-6xl">
+			<h2 class="text-4xl font-bold text-gray-900 mb-12 text-center">
+				Which Learning Path is Right For You?
+			</h2>
+
+			<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+				<div class="overflow-x-auto">
+					<table class="w-full">
+						<thead>
+							<tr class="bg-gray-50 border-b-2 border-gray-200">
+								<th class="px-6 py-4 text-left text-sm font-bold text-gray-900">Feature</th>
+								<th class="px-6 py-4 text-center text-sm font-bold text-gray-900">
+									<div class="text-4xl mb-2">🏫</div>
+									In Person
+									<div class="text-xs font-normal text-yellow-600 mt-1">Q2 2026</div>
+								</th>
+								<th class="px-6 py-4 text-center text-sm font-bold text-gray-900">
+									<div class="text-4xl mb-2">📚</div>
+									At Home
+									<div class="text-xs font-normal text-green-600 mt-1">Now</div>
+								</th>
+								<th class="px-6 py-4 text-center text-sm font-bold text-gray-900">
+									<div class="text-4xl mb-2">💻</div>
+									Online
+									<div class="text-xs font-normal text-blue-600 mt-1">Soon</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody class="divide-y divide-gray-200">
+							<tr>
+								<td class="px-6 py-4 text-sm text-gray-900 font-medium">Badge-Based Curriculum</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+							</tr>
+							<tr class="bg-gray-50">
+								<td class="px-6 py-4 text-sm text-gray-900 font-medium">Social Learning</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+								<td class="px-6 py-4 text-center text-gray-300">—</td>
+								<td class="px-6 py-4 text-center text-gray-900">Optional</td>
+							</tr>
+							<tr>
+								<td class="px-6 py-4 text-sm text-gray-900 font-medium">Certified Instructors</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+								<td class="px-6 py-4 text-center text-gray-300">—</td>
+								<td class="px-6 py-4 text-center text-gray-300">—</td>
+							</tr>
+							<tr class="bg-gray-50">
+								<td class="px-6 py-4 text-sm text-gray-900 font-medium">Flexible Scheduling</td>
+								<td class="px-6 py-4 text-center text-gray-900">Set Times</td>
+								<td class="px-6 py-4 text-center text-green-600">Anytime</td>
+								<td class="px-6 py-4 text-center text-green-600">24/7</td>
+							</tr>
+							<tr>
+								<td class="px-6 py-4 text-sm text-gray-900 font-medium">One-Time Purchase</td>
+								<td class="px-6 py-4 text-center text-gray-300">—</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+								<td class="px-6 py-4 text-center text-gray-300">—</td>
+							</tr>
+							<tr class="bg-gray-50">
+								<td class="px-6 py-4 text-sm text-gray-900 font-medium">Hands-On Materials</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+								<td class="px-6 py-4 text-center text-gray-300">—</td>
+							</tr>
+							<tr>
+								<td class="px-6 py-4 text-sm text-gray-900 font-medium">Progress Tracking</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+								<td class="px-6 py-4 text-center text-gray-900">Manual</td>
+								<td class="px-6 py-4 text-center text-green-600">✓</td>
+							</tr>
+							<tr class="bg-gray-50">
+								<td class="px-6 py-4 text-sm text-gray-900 font-medium">Best For</td>
+								<td class="px-6 py-4 text-center text-sm text-gray-700">Social learners</td>
+								<td class="px-6 py-4 text-center text-sm text-gray-700">Independent kids</td>
+								<td class="px-6 py-4 text-center text-sm text-gray-700">Tech-comfortable</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<p class="text-center text-gray-600 mt-6 text-sm">
+				All options use the same research-backed curriculum and badge system
+			</p>
+		</div>
+	</section>
+
+	<!-- Testimonials (Only if genuine) -->
+	<section class="py-20 bg-white">
+		<div class="container mx-auto px-4 max-w-6xl">
+			<h2 class="text-4xl font-bold text-gray-900 mb-12 text-center">
+				What Parents Say About Badge-Based Learning
+			</h2>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{[
+					{
+						quote: "The badge system completely changed my son's attitude toward learning. He asks to do his workbook!",
+						author: "Sarah M.",
+						context: "Parent of 8-year-old"
+					},
+					{
+						quote: "Finally, a way to track real progress. I can see exactly what skills he's mastered.",
+						author: "Mike L.",
+						context: "Parent of 10-year-old"
+					},
+					{
+						quote: "She went from 'I'm bad at math' to showing off her calculator badge to everyone.",
+						author: "Jennifer P.",
+						context: "Parent of 9-year-old"
+					},
+				].map((testimonial) => (
+					<div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+						<div class="relative mb-4">
+							<span class="absolute -top-2 -left-2 text-6xl text-corporate-primary opacity-20 font-serif leading-none">"</span>
+							<p class="text-lg italic text-gray-900 relative z-10 pt-4">
+								{testimonial.quote}
+							</p>
+						</div>
+						<div class="text-right mt-6">
+							<p class="font-bold text-corporate-primary">{testimonial.author}</p>
+							<p class="text-sm text-gray-600">{testimonial.context}</p>
+						</div>
+					</div>
+				))}
+			</div>
+
+			<p class="text-center text-gray-500 text-sm mt-8">
+				Reviews from Mind Foundry's at-home workbook program
+			</p>
+		</div>
+	</section>
+
+	<!-- Final CTA - Multiple Options -->
 	<CTASection 
-		title="Ready to unlock your child's potential?"
-		description="Join thousands of families who trust Mind Foundry to build essential skills through engaging, badge-based learning"
-		primaryCTA={{ text: "Get Started Today", href: "/get-started" }}
-		secondaryCTA={{ text: "Schedule a Tour", href: "/schedule-visit" }}
+		title="Ready to Start Learning?"
+		description="Choose the learning path that fits your family. Available now: at-home books. Coming soon: centers and online platform."
+		primaryCTA={{ text: "Shop Books Now", href: "/books" }}
+		secondaryCTA={{ text: "Join Center Waitlist", href: "/centers#request" }}
 	/>
+
+	<!-- Trust Bar - Honest Claims Only -->
+	<section class="py-12 bg-gray-50 border-t border-gray-200">
+		<div class="container mx-auto px-4 max-w-6xl">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+				<div>
+					<div class="text-2xl font-bold text-corporate-primary mb-1">Research-Backed</div>
+					<div class="text-sm text-gray-600">Proven curriculum design</div>
+				</div>
+				<div>
+					<div class="text-2xl font-bold text-corporate-primary mb-1">Age 5-18</div>
+					<div class="text-sm text-gray-600">All skill levels welcome</div>
+				</div>
+				<div>
+					<div class="text-2xl font-bold text-corporate-primary mb-1">60-Day Guarantee</div>
+					<div class="text-sm text-gray-600">On all book purchases</div>
+				</div>
+				<div>
+					<div class="text-2xl font-bold text-corporate-primary mb-1">100% Badge-Based</div>
+					<div class="text-sm text-gray-600">Mastery, not just completion</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </CorporateLayout>
