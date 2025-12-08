@@ -1,0 +1,26 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import MessagesPage from '../../components/dashboard/MessagesPage';
+import { mockChildren } from '../../data/mockDashboardData';
+import { mockThreads, mockMessages } from '../../data/mockMessagingData';
+
+// Current user (would come from auth in production)
+const currentUserId = 'parent-001';
+
+// Get messaging data
+const threads = mockThreads;
+const messagesMap = mockMessages;
+
+// Get children for compose flow
+const children = mockChildren;
+---
+
+<DashboardLayout title="Messages - Mind Foundry">
+  <MessagesPage 
+    client:load 
+    threads={threads}
+    messagesMap={messagesMap}
+    children={children}
+    currentUserId={currentUserId}
+  />
+</DashboardLayout>

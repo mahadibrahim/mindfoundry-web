@@ -27,6 +27,12 @@ export { default as CapacityDetailCard } from './CapacityDetailCard';
 export { default as BadgeShowcase } from './BadgeShowcase';
 export { default as EnrollmentProgressCard } from './EnrollmentProgressCard';
 
+// Messaging components
+export { default as MessagesPage } from './MessagesPage';
+export { default as MessageInbox } from './MessageInbox';
+export { default as MessageThread } from './MessageThread';
+export { default as ComposeMessage } from './ComposeMessage';
+
 // Re-export types for convenience
 export type {
   Parent,
