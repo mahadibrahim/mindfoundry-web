@@ -1,0 +1,46 @@
+---
+/**
+ * Parent Dashboard - Sessions Page
+ * 
+ * Lists all sessions across all children with:
+ * - Filtering by child, course, status, delivery type
+ * - Session detail panel with feedback
+ * - Join button for online sessions
+ * - Parent reflection input
+ */
+
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import SessionsPage from '../../components/dashboard/SessionsPage';
+import { mockChildren, mockSessions, mockEnrollments } from '../../data/mockDashboardData';
+
+// Hydrate children with their full session data
+const childrenWithSessions = mockChildren.map(child => {
+  const enrollments = mockEnrollments[child.id] || [];
+  
+  const hydratedEnrollments = enrollments.map(enrollment => {
+    const sessions = mockSessions[enrollment.id] || [];
+    const now = new Date();
+    const upcomingSessions = sessions
+      .filter(s => new Date(s.scheduledAt) >= now && s.status !== 'cancelled')
+      .sort((a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime());
+    
+    return {
+      ...enrollment,
+      nextSession: upcomingSessions[0] || sessions[0],
+      allSessions: sessions,
+    };
+  });
+
+  return {
+    ...child,
+    activeEnrollments: hydratedEnrollments,
+  };
+});
+---
+
+<DashboardLayout title="Sessions - Mind Foundry Dashboard" currentPage="sessions">
+  <SessionsPage
+    client:load
+    childrenData={childrenWithSessions}
+  />
+</DashboardLayout>

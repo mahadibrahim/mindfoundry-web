@@ -1,0 +1,52 @@
+---
+/**
+ * Parent Dashboard - Feedback Journal Page
+ * 
+ * Chronological view of all instructor feedback with:
+ * - Filtering by child, course, capacity, date range
+ * - Capacity growth overview
+ * - Parent reflection input on each entry
+ * - Grouped by month for easy navigation
+ */
+
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import FeedbackJournalPage from '../../components/dashboard/FeedbackJournalPage';
+import { mockChildren, mockSessions, mockEnrollments } from '../../data/mockDashboardData';
+
+// Hydrate children with their full session data (including feedback)
+const childrenWithSessions = mockChildren.map(child => {
+  const enrollments = mockEnrollments[child.id] || [];
+  
+  const hydratedEnrollments = enrollments.map(enrollment => {
+    const sessions = mockSessions[enrollment.id] || [];
+    const now = new Date();
+    const upcomingSessions = sessions
+      .filter(s => new Date(s.scheduledAt) >= now && s.status !== 'cancelled')
+      .sort((a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime());
+    
+    return {
+      ...enrollment,
+      nextSession: upcomingSessions[0] || sessions[0],
+      allSessions: sessions,
+    };
+  });
+
+  return {
+    ...child,
+    activeEnrollments: hydratedEnrollments,
+  };
+});
+
+// Handler for saving reflections (would be API call in production)
+const handleSaveReflection = (feedbackId: string, reflection: string) => {
+  console.log('Saving reflection for feedback:', feedbackId, reflection);
+  // In production: POST to /api/feedback/:id/reflection
+};
+---
+
+<DashboardLayout title="Feedback Journal - Mind Foundry Dashboard" currentPage="feedback">
+  <FeedbackJournalPage
+    client:load
+    childrenData={childrenWithSessions}
+  />
+</DashboardLayout>

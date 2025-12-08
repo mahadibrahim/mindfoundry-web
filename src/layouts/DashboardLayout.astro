@@ -1,0 +1,90 @@
+---
+/**
+ * Dashboard Layout
+ * 
+ * This layout wraps all dashboard pages with consistent navigation,
+ * header, and styling. Uses the Center color palette (warm yellows/oranges)
+ * since this is a personal parent experience.
+ */
+
+import BaseLayout from './BaseLayout.astro';
+import DashboardNav from '../components/dashboard/DashboardNav';
+import { mockParent, mockFamilyOverview } from '../data/mockDashboardData';
+
+interface Props {
+  title: string;
+  currentPage: string;
+  currentChildId?: string;
+}
+
+const { title, currentPage, currentChildId } = Astro.props;
+
+// In production, this would come from session/auth
+const parent = mockParent;
+const unreadMessageCount = mockFamilyOverview.unreadMessageCount;
+---
+
+<BaseLayout title={title}>
+  <div class="min-h-screen bg-gray-50 lg:flex">
+    <!-- Sidebar Navigation (React Island for interactivity) -->
+    <DashboardNav
+      client:load
+      parent={parent}
+      currentChildId={currentChildId}
+      currentPage={currentPage}
+      unreadMessageCount={unreadMessageCount}
+    />
+
+    <!-- Main Content Area -->
+    <main class="flex-1 lg:ml-0">
+      <!-- Top padding for mobile header -->
+      <div class="h-16 lg:h-0"></div>
+      
+      <!-- Content Container -->
+      <div class="p-4 lg:p-8 max-w-7xl mx-auto">
+        <slot />
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* Custom scrollbar for dashboard */
+  .dashboard-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .dashboard-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  .dashboard-scroll::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+  .dashboard-scroll::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Animation for pulse indicator */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>

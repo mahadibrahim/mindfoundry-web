@@ -1,0 +1,26 @@
+---
+/**
+ * Parent Dashboard - Family Overview
+ * 
+ * The main landing page for the parent dashboard. Shows:
+ * - Welcome greeting with personalization
+ * - Child status cards with development progress
+ * - Upcoming sessions across all children
+ * - Recent feedback from instructors
+ * - Quick action buttons
+ */
+
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import FamilyOverview from '../../components/dashboard/FamilyOverview';
+import { mockFamilyOverview } from '../../data/mockDashboardData';
+
+// In production, this would come from an API call
+const familyData = mockFamilyOverview;
+---
+
+<DashboardLayout title="Dashboard - Mind Foundry" currentPage="overview">
+  <FamilyOverview
+    client:load
+    data={familyData}
+  />
+</DashboardLayout>
