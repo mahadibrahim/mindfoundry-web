@@ -21,6 +21,12 @@ export { default as FeedbackJournalPage } from './FeedbackJournalPage';
 export { default as FeedbackFiltersBar } from './FeedbackFiltersBar';
 export { default as FeedbackEntryCard } from './FeedbackEntryCard';
 
+// Child Detail Page components
+export { default as ChildDetailPage } from './ChildDetailPage';
+export { default as CapacityDetailCard } from './CapacityDetailCard';
+export { default as BadgeShowcase } from './BadgeShowcase';
+export { default as EnrollmentProgressCard } from './EnrollmentProgressCard';
+
 // Re-export types for convenience
 export type {
   Parent,
