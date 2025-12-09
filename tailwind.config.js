@@ -32,7 +32,18 @@ export default {
           'secondary': '#FF6600', // Assuming 'Important Button/Highlight' (A strong Orange for enrollment)
           'bg-light': '#F5F5F5', // General light background for "Cozy, inviting" feel (default white/light grey)
           'accent': '#1E1E1E', // Dark contrast color for text
-        }
+        },
+
+        // --- Shorthand aliases for dashboard components ---
+        // These map to the design system for cleaner component code
+        'corp-primary': '#011F4B',    // Deep Navy (corporate.bg-dark)
+        'corp-secondary': '#00A8E8',  // Teal/Cyan
+        'corp-light': '#005A9C',      // Medium blue
+        'corp-dark': '#0A1828',       // Very dark navy
+        'center-primary': '#FFC72C',  // Yellow/Gold (center.primary)
+        'center-accent': '#FF6600',   // Orange (center.secondary)
+        'center-secondary': '#FF8C42', // Light orange
+        'center-light': '#F5F5F5',    // Light gray (center.bg-light)
       },
 
       // ----------------------------------

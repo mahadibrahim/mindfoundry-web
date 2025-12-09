@@ -1,0 +1,54 @@
+---
+// =============================================================================
+// Instructor Dashboard Page
+// =============================================================================
+// Route: /instructor (or /teach)
+// This is the main entry point for instructors to manage their sessions,
+// complete wrap-ups, review artifacts, and track earnings.
+// =============================================================================
+
+// In your actual project, import the layout you're using
+// import CorporateLayout from '../layouts/CorporateLayout.astro';
+
+// The React component (client-side rendered for interactivity)
+import InstructorDashboardPage from '../components/dashboard/instructor/InstructorDashboardPage';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor Dashboard - Mind Foundry</title>
+  
+  <!-- Prevent indexing for dashboard pages -->
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Tailwind CSS (assuming it's configured in your project) -->
+  <link rel="stylesheet" href="/styles/global.css">
+  
+  <style>
+    /* Custom CSS variables for the instructor dashboard */
+    :root {
+      --corp-primary: #011F4B;
+      --corp-secondary: #00A8E8;
+      --center-primary: #FFC72C;
+      --center-accent: #FF6600;
+    }
+    
+    /* Utility classes if Tailwind isn't fully configured */
+    .bg-corp-primary { background-color: var(--corp-primary); }
+    .text-corp-primary { color: var(--corp-primary); }
+    .ring-corp-primary { --tw-ring-color: var(--corp-primary); }
+    .focus\:ring-corp-primary:focus { --tw-ring-color: var(--corp-primary); }
+    .focus\:border-corp-primary:focus { border-color: var(--corp-primary); }
+    .hover\:bg-corp-primary\/90:hover { background-color: rgba(1, 31, 75, 0.9); }
+  </style>
+</head>
+<body class="bg-gray-50">
+  
+  <!-- React Island: Full dashboard is client-rendered for interactivity -->
+  <InstructorDashboardPage client:load />
+
+</body>
+</html>
