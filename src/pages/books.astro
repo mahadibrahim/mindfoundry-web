@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import CorporateLayout from '../layouts/CorporateLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import StatsSection from '../components/StatsSection.astro';
@@ -96,8 +98,8 @@ const features = [
     },
     {
         icon: '📱',
-        title: 'Companion Digital App',
-        description: 'Track progress, unlock bonus content, and share achievements through our free mobile app.',
+        title: 'Companion Digital Platform',
+        description: 'Track progress, unlock bonus content, and share achievements through our free mobile-friendly badge platform.',
     },
     {
         icon: '✍️',
@@ -166,8 +168,8 @@ const faqs = [
         answer: "Most students complete a book in 30-60 days with 15-20 minutes of daily practice. However, kids can work at their own pace.",
     },
     {
-        question: "Do I need the digital app?",
-        answer: "No, the books are complete on their own. The free companion app adds badge tracking and bonus content but isn't required.",
+        question: "Do I need the digital platform?",
+        answer: "No, the books are complete on their own. However, each book includes a code for 6 months free access to our badge platform, which adds progress tracking, achievement notifications, and bonus digital badges.",
     },
     {
         question: "What if my child finds it too easy or too hard?",
@@ -185,13 +187,79 @@ const faqs = [
 ---
 
 <CorporateLayout title="At-Home Learning Books - Mind Foundry">
-    <!-- Hero -->
-    <HeroSection 
-        title="Master Skills at Home"
-        subtitle="Badge-based workbooks that make learning fun, with proven results in 30 days or less"
-        primaryCTA={{ text: "Browse Our Books", href: "#books" }}
-        secondaryCTA={{ text: "See Sample Pages", href: "#preview" }}
-    />
+    <!-- Hero with Free Badge Platform Callout -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      <div class="container mx-auto px-4 max-w-6xl relative z-10">
+        <div class="text-center max-w-4xl mx-auto">
+          <!-- Free Badge Platform Badge -->
+          <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-6 py-3 rounded-full mb-6 text-sm font-bold shadow-lg">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            FREE: 6 Months Badge Platform Access with Every Book
+          </div>
+
+          <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            Master Skills at Home
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-600 mb-8">
+            Badge-based workbooks that make learning fun, with proven results in 30 days or less
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a 
+              href="#books"
+              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-corporate-primary rounded-full shadow-lg hover:bg-corporate-primary/90 hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+            >
+              Browse Our Books
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </a>
+            <a 
+              href="#preview"
+              class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-corporate-primary bg-white border-2 border-corporate-primary rounded-full hover:bg-gray-50 transition-all duration-200"
+            >
+              See Sample Pages
+            </a>
+          </div>
+
+          <!-- What's Included Callout -->
+          <div class="bg-white border-2 border-green-200 rounded-2xl p-6 shadow-lg max-w-2xl mx-auto">
+            <div class="flex items-start gap-4 text-left">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-bold text-gray-900 mb-2 text-lg">Every Book Includes:</h3>
+                <ul class="space-y-2 text-sm text-gray-700">
+                  <li class="flex items-start gap-2">
+                    <span class="text-green-600 font-bold">✓</span>
+                    <span><strong>QR Code</strong> for instant badge platform activation</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-green-600 font-bold">✓</span>
+                    <span><strong>6 Months Free</strong> platform access (worth $30)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-green-600 font-bold">✓</span>
+                    <span><strong>Progress Tracking</strong> + parent dashboard</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-green-600 font-bold">✓</span>
+                    <span><strong>Digital Badges</strong> earned as skills are mastered</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Stats -->
     <StatsSection stats={stats} />
@@ -220,6 +288,80 @@ const faqs = [
         subtitle="More than just worksheets - a complete learning system"
         features={features}
     />
+
+    <!-- How the Badge Platform Works -->
+    <section class="py-20 bg-gradient-to-br from-corporate-primary/5 to-corporate-secondary/5">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            How Your Free Badge Platform Works
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Scan the QR code inside your book to unlock 6 months of digital learning
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-gray-100">
+            <div class="w-16 h-16 rounded-full bg-corporate-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              1
+            </div>
+            <div class="text-4xl mb-4">📖</div>
+            <h3 class="font-bold text-gray-900 mb-2">Receive Your Book</h3>
+            <p class="text-sm text-gray-600">
+              Find QR code inside front cover
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-gray-100">
+            <div class="w-16 h-16 rounded-full bg-corporate-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              2
+            </div>
+            <div class="text-4xl mb-4">📱</div>
+            <h3 class="font-bold text-gray-900 mb-2">Scan & Activate</h3>
+            <p class="text-sm text-gray-600">
+              Create account in 2 minutes
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-gray-100">
+            <div class="w-16 h-16 rounded-full bg-corporate-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              3
+            </div>
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="font-bold text-gray-900 mb-2">Start Earning Badges</h3>
+            <p class="text-sm text-gray-600">
+              Track progress as you work through book
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-gray-100">
+            <div class="w-16 h-16 rounded-full bg-corporate-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              4
+            </div>
+            <div class="text-4xl mb-4">🏆</div>
+            <h3 class="font-bold text-gray-900 mb-2">Celebrate Mastery</h3>
+            <p class="text-sm text-gray-600">
+              Display your growing badge collection
+            </p>
+          </div>
+        </div>
+
+        <!-- Preview of Platform -->
+        <div class="mt-12 text-center">
+          <p class="text-gray-600 mb-4">See what the badge platform looks like:</p>
+          <a 
+            href="/demo"
+            class="inline-flex items-center text-corporate-primary font-semibold hover:text-corporate-secondary transition-colors"
+          >
+            View Interactive Demo
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- Benefits Grid -->
     <section class="py-20 bg-white">
@@ -366,7 +508,7 @@ const faqs = [
     <!-- Final CTA -->
     <CTASection 
         title="Start Your Child's Learning Journey Today"
-        description="Join thousands of families building confidence and mastering skills with our badge-based workbooks"
+        description="Join thousands of families building confidence and mastering skills with our badge-based workbooks plus free digital platform"
         primaryCTA={{ text: "Browse All Books", href: "#books" }}
         secondaryCTA={{ text: "Download Sample Pages", href: "#preview" }}
     />

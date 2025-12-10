@@ -1,0 +1,474 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const topCities = [
+  { rank: 1, city: 'Columbus, OH', requests: 247 },
+  { rank: 2, city: 'Cleveland, OH', requests: 189 },
+  { rank: 3, city: 'Cincinnati, OH', requests: 156 },
+  { rank: 4, city: 'Pittsburgh, PA', requests: 134 },
+  { rank: 5, city: 'Indianapolis, IN', requests: 112 },
+  { rank: 6, city: 'Detroit, MI', requests: 98 }
+];
+
+export const prerender = true;
+---
+
+<BaseLayout title="Join the Waitlist - Mind Foundry">
+  <div class="min-h-screen bg-gradient-to-br from-corporate-primary/5 to-corporate-secondary/5">
+    
+    <!-- Header -->
+    <div class="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div class="container mx-auto px-4 py-4 max-w-6xl">
+        <a href="/centers" class="inline-flex items-center text-gray-600 hover:text-corporate-primary transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Back to Centers
+        </a>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Main Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-200">
+            
+            <!-- Header -->
+            <div class="text-center mb-8">
+              <div class="w-20 h-20 rounded-full bg-gradient-to-br from-corporate-secondary to-corporate-primary mx-auto mb-6 flex items-center justify-center shadow-lg">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              
+              <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                Request a Center in Your Area
+              </h1>
+              <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                We're opening centers based on community demand. Tell us where you are, and we'll prioritize locations with the most interest.
+              </p>
+            </div>
+
+            <!-- Form - NO ACTION OR METHOD ATTRIBUTES -->
+            <form id="waitlist-form" class="space-y-6" onsubmit="return false;">
+              
+              <!-- Parent Info -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="first-name" class="block text-sm font-semibold text-gray-700 mb-2">
+                    First Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="first-name"
+                    name="first-name"
+                    required
+                    placeholder="Sarah"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                  />
+                </div>
+                
+                <div>
+                  <label for="last-name" class="block text-sm font-semibold text-gray-700 mb-2">
+                    Last Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="last-name"
+                    name="last-name"
+                    required
+                    placeholder="Johnson"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="sarah@example.com"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Phone Number (Optional)
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="(555) 123-4567"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                />
+              </div>
+
+              <!-- Location -->
+              <div class="pt-6 border-t border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">
+                  Where should we open?
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="city" class="block text-sm font-semibold text-gray-700 mb-2">
+                      City *
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      required
+                      placeholder="Columbus"
+                      class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label for="state" class="block text-sm font-semibold text-gray-700 mb-2">
+                      State *
+                    </label>
+                    <select
+                      id="state"
+                      name="state"
+                      required
+                      class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                    >
+                      <option value="">Select State</option>
+                      <option value="OH">Ohio</option>
+                      <option value="PA">Pennsylvania</option>
+                      <option value="IN">Indiana</option>
+                      <option value="MI">Michigan</option>
+                      <option value="KY">Kentucky</option>
+                      <option value="WV">West Virginia</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mt-6">
+                  <label for="zip" class="block text-sm font-semibold text-gray-700 mb-2">
+                    ZIP Code *
+                  </label>
+                  <input
+                    type="text"
+                    id="zip"
+                    name="zip"
+                    required
+                    placeholder="43215"
+                    maxlength="5"
+                    pattern="[0-9]{5}"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                  />
+                </div>
+              </div>
+
+              <!-- Child Info -->
+              <div class="pt-6 border-t border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">
+                  Tell us about your child
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="child-age" class="block text-sm font-semibold text-gray-700 mb-2">
+                      Child's Age *
+                    </label>
+                    <select
+                      id="child-age"
+                      name="child-age"
+                      required
+                      class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                    >
+                      <option value="">Select Age</option>
+                      <option value="5">5 years old</option>
+                      <option value="6">6 years old</option>
+                      <option value="7">7 years old</option>
+                      <option value="8">8 years old</option>
+                      <option value="9">9 years old</option>
+                      <option value="10">10 years old</option>
+                      <option value="11">11 years old</option>
+                      <option value="12">12 years old</option>
+                      <option value="13">13 years old</option>
+                      <option value="14">14 years old</option>
+                      <option value="15">15 years old</option>
+                      <option value="16">16 years old</option>
+                      <option value="17">17 years old</option>
+                      <option value="18">18 years old</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <label for="children-count" class="block text-sm font-semibold text-gray-700 mb-2">
+                      Number of Children
+                    </label>
+                    <select
+                      id="children-count"
+                      name="children-count"
+                      class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                    >
+                      <option value="1">1 child</option>
+                      <option value="2">2 children</option>
+                      <option value="3">3 children</option>
+                      <option value="4+">4+ children</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interests -->
+              <div>
+                <label for="interests" class="block text-sm font-semibold text-gray-700 mb-2">
+                  What subjects interest your child? (Optional)
+                </label>
+                <textarea
+                  id="interests"
+                  name="interests"
+                  rows="3"
+                  placeholder="e.g., coding, robotics, art, science experiments..."
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <!-- Newsletter Opt-in -->
+              <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+                <label class="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="newsletter"
+                    name="newsletter"
+                    checked
+                    class="w-5 h-5 text-corporate-primary border-gray-300 rounded focus:ring-2 focus:ring-corporate-primary mt-0.5"
+                  />
+                  <div class="flex-1">
+                    <span class="text-sm font-semibold text-gray-900 block mb-1">
+                      Keep me updated
+                    </span>
+                    <span class="text-sm text-gray-600">
+                      Send me updates about centers opening in my area, launch events, and exclusive waitlist offers
+                    </span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                id="submit-btn"
+                class="w-full bg-gradient-to-r from-corporate-primary to-corporate-secondary text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 text-lg"
+              >
+                <span id="button-text">Join the Waitlist</span>
+                <svg id="button-icon" class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+                <svg id="button-spinner" class="w-5 h-5 inline-block ml-2 animate-spin hidden" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </button>
+
+              <p class="text-xs text-gray-500 text-center">
+                By submitting, you agree to our <a href="/terms" class="underline">Terms</a> and <a href="/privacy" class="underline">Privacy Policy</a>
+              </p>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-6">
+          
+          <!-- What Happens Next -->
+          <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">
+              What Happens Next
+            </h3>
+            <div class="space-y-4">
+              {[
+                { num: 1, title: 'Instant Confirmation', desc: 'Get email confirmation immediately' },
+                { num: 2, title: 'We Build Demand', desc: 'Your request helps us prioritize locations' },
+                { num: 3, title: 'Launch Updates', desc: 'Monthly updates on center openings' },
+                { num: 4, title: 'Priority Access', desc: 'First to know and enroll when we open' }
+              ].map(step => (
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center flex-shrink-0 text-sm">
+                    {step.num}
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-gray-900">{step.title}</p>
+                    <p class="text-sm text-gray-600">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Top Requested Cities -->
+          <div class="bg-gradient-to-br from-corporate-primary/10 to-corporate-secondary/10 rounded-2xl p-6 border-2 border-corporate-primary/20">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">
+              🔥 Most Requested Cities
+            </h3>
+            <div class="space-y-3">
+              {topCities.map(city => (
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <span class="text-xl font-bold text-corporate-primary">
+                      #{city.rank}
+                    </span>
+                    <div>
+                      <p class="font-semibold text-gray-900 text-sm">
+                        {city.city}
+                      </p>
+                    </div>
+                  </div>
+                  <span class="text-xs font-semibold text-gray-600 bg-white px-2 py-1 rounded-full">
+                    {city.requests} requests
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p class="text-xs text-gray-600 mt-4">
+              Updated weekly based on waitlist data
+            </p>
+          </div>
+
+          <!-- Waitlist Benefits -->
+          <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">
+              Waitlist Member Benefits
+            </h3>
+            <ul class="space-y-3 text-sm">
+              {[
+                'First to know about grand openings',
+                'Priority enrollment window',
+                'Exclusive launch event invites',
+                'Founding member discounts',
+                'Help shape your local center'
+              ].map(benefit => (
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Social Proof -->
+          <div class="bg-blue-50 rounded-2xl p-6 border-2 border-blue-200">
+            <div class="text-center">
+              <p class="text-3xl font-bold text-corporate-primary mb-2">
+                2,847
+              </p>
+              <p class="text-sm text-gray-700">
+                Families already on the waitlist
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Attach handler IMMEDIATELY when script loads
+  console.log('🔧 Attaching event handler...');
+  
+  function attachHandler() {
+    const form = document.getElementById('waitlist-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const buttonText = document.getElementById('button-text');
+    const buttonIcon = document.getElementById('button-icon');
+    const buttonSpinner = document.getElementById('button-spinner');
+    
+    if (!form) {
+      console.error('❌ Form not found');
+      setTimeout(attachHandler, 100); // Try again
+      return;
+    }
+    
+    console.log('✅ Form found, attaching listener...');
+    
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      console.log('🎯 SUBMIT EVENT FIRED!');
+      
+      // Show loading state
+      if (submitBtn) submitBtn.disabled = true;
+      if (buttonText) buttonText.textContent = 'Submitting...';
+      if (buttonIcon) buttonIcon.classList.add('hidden');
+      if (buttonSpinner) buttonSpinner.classList.remove('hidden');
+      
+      try {
+        // Collect form data
+        const formData = new FormData(form);
+        const data = {
+          firstName: formData.get('first-name'),
+          lastName: formData.get('last-name'),
+          email: formData.get('email'),
+          phone: formData.get('phone') || '',
+          city: formData.get('city'),
+          state: formData.get('state'),
+          zip: formData.get('zip'),
+          childAge: formData.get('child-age'),
+          childrenCount: formData.get('children-count') || '1',
+          interests: formData.get('interests') || '',
+          newsletter: formData.get('newsletter') === 'on'
+        };
+        
+        console.log('📤 Sending:', data);
+        
+        // Submit to API
+        const response = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        console.log('📥 Status:', response.status);
+        const result = await response.json();
+        console.log('📥 Result:', result);
+        
+        if (result.success && result.redirect) {
+          console.log('✅ Redirecting to:', result.redirect);
+          window.location.href = result.redirect;
+        } else {
+          throw new Error(result.error || 'Failed');
+        }
+        
+      } catch (error) {
+        console.error('❌ Error:', error);
+        alert('Error: ' + error.message);
+        
+        // Re-enable
+        if (submitBtn) submitBtn.disabled = false;
+        if (buttonText) buttonText.textContent = 'Join the Waitlist';
+        if (buttonIcon) buttonIcon.classList.remove('hidden');
+        if (buttonSpinner) buttonSpinner.classList.add('hidden');
+      }
+    });
+    
+    console.log('✅ Event listener attached!');
+  }
+  
+  // Try to attach immediately
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachHandler);
+  } else {
+    attachHandler();
+  }
+</script>

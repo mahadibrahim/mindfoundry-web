@@ -1,0 +1,302 @@
+---
+// VisitRequestForm.astro - Form component matching API expectations
+---
+
+<form id="visit-request-form" class="space-y-6" onsubmit="return false;">
+  
+  <!-- Hidden center field - defaults to Springfield -->
+  <input type="hidden" name="center" value="springfield" />
+  
+  <!-- Parent Info -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="firstName" class="block text-sm font-semibold text-gray-700 mb-2">
+        First Name *
+      </label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        required
+        placeholder="Sarah"
+        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all"
+      />
+    </div>
+    
+    <div>
+      <label for="lastName" class="block text-sm font-semibold text-gray-700 mb-2">
+        Last Name *
+      </label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        required
+        placeholder="Johnson"
+        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+      Email Address *
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      placeholder="sarah@example.com"
+      class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all"
+    />
+  </div>
+
+  <div>
+    <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
+      Phone Number *
+    </label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      required
+      placeholder="(555) 123-4567"
+      class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all"
+    />
+  </div>
+
+  <!-- Child Info -->
+  <div class="pt-6 border-t border-gray-200">
+    <h3 class="text-xl font-bold text-gray-900 mb-4">
+      About Your Child
+    </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label for="childName" class="block text-sm font-semibold text-gray-700 mb-2">
+          Child's Name *
+        </label>
+        <input
+          type="text"
+          id="childName"
+          name="childName"
+          required
+          placeholder="Emma"
+          class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all"
+        />
+      </div>
+      
+      <div>
+        <label for="childAge" class="block text-sm font-semibold text-gray-700 mb-2">
+          Child's Age *
+        </label>
+        <select
+          id="childAge"
+          name="childAge"
+          required
+          class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all"
+        >
+          <option value="">Select Age</option>
+          <option value="5">5 years old</option>
+          <option value="6">6 years old</option>
+          <option value="7">7 years old</option>
+          <option value="8">8 years old</option>
+          <option value="9">9 years old</option>
+          <option value="10">10 years old</option>
+          <option value="11">11 years old</option>
+          <option value="12">12 years old</option>
+          <option value="13">13 years old</option>
+          <option value="14">14 years old</option>
+          <option value="15">15 years old</option>
+          <option value="16">16 years old</option>
+          <option value="17">17 years old</option>
+          <option value="18">18 years old</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preferred Visit Time -->
+  <div class="pt-6 border-t border-gray-200">
+    <h3 class="text-xl font-bold text-gray-900 mb-4">
+      When would you like to visit?
+    </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label for="date" class="block text-sm font-semibold text-gray-700 mb-2">
+          Preferred Date *
+        </label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          required
+          class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all"
+        />
+      </div>
+      
+      <div>
+        <label for="time" class="block text-sm font-semibold text-gray-700 mb-2">
+          Preferred Time *
+        </label>
+        <select
+          id="time"
+          name="time"
+          required
+          class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all"
+        >
+          <option value="">Select Time</option>
+          <option value="morning">Morning (9am-12pm)</option>
+          <option value="afternoon">Afternoon (12pm-3pm)</option>
+          <option value="evening">Evening (3pm-6pm)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interests -->
+  <div>
+    <label for="interests" class="block text-sm font-semibold text-gray-700 mb-2">
+      What programs interest you? (Optional)
+    </label>
+    <textarea
+      id="interests"
+      name="interests"
+      rows="3"
+      placeholder="e.g., coding, robotics, art..."
+      class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-center-primary focus:border-transparent transition-all resize-none"
+    ></textarea>
+  </div>
+
+  <!-- Newsletter Opt-in -->
+  <div class="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+    <label class="flex items-start gap-3 cursor-pointer">
+      <input
+        type="checkbox"
+        id="newsletter"
+        name="newsletter"
+        checked
+        class="w-5 h-5 text-center-primary border-gray-300 rounded focus:ring-2 focus:ring-center-primary mt-0.5"
+      />
+      <div class="flex-1">
+        <span class="text-sm font-semibold text-gray-900 block mb-1">
+          Send me updates
+        </span>
+        <span class="text-sm text-gray-600">
+          Get program updates, event invitations, and special offers
+        </span>
+      </div>
+    </label>
+  </div>
+
+  <!-- Submit Button -->
+  <button
+    type="submit"
+    id="submit-btn"
+    class="w-full bg-gradient-to-r from-center-primary to-center-accent text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 text-lg"
+  >
+    <span id="button-text">Schedule My Visit</span>
+    <svg id="button-icon" class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+    </svg>
+    <svg id="button-spinner" class="w-5 h-5 inline-block ml-2 animate-spin hidden" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  </button>
+
+  <p class="text-xs text-gray-500 text-center">
+    By submitting, you agree to our <a href="/terms" class="underline">Terms</a> and <a href="/privacy" class="underline">Privacy Policy</a>
+  </p>
+
+</form>
+
+<script>
+  console.log('🔧 VisitRequestForm: Attaching handler...');
+  
+  function attachVisitFormHandler() {
+    const form = document.getElementById('visit-request-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const buttonText = document.getElementById('button-text');
+    const buttonIcon = document.getElementById('button-icon');
+    const buttonSpinner = document.getElementById('button-spinner');
+    
+    if (!form) {
+      console.error('❌ Visit form not found');
+      setTimeout(attachVisitFormHandler, 100);
+      return;
+    }
+    
+    console.log('✅ Visit form found, attaching listener...');
+    
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      console.log('🎯 VISIT REQUEST SUBMITTED!');
+      
+      // Show loading state
+      if (submitBtn) submitBtn.disabled = true;
+      if (buttonText) buttonText.textContent = 'Scheduling...';
+      if (buttonIcon) buttonIcon.classList.add('hidden');
+      if (buttonSpinner) buttonSpinner.classList.remove('hidden');
+      
+      try {
+        // Collect form data - API expects specific field names
+        const formData = new FormData(form);
+        const data = {
+          center: formData.get('center'),
+          firstName: formData.get('firstName'),
+          lastName: formData.get('lastName'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          childName: formData.get('childName'),
+          childAge: formData.get('childAge'),
+          date: formData.get('date'),
+          time: formData.get('time'),
+          interests: formData.get('interests') || '',
+          newsletter: formData.get('newsletter') === 'on'
+        };
+        
+        console.log('📤 Sending visit request:', data);
+        
+        // Submit to API
+        const response = await fetch('/api/visit-request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        console.log('📥 Response status:', response.status);
+        const result = await response.json();
+        console.log('📥 Response data:', result);
+        
+        if (result.success && result.redirect) {
+          console.log('✅ Redirecting to:', result.redirect);
+          window.location.href = result.redirect;
+        } else {
+          throw new Error(result.error || 'Failed to schedule visit');
+        }
+        
+      } catch (error) {
+        console.error('❌ Error:', error);
+        alert('Error scheduling visit: ' + error.message);
+        
+        // Re-enable button
+        if (submitBtn) submitBtn.disabled = false;
+        if (buttonText) buttonText.textContent = 'Schedule My Visit';
+        if (buttonIcon) buttonIcon.classList.remove('hidden');
+        if (buttonSpinner) buttonSpinner.classList.add('hidden');
+      }
+    });
+    
+    console.log('✅ Visit form event listener attached!');
+  }
+  
+  // Try to attach immediately
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachVisitFormHandler);
+  } else {
+    attachVisitFormHandler();
+  }
+</script>

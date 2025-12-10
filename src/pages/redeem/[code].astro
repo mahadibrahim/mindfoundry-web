@@ -1,0 +1,260 @@
+---
+/**
+ * Book Code Redemption Page
+ * Route: /redeem/[code]
+ * 
+ * Mobile-first page for QR code redemption from physical books.
+ * Validates code, shows signup form, activates 6-month free trial.
+ * 
+ * Uses server-side rendering to validate dynamic codes.
+ */
+
+// Enable server-side rendering for this dynamic route
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Get the code from the URL parameter
+const { code } = Astro.params;
+
+// In production, validate against database
+// For now, mock validation
+const isValidCode = code && /^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(code);
+---
+
+<BaseLayout title="Activate Your Badge Learning">
+  <div class="min-h-screen bg-gradient-to-br from-corporate-primary/5 to-corporate-secondary/5 flex items-center justify-center p-4">
+    <div class="max-w-md w-full">
+      
+      {isValidCode ? (
+        <!-- Valid Code - Show Signup Form -->
+        <div class="bg-white rounded-3xl shadow-2xl p-8 border-4 border-corporate-secondary">
+          <!-- Success Badge Icon -->
+          <div class="w-20 h-20 rounded-full bg-gradient-to-br from-corporate-secondary to-corporate-primary mx-auto mb-6 flex items-center justify-center shadow-lg">
+            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          </div>
+
+          <!-- Header -->
+          <h1 class="text-3xl font-bold text-gray-900 text-center mb-2">
+            Your Code is Valid!
+          </h1>
+          <p class="text-center text-gray-600 mb-6">
+            Create your account to unlock <span class="font-bold text-corporate-primary">6 months free</span> access to our badge platform
+          </p>
+
+          <!-- Code Display -->
+          <div class="bg-gray-50 rounded-xl p-4 mb-6 border-2 border-dashed border-gray-300">
+            <div class="text-xs text-gray-500 text-center mb-1">Your Book Code</div>
+            <div class="text-xl font-bold text-center text-gray-900 tracking-wider font-mono">
+              {code}
+            </div>
+          </div>
+
+          <!-- Signup Form -->
+          <form id="redemption-form" class="space-y-4">
+            <input type="hidden" name="code" value={code} />
+            
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                Parent Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="parent@example.com"
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all text-base"
+              />
+            </div>
+
+            <!-- Password -->
+            <div>
+              <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
+                Create Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="Minimum 8 characters"
+                minlength="8"
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all text-base"
+              />
+              <p class="text-xs text-gray-500 mt-1">At least 8 characters</p>
+            </div>
+
+            <!-- Child Name -->
+            <div>
+              <label for="child-name" class="block text-sm font-semibold text-gray-700 mb-2">
+                Child's First Name
+              </label>
+              <input
+                type="text"
+                id="child-name"
+                name="child-name"
+                required
+                placeholder="Alex"
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all text-base"
+              />
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-corporate-primary to-corporate-secondary text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 text-lg"
+            >
+              Activate & Start Learning
+              <svg class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Trust Signals -->
+          <div class="mt-6 pt-6 border-t border-gray-200">
+            <div class="flex items-center justify-center gap-6 text-sm text-gray-600">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                </svg>
+                Secure signup
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                No credit card
+              </div>
+            </div>
+          </div>
+
+          <!-- Fine Print -->
+          <p class="text-xs text-gray-500 text-center mt-6">
+            By creating an account, you agree to our <a href="/terms" class="underline">Terms</a> and <a href="/privacy" class="underline">Privacy Policy</a>
+          </p>
+        </div>
+
+      ) : (
+        <!-- Invalid Code -->
+        <div class="bg-white rounded-3xl shadow-2xl p-8 border-4 border-red-200">
+          <!-- Error Icon -->
+          <div class="w-20 h-20 rounded-full bg-red-100 mx-auto mb-6 flex items-center justify-center">
+            <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+
+          <!-- Error Message -->
+          <h1 class="text-3xl font-bold text-gray-900 text-center mb-3">
+            Invalid Code
+          </h1>
+          <p class="text-center text-gray-600 mb-8">
+            We couldn't find a book code matching <span class="font-mono font-bold">{code || '[missing]'}</span>
+          </p>
+
+          <!-- Help Options -->
+          <div class="space-y-4">
+            <a 
+              href="/redeem"
+              class="block w-full text-center bg-corporate-primary text-white font-semibold py-4 rounded-xl hover:bg-corporate-primary/90 transition-colors"
+            >
+              Try Another Code
+            </a>
+            <a 
+              href="/books"
+              class="block w-full text-center bg-gray-100 text-gray-900 font-semibold py-4 rounded-xl hover:bg-gray-200 transition-colors"
+            >
+              Browse Our Books
+            </a>
+          </div>
+
+          <!-- Help Text -->
+          <div class="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-200">
+            <h3 class="font-bold text-gray-900 mb-2 text-sm">Need help?</h3>
+            <ul class="text-sm text-gray-700 space-y-1">
+              <li>• Check the code inside your book's front cover</li>
+              <li>• Codes look like: XXXX-XXXX-XXXX</li>
+              <li>• Make sure you haven't already activated this code</li>
+            </ul>
+            <a href="/contact" class="text-corporate-primary font-semibold text-sm mt-3 inline-block hover:underline">
+              Contact Support →
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Back Link -->
+      <div class="text-center mt-6">
+        <a href="/" class="text-sm text-gray-600 hover:text-corporate-primary transition-colors">
+          ← Back to Mind Foundry
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Handle form submission
+  document.getElementById('redemption-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const form = e.target as HTMLFormElement;
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = submitButton.innerHTML;
+    
+    // Disable button and show loading
+    submitButton.disabled = true;
+    submitButton.innerHTML = `
+      <svg class="animate-spin h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      Creating your account...
+    `;
+    
+    // Get form data
+    const formData = new FormData(form);
+    const data = {
+      code: formData.get('code'),
+      email: formData.get('email'),
+      password: formData.get('password'),
+      childName: formData.get('child-name'),
+    };
+    
+    try {
+      // TODO: Replace with actual API call
+      // const response = await fetch('/api/redeem', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // });
+      
+      // Mock API call for now
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Simulate success - redirect to welcome page
+      window.location.href = `/welcome?child=${encodeURIComponent(data.childName as string)}`;
+      
+    } catch (error) {
+      // Show error
+      alert('Something went wrong. Please try again.');
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalText;
+    }
+  });
+</script>
+
+<style>
+  /* Ensure smooth animations */
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+</style>

@@ -1,0 +1,290 @@
+---
+/**
+ * Demo Test Page
+ * Route: /demo-test
+ * 
+ * Quick testing page for the book redemption flow.
+ * Only shows in demo mode.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Demo Test - Book Redemption Flow">
+  <div class="min-h-screen bg-gray-50 py-12">
+    <div class="container mx-auto px-4 max-w-4xl">
+      
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl p-8 mb-8 text-white">
+        <h1 class="text-4xl font-bold mb-3">🧪 Demo Test Page</h1>
+        <p class="text-lg">
+          Test the complete book redemption flow without backend APIs
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Quick Test Links</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Valid Code -->
+          <a 
+            href="/redeem/DEMO-TEST-CODE"
+            class="block p-4 bg-green-50 border-2 border-green-200 rounded-xl hover:border-green-400 transition-all group"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-lg font-bold text-gray-900">Valid Code</span>
+              <svg class="w-5 h-5 text-green-600 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </div>
+            <code class="text-sm font-mono bg-green-100 px-2 py-1 rounded">DEMO-TEST-CODE</code>
+            <p class="text-sm text-gray-600 mt-2">Test the signup flow</p>
+          </a>
+
+          <!-- Another Valid Code -->
+          <a 
+            href="/redeem/BK7X-M4P2-9QR5"
+            class="block p-4 bg-green-50 border-2 border-green-200 rounded-xl hover:border-green-400 transition-all group"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-lg font-bold text-gray-900">Valid Code #2</span>
+              <svg class="w-5 h-5 text-green-600 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </div>
+            <code class="text-sm font-mono bg-green-100 px-2 py-1 rounded">BK7X-M4P2-9QR5</code>
+            <p class="text-sm text-gray-600 mt-2">Alternative test code</p>
+          </a>
+
+          <!-- Used Code -->
+          <a 
+            href="/redeem/USED-CODE-HERE"
+            class="block p-4 bg-yellow-50 border-2 border-yellow-200 rounded-xl hover:border-yellow-400 transition-all group"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-lg font-bold text-gray-900">Already Used</span>
+              <svg class="w-5 h-5 text-yellow-600 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </div>
+            <code class="text-sm font-mono bg-yellow-100 px-2 py-1 rounded">USED-CODE-HERE</code>
+            <p class="text-sm text-gray-600 mt-2">Test used code error</p>
+          </a>
+
+          <!-- Invalid Code -->
+          <a 
+            href="/redeem/INVALID-123-XYZ"
+            class="block p-4 bg-red-50 border-2 border-red-200 rounded-xl hover:border-red-400 transition-all group"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-lg font-bold text-gray-900">Invalid Code</span>
+              <svg class="w-5 h-5 text-red-600 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </div>
+            <code class="text-sm font-mono bg-red-100 px-2 py-1 rounded">INVALID-123-XYZ</code>
+            <p class="text-sm text-gray-600 mt-2">Test invalid code error</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Flow Steps -->
+      <div class="bg-white rounded-2xl p-8 shadow-lg mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Test the Complete Flow</h2>
+        
+        <div class="space-y-6">
+          <!-- Step 1 -->
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center">
+              1
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-gray-900 mb-2">Scan QR / Enter Code</h3>
+              <p class="text-gray-600 mb-2">
+                Click one of the test links above or visit:
+              </p>
+              <a 
+                href="/redeem"
+                class="inline-flex items-center text-corporate-primary font-semibold hover:underline"
+              >
+                /redeem (Manual entry)
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center">
+              2
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-gray-900 mb-2">Complete Signup</h3>
+              <p class="text-gray-600 mb-2">
+                Fill in the form with test data:
+              </p>
+              <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                <li>Email: test@example.com</li>
+                <li>Password: password123</li>
+                <li>Child Name: Alex</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center">
+              3
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-gray-900 mb-2">Welcome Page</h3>
+              <p class="text-gray-600 mb-2">
+                After signup, you'll see the onboarding experience at:
+              </p>
+              <a 
+                href="/welcome?child=Alex"
+                class="inline-flex items-center text-corporate-primary font-semibold hover:underline"
+              >
+                /welcome
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center">
+              4
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-gray-900 mb-2">Badge Platform</h3>
+              <p class="text-gray-600 mb-2">
+                Access the parent dashboard with trial status:
+              </p>
+              <a 
+                href="/dashboard"
+                class="inline-flex items-center text-corporate-primary font-semibold hover:underline"
+              >
+                /dashboard
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center">
+              5
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-gray-900 mb-2">Pricing Page</h3>
+              <p class="text-gray-600 mb-2">
+                View credit pricing and subscription options:
+              </p>
+              <a 
+                href="/pricing"
+                class="inline-flex items-center text-corporate-primary font-semibold hover:underline"
+              >
+                /pricing
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo Controls -->
+      <div class="bg-white rounded-2xl p-8 shadow-lg">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Demo Controls</h2>
+        
+        <div class="space-y-4">
+          <!-- Current User Status -->
+          <div class="p-4 bg-gray-50 rounded-xl">
+            <h3 class="font-semibold text-gray-900 mb-2">Current Demo User:</h3>
+            <div id="user-status" class="text-sm text-gray-600">
+              No user logged in
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button
+              onclick="checkUserStatus()"
+              class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
+            >
+              Check User Status
+            </button>
+            
+            <button
+              onclick="window.resetDemo()"
+              class="px-6 py-3 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition-colors"
+            >
+              Reset All Demo Data
+            </button>
+          </div>
+
+          <!-- Info -->
+          <div class="p-4 bg-blue-50 rounded-xl border border-blue-200">
+            <h3 class="font-bold text-gray-900 mb-2 text-sm">💡 Demo Tips:</h3>
+            <ul class="text-sm text-gray-700 space-y-1">
+              <li>• All data is stored in localStorage (browser only)</li>
+              <li>• Use <code class="bg-blue-100 px-1 rounded">window.resetDemo()</code> in console to reset</li>
+              <li>• Try same code twice to test "already used" error</li>
+              <li>• Check browser console for mock API logs</li>
+              <li>• Data persists until you reset or clear browser storage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Links -->
+      <div class="mt-8 text-center">
+        <a href="/" class="text-gray-600 hover:text-corporate-primary transition-colors">
+          ← Back to Homepage
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { getCurrentUser, getTrialStatus } from '../lib/mockApi';
+
+  // Check and display current user status
+  function checkUserStatus() {
+    const user = getCurrentUser();
+    const statusDiv = document.getElementById('user-status');
+    
+    if (!statusDiv) return;
+    
+    if (user) {
+      statusDiv.innerHTML = `
+        <div class="space-y-2">
+          <p><strong>Email:</strong> ${user.email}</p>
+          <p><strong>Child:</strong> ${user.childName}</p>
+          <p><strong>Book:</strong> ${user.bookTitle}</p>
+          <p><strong>Code:</strong> <code class="bg-gray-200 px-2 py-1 rounded">${user.code}</code></p>
+          <p><strong>Trial Ends:</strong> ${new Date(user.trialEndDate).toLocaleDateString()}</p>
+          <p><strong>Credits:</strong> ${user.creditsRemaining}</p>
+        </div>
+      `;
+    } else {
+      statusDiv.innerHTML = '<p class="text-gray-500">No user logged in</p>';
+    }
+  }
+
+  // Make checkUserStatus available globally
+  (window as any).checkUserStatus = checkUserStatus;
+
+  // Check status on page load
+  checkUserStatus();
+</script>

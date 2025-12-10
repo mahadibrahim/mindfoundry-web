@@ -1,0 +1,146 @@
+---
+/**
+ * Trial Expiry Banner Component
+ * 
+ * Display banner in dashboard when free trial is ending.
+ * Shows days remaining and prompts credit purchase.
+ */
+
+interface Props {
+  daysRemaining: number;
+  trialEndDate: string;
+}
+
+const { daysRemaining, trialEndDate } = Astro.props;
+
+// Determine urgency level
+const isUrgent = daysRemaining <= 7;
+const isWarning = daysRemaining <= 30 && daysRemaining > 7;
+
+// Choose color scheme based on urgency
+const colorClasses = isUrgent 
+  ? 'bg-gradient-to-r from-red-50 to-orange-50 border-red-300'
+  : isWarning
+  ? 'bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-300'
+  : 'bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-300';
+
+const iconColor = isUrgent ? 'text-red-600' : isWarning ? 'text-yellow-600' : 'text-blue-600';
+const buttonColor = isUrgent ? 'bg-red-600 hover:bg-red-700' : isWarning ? 'bg-yellow-600 hover:bg-yellow-700' : 'bg-blue-600 hover:bg-blue-700';
+---
+
+<div class={`rounded-2xl border-2 p-6 mb-6 shadow-lg ${colorClasses}`}>
+  <div class="flex items-start gap-4">
+    <!-- Icon -->
+    <div class="flex-shrink-0">
+      <div class={`w-12 h-12 rounded-xl ${isUrgent ? 'bg-red-100' : isWarning ? 'bg-yellow-100' : 'bg-blue-100'} flex items-center justify-center`}>
+        {isUrgent ? (
+          <svg class={`w-6 h-6 ${iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        ) : (
+          <svg class={`w-6 h-6 ${iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        )}
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1">
+      <h3 class="text-xl font-bold text-gray-900 mb-2">
+        {isUrgent 
+          ? `Your Free Trial Ends in ${daysRemaining} ${daysRemaining === 1 ? 'Day' : 'Days'}!`
+          : isWarning
+          ? `Free Trial Ending Soon`
+          : `Free Trial Active`
+        }
+      </h3>
+      
+      <p class="text-gray-700 mb-4">
+        {isUrgent 
+          ? `Your 6-month free access expires on ${trialEndDate}. Purchase credits now to keep learning without interruption.`
+          : isWarning
+          ? `You have ${daysRemaining} days of free access remaining (until ${trialEndDate}). Consider adding credits before your trial ends.`
+          : `Enjoying badge-based learning? You have ${daysRemaining} days of free access remaining. Add credits anytime to continue after ${trialEndDate}.`
+        }
+      </p>
+
+      <!-- Stats Row -->
+      <div class="flex flex-wrap items-center gap-4 mb-4">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm font-semibold text-gray-900">
+            {daysRemaining} days left
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+          </svg>
+          <span class="text-sm text-gray-700">
+            Keep your progress
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          <span class="text-sm text-gray-700">
+            Continue earning badges
+          </span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a 
+          href="/pricing"
+          class={`inline-flex items-center justify-center px-6 py-3 ${buttonColor} text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200`}
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Purchase Credits
+        </a>
+        <a 
+          href="/pricing"
+          class="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-gray-300 text-gray-900 font-semibold rounded-xl hover:border-gray-400 transition-all duration-200"
+        >
+          View Pricing
+        </a>
+      </div>
+    </div>
+
+    <!-- Dismiss Button (Optional) -->
+    <button 
+      onclick="this.closest('div.rounded-2xl').style.display='none'"
+      class="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors"
+      aria-label="Dismiss"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Additional Info (for non-urgent) -->
+  {!isUrgent && (
+    <div class="mt-4 pt-4 border-t border-gray-300/50">
+      <div class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+        </svg>
+        <div class="text-sm text-gray-700">
+          <p class="font-semibold mb-1">How Credits Work:</p>
+          <ul class="space-y-1 text-gray-600">
+            <li>• 1 credit = 1 month of platform access</li>
+            <li>• Or use credits for classes and online courses</li>
+            <li>• Credits never expire</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  )}
+</div>

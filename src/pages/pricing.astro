@@ -1,0 +1,443 @@
+---
+/**
+ * Pricing Page
+ * Route: /pricing
+ * 
+ * Shows credit-based subscription model. Credits can be used for:
+ * - In-person center classes
+ * - Online course enrollment
+ * - Standalone badge platform access
+ */
+
+export const prerender = true;
+
+ import CorporateLayout from '../layouts/CorporateLayout.astro';
+
+// Pricing tiers
+const pricingTiers = [
+  {
+    name: 'Starter',
+    credits: 10,
+    price: 49,
+    popular: false,
+    description: 'Perfect for trying out the platform',
+    features: [
+      '10 credits to spend',
+      'Full badge platform access',
+      'Use for any classes or courses',
+      'Credits never expire',
+      'Cancel anytime',
+    ],
+    cta: 'Start with 10 Credits',
+    href: '/checkout?plan=starter',
+  },
+  {
+    name: 'Explorer',
+    credits: 25,
+    price: 99,
+    popular: true,
+    description: 'Most popular for active learners',
+    features: [
+      '25 credits to spend',
+      'Full badge platform access',
+      'Save 20% vs Starter',
+      'Priority support',
+      'Credits never expire',
+      'Cancel anytime',
+    ],
+    cta: 'Get 25 Credits',
+    href: '/checkout?plan=explorer',
+  },
+  {
+    name: 'Champion',
+    credits: 60,
+    price: 199,
+    popular: false,
+    description: 'Best value for dedicated learners',
+    features: [
+      '60 credits to spend',
+      'Full badge platform access',
+      'Save 33% vs Starter',
+      'Priority support',
+      'Exclusive badges',
+      'Credits never expire',
+      'Cancel anytime',
+    ],
+    cta: 'Get 60 Credits',
+    href: '/checkout?plan=champion',
+  },
+];
+
+// How credits work
+const creditExamples = [
+  { service: 'In-Person Class (60 min)', credits: 2, icon: '🏫' },
+  { service: 'Online Course (Self-paced)', credits: 3, icon: '💻' },
+  { service: 'One Month Platform Access', credits: 1, icon: '🎯' },
+  { service: 'Private Tutoring (60 min)', credits: 4, icon: '👨‍🏫' },
+];
+
+// FAQs
+const faqs = [
+  {
+    question: 'How do credits work?',
+    answer: 'Credits are like a universal currency for Mind Foundry services. Buy a credit package, then spend credits on in-person classes, online courses, or platform access. Credits never expire.',
+  },
+  {
+    question: 'What happens if my free trial expires?',
+    answer: 'Your 6-month free trial includes full platform access. When it expires, you can purchase credits to maintain access. One credit = one month of platform access, or save by using credits for classes.',
+  },
+  {
+    question: 'Can I share credits with multiple children?',
+    answer: 'Yes! Your credit balance is shared across all children in your family account. Use credits however you need across all your kids.',
+  },
+  {
+    question: 'Do credits expire?',
+    answer: 'No. Credits never expire as long as your account is active. Use them at your own pace.',
+  },
+  {
+    question: 'Can I cancel my subscription?',
+    answer: 'Absolutely. Credits are one-time purchases, not recurring. There\'s no ongoing subscription unless you choose to auto-refill. You keep your unused credits even if you stop buying more.',
+  },
+  {
+    question: 'What if I need more credits?',
+    answer: 'You can purchase additional credit packages anytime from your parent dashboard. Buy as you go or set up auto-refill when you run low.',
+  },
+];
+---
+
+<CorporateLayout title="Pricing - Mind Foundry">
+  
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 bg-corporate-secondary/10 text-corporate-primary px-4 py-2 rounded-full mb-6 text-sm font-semibold">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+          </svg>
+          Simple, Flexible Pricing
+        </div>
+
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          One Credit System.<br/>Endless Learning.
+        </h1>
+        
+        <p class="text-xl text-gray-600 mb-8">
+          Buy credits once, use them for any Mind Foundry service. In-person classes, online courses, or platform access—your choice.
+        </p>
+
+        <!-- Trust Badge -->
+        <div class="inline-flex items-center gap-2 text-gray-600 text-sm">
+          <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          No subscriptions • Credits never expire • Cancel anytime
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        {pricingTiers.map((tier) => (
+          <div class={`
+            relative bg-white rounded-3xl shadow-lg border-2 transition-all duration-300
+            ${tier.popular 
+              ? 'border-corporate-primary scale-105 shadow-2xl' 
+              : 'border-gray-200 hover:border-corporate-primary hover:shadow-xl'
+            }
+          `}>
+            {tier.popular && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-corporate-primary to-corporate-secondary text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+                MOST POPULAR
+              </div>
+            )}
+
+            <div class="p-8">
+              <!-- Header -->
+              <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                  {tier.name}
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  {tier.description}
+                </p>
+                <div class="mb-2">
+                  <span class="text-5xl font-bold text-gray-900">
+                    ${tier.price}
+                  </span>
+                </div>
+                <div class="text-corporate-primary font-bold text-lg">
+                  {tier.credits} Credits
+                </div>
+                <div class="text-gray-500 text-sm">
+                  ${(tier.price / tier.credits).toFixed(2)} per credit
+                </div>
+              </div>
+
+              <!-- Features -->
+              <ul class="space-y-3 mb-8">
+                {tier.features.map((feature) => (
+                  <li class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-gray-700 text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- CTA -->
+              <a 
+                href={tier.href}
+                class={`
+                  block w-full text-center py-4 rounded-xl font-bold transition-all duration-200
+                  ${tier.popular
+                    ? 'bg-gradient-to-r from-corporate-primary to-corporate-secondary text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                    : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                  }
+                `}
+              >
+                {tier.cta}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Book Buyers Note -->
+      <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-6 max-w-3xl mx-auto">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-gray-900 mb-2">Already bought a book?</h3>
+            <p class="text-gray-700 mb-3">
+              Your book includes a code for <span class="font-bold">6 months free platform access</span>. No purchase needed! Redeem your code first, then buy credits if you want to take classes.
+            </p>
+            <a 
+              href="/redeem"
+              class="inline-flex items-center text-corporate-primary font-semibold hover:text-corporate-secondary transition-colors"
+            >
+              Redeem your book code
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Credits Work -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          How Credits Work
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          One flexible system for all Mind Foundry services
+        </p>
+      </div>
+
+      <!-- Example Costs -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {creditExamples.map((example) => (
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 text-center">
+            <div class="text-5xl mb-4">{example.icon}</div>
+            <div class="text-3xl font-bold text-corporate-primary mb-2">
+              {example.credits} {example.credits === 1 ? 'Credit' : 'Credits'}
+            </div>
+            <div class="text-gray-700 font-medium">
+              {example.service}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Process Steps -->
+      <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-corporate-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              1
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Buy Credits</h3>
+            <p class="text-sm text-gray-600">
+              Choose a credit package that fits your needs
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-corporate-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              2
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Choose Service</h3>
+            <p class="text-sm text-gray-600">
+              Pick classes, courses, or platform access
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-corporate-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              3
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Spend Credits</h3>
+            <p class="text-sm text-gray-600">
+              Credits deduct automatically when you enroll
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-corporate-primary text-white font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              4
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Start Learning</h3>
+            <p class="text-sm text-gray-600">
+              Access your service and earn badges
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-xl text-gray-600">
+          Everything you need to know about credits
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        {faqs.map((faq, index) => (
+          <details class="group bg-gray-50 rounded-2xl border border-gray-200 hover:border-corporate-primary transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer p-6">
+              <h3 class="text-lg font-bold text-gray-900 pr-4">
+                {faq.question}
+              </h3>
+              <svg class="w-6 h-6 text-corporate-primary transform group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-gray-700 leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <p class="text-gray-600 mb-4">Still have questions?</p>
+        <a 
+          href="/contact"
+          class="inline-flex items-center px-6 py-3 bg-corporate-primary text-white font-semibold rounded-xl hover:bg-corporate-primary/90 transition-colors"
+        >
+          Contact Support
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <h2 class="text-4xl font-bold text-gray-900 mb-12 text-center">
+        Compare Learning Options
+      </h2>
+
+      <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="bg-gray-50 border-b-2 border-gray-200">
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-900">Option</th>
+                <th class="px-6 py-4 text-center text-sm font-bold text-gray-900">Credits Needed</th>
+                <th class="px-6 py-4 text-center text-sm font-bold text-gray-900">What's Included</th>
+                <th class="px-6 py-4 text-center text-sm font-bold text-gray-900">Best For</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-gray-900">Platform Only</td>
+                <td class="px-6 py-4 text-center text-2xl font-bold text-corporate-primary">1/mo</td>
+                <td class="px-6 py-4 text-sm text-gray-700">Badge platform, progress tracking, mobile access</td>
+                <td class="px-6 py-4 text-center text-sm text-gray-600">Book users, self-paced learners</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-gray-900">Online Course</td>
+                <td class="px-6 py-4 text-center text-2xl font-bold text-corporate-primary">3</td>
+                <td class="px-6 py-4 text-sm text-gray-700">Course materials, platform access, instructor feedback</td>
+                <td class="px-6 py-4 text-center text-sm text-gray-600">Digital learners, flexible schedules</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-gray-900">In-Person Class</td>
+                <td class="px-6 py-4 text-center text-2xl font-bold text-corporate-primary">2</td>
+                <td class="px-6 py-4 text-sm text-gray-700">60-min class, hands-on learning, social interaction</td>
+                <td class="px-6 py-4 text-center text-sm text-gray-600">Social learners, local families</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-gray-900">Private Tutoring</td>
+                <td class="px-6 py-4 text-center text-2xl font-bold text-corporate-primary">4</td>
+                <td class="px-6 py-4 text-sm text-gray-700">1-on-1 instruction, personalized pacing, focused support</td>
+                <td class="px-6 py-4 text-center text-sm text-gray-600">Need extra help, advanced learners</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="text-center text-gray-500 text-sm mt-6">
+        All options include full badge platform access while active
+      </p>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 bg-gradient-to-br from-corporate-primary to-corporate-secondary">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        Ready to Start Learning?
+      </h2>
+      <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+        Choose your credit package and unlock access to all Mind Foundry services
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="#pricing"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white text-corporate-primary font-bold rounded-full shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all duration-200"
+        >
+          View Pricing
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
+        <a 
+          href="/books"
+          class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all duration-200"
+        >
+          Start with a Book
+        </a>
+      </div>
+
+      <p class="text-white/80 text-sm mt-8">
+        Remember: Book buyers get 6 months free platform access!
+      </p>
+    </div>
+  </section>
+</CorporateLayout>

@@ -1,0 +1,200 @@
+---
+/**
+ * Waitlist Confirmation Page
+ * Route: /waitlist/confirmation
+ * 
+ * Thank you page after user joins the waitlist.
+ * Shows next steps and alternative options while they wait.
+ */
+
+export const prerender = true;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Get city from URL parameter
+const city = Astro.url.searchParams.get('city') || 'your area';
+---
+
+<BaseLayout title="You're on the Waitlist! - Mind Foundry">
+    <div class="min-h-screen bg-gradient-to-br from-corporate-primary/5 to-corporate-secondary/5 flex items-center justify-center p-4">
+        <div class="max-w-3xl w-full">
+            
+            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center">
+                
+                <!-- Success Animation -->
+                <div class="inline-block relative mb-8">
+                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-green-400 to-green-600 mx-auto flex items-center justify-center shadow-2xl animate-bounce-slow">
+                        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    You're on the Waitlist!
+                </h1>
+                <p class="text-xl text-gray-600 mb-8">
+                    We've added your request for a Mind Foundry center in <span class="font-bold text-corporate-primary">{city}</span>
+                </p>
+
+                <!-- What's Next -->
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 mb-8 text-left">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+                        What Happens Next
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center flex-shrink-0">
+                                1
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">Check Your Email</h3>
+                                <p class="text-sm text-gray-600">
+                                    Confirmation email sent. Add us to your contacts so you don't miss updates.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center flex-shrink-0">
+                                2
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">We Build Community</h3>
+                                <p class="text-sm text-gray-600">
+                                    Your request helps us prioritize where to open. More requests = higher priority.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center flex-shrink-0">
+                                3
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">Monthly Updates</h3>
+                                <p class="text-sm text-gray-600">
+                                    You'll get progress updates as we move toward opening in your area.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center flex-shrink-0">
+                                4
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">Priority Enrollment</h3>
+                                <p class="text-sm text-gray-600">
+                                    When we open, you'll be first to know and first to enroll.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Expectation -->
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 mb-8">
+                    <div class="flex items-start gap-4">
+                        <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                        </svg>
+                        <div class="text-left">
+                            <h3 class="font-bold text-gray-900 mb-2">When Should You Expect Centers?</h3>
+                            <p class="text-sm text-gray-700">
+                                We're targeting Q2 2026 for first centers (April-June). Timeline depends on demand in each area and facility availability. High-demand areas open first.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Proof -->
+                <div class="mb-8">
+                    <p class="text-gray-600 mb-4">
+                        You're in good company
+                    </p>
+                    <div class="flex items-center justify-center gap-8 text-center">
+                        <div>
+                            <div class="text-3xl font-bold text-corporate-primary">2,847</div>
+                            <div class="text-sm text-gray-600">Families Waiting</div>
+                        </div>
+                        <div class="w-px h-12 bg-gray-300"></div>
+                        <div>
+                            <div class="text-3xl font-bold text-corporate-primary">50+</div>
+                            <div class="text-sm text-gray-600">Cities Requested</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="space-y-4">
+                    <a 
+                        href="/books"
+                        class="block w-full bg-gradient-to-r from-corporate-primary to-corporate-secondary text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                    >
+                        Start Learning Today with Our Books
+                        <svg class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                    
+                    <a 
+                        href="/"
+                        class="block w-full bg-gray-100 text-gray-900 font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors"
+                    >
+                        Back to Homepage
+                    </a>
+                </div>
+
+                <!-- Share Prompt -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <p class="text-sm text-gray-600 mb-4">
+                        <strong>Help us open faster in {city}!</strong><br/>
+                        Share with other parents to increase demand in your area
+                    </p>
+                    <div class="flex justify-center gap-3">
+                        <a 
+                            href="#"
+                            onclick="alert('Share functionality coming soon!')"
+                            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            Share
+                        </a>
+                        <a 
+                            href="#"
+                            onclick="alert('Share functionality coming soon!')"
+                            class="inline-flex items-center px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors text-sm font-semibold"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                            Tweet
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</BaseLayout>
+
+<style>
+    @keyframes bounce-slow {
+        0%, 100% {
+            transform: translateY(0);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+            transform: translateY(-10px);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+    
+    .animate-bounce-slow {
+        animation: bounce-slow 2s infinite;
+    }
+</style>

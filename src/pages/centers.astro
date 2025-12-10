@@ -1,234 +1,187 @@
 ---
-import CorporateLayout from '../layouts/CorporateLayout.astro';
-import StatsSection from '../components/StatsSection.astro';
+/**
+ * Centers Overview Landing Page
+ * Route: /centers
+ * 
+ * Explains in-person learning centers, shows benefits,
+ * displays map of locations, drives to center finder.
+ * Q2 2026 launch - capturing demand now.
+ */
 
-// Target cities for initial expansion (can be updated based on demand)
-const targetCities = [
-    { city: 'Columbus', state: 'OH', status: 'First Location - Q2 2026' },
-    { city: 'Cincinnati', state: 'OH', status: 'Planning Phase' },
-    { city: 'Cleveland', state: 'OH', status: 'Planning Phase' },
-    { city: 'Indianapolis', state: 'IN', status: 'Exploring' },
-    { city: 'Pittsburgh', state: 'PA', status: 'Exploring' },
-    { city: 'Detroit', state: 'MI', status: 'Exploring' },
+export const prerender = true;
+
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import TestimonialBlock from '../components/TestimonialBlock.astro';
+import CTASection from '../components/CTASection.astro';
+
+// Stats for in-person learning
+const stats = [
+    { number: 'Q2 2026', label: 'Centers Opening', icon: '📅' },
+    { number: '50+', label: 'Locations Planned', icon: '📍' },
+    { number: '12:1', label: 'Student-Teacher Ratio', icon: '👥' },
+    { number: '100%', label: 'Badge-Based', icon: '🎯' },
 ];
 
-// What makes centers special
+// Why in-person learning
 const benefits = [
     {
         icon: '👥',
-        title: 'Small Group Learning',
-        description: 'Classes of 8-12 students ensure every child gets personal attention and meaningful interaction with instructors.',
+        title: 'Social Learning',
+        description: 'Kids learn alongside peers, building friendships while mastering skills together. Collaboration and teamwork are part of every lesson.',
     },
     {
-        icon: '🎓',
-        title: 'Certified Instructors',
-        description: 'Background-checked educators who know every student by name and track individual progress.',
+        icon: '👨‍🏫',
+        title: 'Expert Instructors',
+        description: 'Certified teachers with small class sizes give each child individual attention and personalized guidance.',
     },
     {
-        icon: '🏆',
-        title: 'Badge-Based Curriculum',
-        description: 'Same proven badge system as our online platform, but with hands-on activities and peer learning.',
+        icon: '🎯',
+        title: 'Hands-On Projects',
+        description: 'Real materials, real experiments, real creations. Digital badges track mastery of physical skills.',
     },
+];
+
+// What happens at centers
+const activities = [
     {
         icon: '🔬',
-        title: 'Hands-On Materials',
-        description: 'Access to manipulatives, lab equipment, art supplies, and tech that most families don\'t have at home.',
+        title: 'STEM Labs',
+        description: 'Science experiments, coding projects, robotics, engineering challenges',
+    },
+    {
+        icon: '🎨',
+        title: 'Creative Studios',
+        description: 'Art, music, creative writing, design thinking, maker projects',
+    },
+    {
+        icon: '📚',
+        title: 'Academic Skills',
+        description: 'Math mastery, reading comprehension, critical thinking, research skills',
     },
     {
         icon: '🤝',
-        title: 'Social Learning',
-        description: 'Kids learn from each other, make friends, and build teamwork skills in a supportive environment.',
-    },
-    {
-        icon: '📅',
-        title: 'Flexible Scheduling',
-        description: 'After-school, weekend, and summer programs designed to fit busy family schedules.',
+        title: 'Life Skills',
+        description: 'Collaboration, public speaking, leadership, problem-solving',
     },
 ];
 
-// Sample programs (what centers will offer)
-const programs = [
+// Sample schedule
+const sampleSchedule = [
+    { time: '4:00 PM', activity: 'Check-in & Badge Review', description: 'Kids see progress from last session' },
+    { time: '4:15 PM', activity: 'Skill Lesson', description: 'Instructor-led learning with hands-on practice' },
+    { time: '4:45 PM', activity: 'Project Work', description: 'Apply new skills to real projects' },
+    { time: '5:15 PM', activity: 'Badge Challenge', description: 'Demonstrate mastery to earn badge' },
+    { time: '5:30 PM', activity: 'Wrap-up & Celebration', description: 'Share achievements, plan next steps' },
+];
+
+// Testimonials from historical programs
+const testimonials = [
     {
-        name: 'Math & Logic Lab',
-        ageRange: '7-12',
-        frequency: '2x/week',
-        duration: '8 weeks',
-        icon: '🔢',
-        description: 'Master multiplication, division, fractions, and problem-solving through games and challenges.',
+        quote: "My son couldn't wait for Tuesdays. Seeing him excited about learning again was worth everything.",
+        author: "Maria T.",
+        context: "Parent, Columbus Program",
     },
     {
-        name: 'Science Explorers',
-        ageRange: '6-10',
-        frequency: '1x/week',
-        duration: '12 weeks',
-        icon: '🔬',
-        description: 'Conduct real experiments, learn the scientific method, and discover how the world works.',
+        quote: "The small class size meant the instructor actually knew my daughter's strengths and challenges.",
+        author: "David L.",
+        context: "Parent, Cleveland Program",
     },
     {
-        name: 'Coding Camp',
-        ageRange: '9-14',
-        frequency: '3x/week',
-        duration: '4 weeks',
-        icon: '💻',
-        description: 'Build games, apps, and websites while earning coding badges. No experience needed.',
-    },
-    {
-        name: 'Creative Arts Studio',
-        ageRange: '5-12',
-        frequency: '1x/week',
-        duration: '10 weeks',
-        icon: '🎨',
-        description: 'Explore drawing, painting, music, and storytelling in a judgment-free creative space.',
-    },
-    {
-        name: 'Reading & Writing Workshop',
-        ageRange: '8-13',
-        frequency: '2x/week',
-        duration: '8 weeks',
-        icon: '📚',
-        description: 'Boost comprehension and creativity through engaging stories and writing projects.',
-    },
-    {
-        name: 'Summer Skills Academy',
-        ageRange: '6-14',
-        frequency: 'Daily',
-        duration: '2 weeks',
-        icon: '☀️',
-        description: 'Intensive summer program covering multiple subjects with field trips and special projects.',
+        quote: "Three months in, she earned 15 badges and made friends who share her interests. That's rare.",
+        author: "Jennifer S.",
+        context: "Parent, Cincinnati Program",
     },
 ];
 
-// Stats for future centers
-const stats = [
-    { number: '2026', label: 'First Center Opens', icon: '🏫' },
-    { number: '50+', label: 'Planned Locations', icon: '📍' },
-    { number: '12 Max', label: 'Students Per Class', icon: '👥' },
-    { number: '100%', label: 'Badge-Based', icon: '🏆' },
-];
-
-// Center features/amenities
-const features = [
-    { icon: '🏫', title: 'Modern Facilities', description: 'Bright, safe spaces designed for learning' },
-    { icon: '🅿️', title: 'Free Parking', description: 'Ample parking for easy drop-off' },
-    { icon: '🔒', title: 'Secure Entry', description: 'Monitored access and safety protocols' },
-    { icon: '📱', title: 'Parent App', description: 'Track progress and communicate with instructors' },
-    { icon: '☕', title: 'Waiting Area', description: 'Comfortable space for parents who stay' },
-    { icon: '♿', title: 'Accessible', description: 'ADA-compliant facilities' },
+// FAQ items
+const faqs = [
+    {
+        question: "When do centers open?",
+        answer: "We're opening our first centers in Q2 2026. Join the waitlist now to be notified when enrollment opens in your area and get priority registration.",
+    },
+    {
+        question: "What ages do you serve?",
+        answer: "Centers serve ages 5-18 with age-appropriate programming. Classes are grouped by skill level, not just age, so advanced learners and those needing extra support both thrive.",
+    },
+    {
+        question: "How much does it cost?",
+        answer: "Centers use our credit system. Each 60-minute class costs 2 credits. Credit packages start at $49 for 10 credits. See our pricing page for details.",
+    },
+    {
+        question: "What's included?",
+        answer: "Full badge platform access, all materials and supplies, small group instruction (max 12 students), progress tracking, and parent dashboard access.",
+    },
+    {
+        question: "Can I tour a center before enrolling?",
+        answer: "Absolutely! Once centers open, we'll offer free tours and trial classes. Join the waitlist to be invited to grand opening events.",
+    },
+    {
+        question: "What if there's no center near me?",
+        answer: "We're expanding based on demand. Request your location on the waitlist - when we have enough interest in an area, we prioritize opening there. We also offer online courses and at-home books while you wait.",
+    },
 ];
 ---
 
-<CorporateLayout title="Learn In Person - Mind Foundry Centers">
-    <!-- Hero Section (Clean, Light Design) -->
-    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
-        <!-- Decorative background elements (subtle) -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-center-primary/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-center-accent/5 rounded-full blur-3xl"></div>
-        
+<CorporateLayout title="In-Person Learning Centers - Mind Foundry">
+    
+    <!-- Hero -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         <div class="container mx-auto px-4 max-w-6xl relative z-10">
             <div class="text-center max-w-4xl mx-auto">
-                <!-- Status Badge (bright yellow) -->
-                <div class="inline-flex items-center gap-2 bg-center-primary text-text-dark px-4 py-2 rounded-full mb-6 font-bold text-sm shadow-sm">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <!-- Launch Timeline Badge -->
+                <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-6 py-3 rounded-full mb-6 text-sm font-bold shadow-lg">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                     </svg>
-                    OPENING Q2 2026
+                    Opening Q2 2026 • Join Waitlist Now
                 </div>
 
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-                    Where Kids Become <span class="text-center-accent">Confident Learners</span>
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    Where Kids Learn Together
                 </h1>
-                
-                <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-                    Our first local learning centers are launching in 2026. Help us choose locations and be first to enroll when we open near you.
+                <p class="text-xl md:text-2xl text-gray-600 mb-8">
+                    Local learning centers with small classes, expert instructors, and badge-based mastery. Coming to your neighborhood soon.
                 </p>
 
-                <!-- Location Interest Form (Clean white card) -->
-                <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                        Bring Mind Foundry to Your City
-                    </h3>
-                    <p class="text-gray-600 mb-6">
-                        Tell us where you want a center and we'll notify you first when we launch
-                    </p>
-                    <form class="space-y-3">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <input 
-                                type="text" 
-                                name="parent_name"
-                                placeholder="Your name"
-                                class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-center-primary focus:border-transparent"
-                                required
-                            />
-                            <input 
-                                type="email" 
-                                name="email"
-                                placeholder="Your email"
-                                class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-center-primary focus:border-transparent"
-                                required
-                            />
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <input 
-                                type="text" 
-                                name="city"
-                                placeholder="Your city"
-                                class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-center-primary focus:border-transparent"
-                                required
-                            />
-                            <input 
-                                type="text" 
-                                name="state"
-                                placeholder="State"
-                                class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-center-primary focus:border-transparent"
-                                required
-                            />
-                        </div>
-                        <button 
-                            type="submit"
-                            class="w-full px-6 py-4 bg-center-primary text-text-dark font-bold text-lg rounded-lg hover:bg-center-primary/90 shadow-md hover:shadow-lg transition-all duration-200"
-                        >
-                            Notify Me When You Open! 🏫
-                        </button>
-                        <p class="text-xs text-gray-500 text-center mt-2">
-                            Join 1,200+ families who've requested centers in their area
-                        </p>
-                    </form>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                    <a 
+                        href="#waitlist"
+                        class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-corporate-primary rounded-full shadow-lg hover:bg-corporate-primary/90 hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                    >
+                        Join the Waitlist
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                    <a 
+                        href="#example-center"
+                        class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-corporate-primary bg-white border-2 border-corporate-primary rounded-full hover:bg-gray-50 transition-all duration-200"
+                    >
+                        See Example Center
+                    </a>
                 </div>
 
-                <!-- Quick Stats (subtle, clean) -->
-                <div class="mt-12 flex flex-wrap justify-center gap-8 text-sm text-gray-600">
+                <!-- Trust Signals -->
+                <div class="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-600">
                     <div class="flex items-center gap-2">
-                        <div class="w-10 h-10 rounded-lg bg-center-primary/10 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-center-accent" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900">50+ Planned</div>
-                            <div class="text-xs text-gray-500">Locations</div>
-                        </div>
+                        <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        Small class sizes
                     </div>
                     <div class="flex items-center gap-2">
-                        <div class="w-10 h-10 rounded-lg bg-center-primary/10 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-center-accent" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900">12 Max</div>
-                            <div class="text-xs text-gray-500">Per Class</div>
-                        </div>
+                        <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        Certified instructors
                     </div>
                     <div class="flex items-center gap-2">
-                        <div class="w-10 h-10 rounded-lg bg-center-primary/10 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-center-accent" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900">Badge-Based</div>
-                            <div class="text-xs text-gray-500">Curriculum</div>
-                        </div>
+                        <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        Badge-based progress
                     </div>
                 </div>
             </div>
@@ -236,424 +189,334 @@ const features = [
     </section>
 
     <!-- Stats -->
-    <StatsSection stats={stats} />
-
-    <!-- Target Cities Map -->
-    <section class="py-20 bg-white">
+    <section class="py-12 bg-white border-y border-gray-200">
         <div class="container mx-auto px-4 max-w-6xl">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    Expansion Roadmap
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Our first centers are planned for the Midwest, with nationwide expansion following
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {targetCities.map((location) => (
-                    <div class="bg-gradient-to-br from-gray-50 to-white rounded-xl p-6 border border-gray-200 hover:border-center-primary hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-start justify-between mb-3">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">
-                                    {location.city}
-                                </h3>
-                                <p class="text-sm text-gray-600">{location.state}</p>
-                            </div>
-                            <div class="w-10 h-10 rounded-full bg-center-primary/10 flex items-center justify-center">
-                                <span class="text-xl">📍</span>
-                            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {stats.map((stat) => (
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">{stat.icon}</div>
+                        <div class="text-3xl font-bold text-corporate-primary mb-1">
+                            {stat.number}
                         </div>
-                        <div class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
-                            location.status.includes('Q2 2026') 
-                                ? 'bg-center-primary text-text-dark' 
-                                : location.status.includes('Planning')
-                                ? 'bg-center-accent/20 text-center-accent'
-                                : 'bg-gray-100 text-gray-600'
-                        }`}>
-                            {location.status}
+                        <div class="text-sm text-gray-600">
+                            {stat.label}
                         </div>
                     </div>
                 ))}
             </div>
-
-            <div class="bg-gradient-to-br from-center-primary/5 to-center-accent/5 rounded-2xl p-8 text-center">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                    Don't See Your City?
-                </h3>
-                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-                    We're choosing our next 10 locations based on demand. The more interest we see from your area, the sooner we'll open there.
-                </p>
-                <a 
-                    href="#request"
-                    class="inline-flex items-center px-6 py-3 bg-center-accent text-white font-semibold rounded-lg hover:bg-center-accent/90 shadow-md hover:shadow-lg transition-all duration-200"
-                >
-                    Request a Center in Your City →
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- What Makes Centers Special -->
+    <!-- Why In-Person Learning -->
+    <FeatureGrid 
+        title="Why In-Person Learning Works"
+        subtitle="The benefits of learning together in a dedicated space"
+        features={benefits}
+    />
+
+    <!-- What Happens at Centers -->
     <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    Why In-Person Learning Works
+                    What Happens at Our Centers
                 </h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Some skills are best learned together, in person, with hands-on materials
+                    Every session is designed to build real skills through hands-on learning
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {benefits.map((benefit) => (
-                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-center-primary/30 transition-all duration-300">
-                        <div class="w-14 h-14 rounded-xl bg-center-primary/10 flex items-center justify-center text-3xl mb-4">
-                            {benefit.icon}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {activities.map((activity) => (
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:shadow-lg hover:border-corporate-primary transition-all duration-300">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-corporate-primary/10 flex items-center justify-center text-2xl flex-shrink-0">
+                                {activity.icon}
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">
+                                    {activity.title}
+                                </h3>
+                                <p class="text-gray-600">
+                                    {activity.description}
+                                </p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">
-                            {benefit.title}
-                        </h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            {benefit.description}
-                        </p>
                     </div>
                 ))}
             </div>
         </div>
     </section>
 
-    <!-- Sample Programs -->
+    <!-- Sample Session -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    Programs We'll Offer
+                    A Typical 90-Minute Session
                 </h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    After-school, weekend, and summer programs for ages 5-18
+                    Structured learning with time for exploration and mastery
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {programs.map((program) => (
-                    <div class="group bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-center-accent hover:shadow-xl transition-all duration-300">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="w-12 h-12 rounded-xl bg-center-accent/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
-                                {program.icon}
-                            </div>
-                            <span class="text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-1 rounded">
-                                Ages {program.ageRange}
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-center-accent transition-colors">
-                            {program.name}
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                            {program.description}
-                        </p>
-                        <div class="flex flex-wrap gap-2 text-xs text-gray-500">
-                            <span class="bg-gray-100 px-2 py-1 rounded">{program.frequency}</span>
-                            <span class="bg-gray-100 px-2 py-1 rounded">{program.duration}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            <div class="text-center mt-10">
-                <p class="text-gray-600 mb-4">
-                    All programs include badge progression, progress tracking, and materials
-                </p>
-                <span class="inline-flex items-center text-center-primary font-semibold">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                    Badge-based learning in every program
-                </span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Center Features/Amenities -->
-    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    Modern, Safe Facilities
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Every detail designed with families in mind
-                </p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                {features.map((feature) => (
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto rounded-xl bg-white shadow-md flex items-center justify-center text-3xl mb-3 hover:shadow-lg hover:scale-105 transition-all duration-300">
-                            {feature.icon}
-                        </div>
-                        <h3 class="font-bold text-gray-900 text-sm mb-1">
-                            {feature.title}
-                        </h3>
-                        <p class="text-xs text-gray-600">
-                            {feature.description}
-                        </p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- Launch Timeline (Light version) -->
-    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    Launch Timeline
-                </h2>
-                <p class="text-xl text-gray-600">
-                    Here's what happens next
-                </p>
-            </div>
-            
-            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-3xl border-2 border-gray-200 p-8 max-w-4xl mx-auto">
                 <div class="space-y-6">
-                    <!-- Phase 1 -->
-                    <div class="flex items-start gap-4 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
-                        <div class="w-12 h-12 rounded-full bg-center-primary flex items-center justify-center font-bold text-text-dark flex-shrink-0 shadow-md">
-                            ✓
-                        </div>
-                        <div class="flex-1">
-                            <div class="font-bold text-xl text-gray-900 mb-1">Gathering Interest - Now</div>
-                            <div class="text-gray-600">1,200+ families already requested centers</div>
-                            <div class="mt-2 inline-flex items-center text-sm font-semibold text-center-accent">
-                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                Current Phase
+                    {sampleSchedule.map((item, index) => (
+                        <div class="flex items-start gap-4">
+                            <!-- Timeline Dot -->
+                            <div class="relative">
+                                <div class="w-12 h-12 rounded-full bg-corporate-primary text-white font-bold flex items-center justify-center shadow-lg">
+                                    {index + 1}
+                                </div>
+                                {index < sampleSchedule.length - 1 && (
+                                    <div class="absolute top-12 left-1/2 -translate-x-1/2 w-1 h-12 bg-gradient-to-b from-corporate-primary to-corporate-primary/30"></div>
+                                )}
+                            </div>
+
+                            <!-- Content -->
+                            <div class="flex-1 pt-2">
+                                <div class="flex items-baseline gap-3 mb-2">
+                                    <span class="text-sm font-bold text-corporate-primary">
+                                        {item.time}
+                                    </span>
+                                    <h3 class="text-lg font-bold text-gray-900">
+                                        {item.activity}
+                                    </h3>
+                                </div>
+                                <p class="text-gray-600">
+                                    {item.description}
+                                </p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Phase 2 -->
-                    <div class="flex items-start gap-4 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
-                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700 flex-shrink-0">
-                            2
-                        </div>
-                        <div class="flex-1">
-                            <div class="font-bold text-xl text-gray-900 mb-1">Location Selection - Q1 2026</div>
-                            <div class="text-gray-600">Choose cities based on demand and partnerships</div>
-                        </div>
-                    </div>
-
-                    <!-- Phase 3 -->
-                    <div class="flex items-start gap-4 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
-                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700 flex-shrink-0">
-                            3
-                        </div>
-                        <div class="flex-1">
-                            <div class="font-bold text-xl text-gray-900 mb-1">First Center Opens - Q2 2026</div>
-                            <div class="text-gray-600">Columbus, OH (pilot location)</div>
-                        </div>
-                    </div>
-
-                    <!-- Phase 4 -->
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700 flex-shrink-0">
-                            4
-                        </div>
-                        <div class="flex-1">
-                            <div class="font-bold text-xl text-gray-900 mb-1">Expansion - Late 2026-2027</div>
-                            <div class="text-gray-600">10+ additional centers based on demand</div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
-
-            <div class="text-center mt-10">
-                <a 
-                    href="#request"
-                    class="inline-flex items-center px-8 py-4 bg-center-primary text-text-dark font-bold text-lg rounded-lg hover:bg-center-primary/90 shadow-lg hover:shadow-xl transition-all duration-200"
-                >
-                    Request a Center Now →
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Partnership/Franchise Interest -->
-    <section class="py-20 bg-white">
+    <!-- Example Center -->
+    <section id="example-center" class="py-20 bg-gradient-to-br from-corporate-primary/5 to-corporate-secondary/5">
         <div class="container mx-auto px-4 max-w-6xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="inline-flex items-center gap-2 bg-center-accent/10 text-center-accent px-4 py-2 rounded-full mb-6 text-sm font-bold">
-                        FOR ENTREPRENEURS & EDUCATORS
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    See a Center in Action
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Springfield is our model for what every Mind Foundry center will offer
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+                <!-- Hero Image Placeholder -->
+                <div class="h-64 bg-gradient-to-br from-corporate-primary to-corporate-secondary flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <div class="text-6xl mb-4">🏫</div>
+                        <div class="text-2xl font-bold">Mind Foundry Springfield</div>
+                        <div class="text-lg opacity-90">Opening Q2 2026</div>
                     </div>
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
-                        Bring Mind Foundry to Your Community
-                    </h2>
-                    <p class="text-xl text-gray-600 mb-6 leading-relaxed">
-                        We're looking for passionate educators, entrepreneurs, and community leaders to open Mind Foundry centers.
-                    </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-center-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-700"><strong>Proven curriculum</strong> with badge-based learning system</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-center-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-700"><strong>Full support</strong> with training, marketing, and operations</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-center-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-700"><strong>Flexible models</strong> including franchise and partnership options</span>
-                        </li>
-                    </ul>
+                </div>
+
+                <div class="p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Features</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-gray-700">4 dedicated learning studios</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-gray-700">Maker space with tools & materials</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-gray-700">Parent lounge with WiFi</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="text-gray-700">Free parking</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Hours</h3>
+                            <div class="space-y-2 text-gray-700 mb-6">
+                                <p>Mon-Fri: 3:00 PM - 7:00 PM</p>
+                                <p>Saturdays: 9:00 AM - 5:00 PM</p>
+                                <p>Sundays: Closed</p>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Location</h3>
+                            <p class="text-gray-700">
+                                123 Learning Lane<br/>
+                                Springfield, OH 45504
+                            </p>
+                        </div>
+                    </div>
+
                     <a 
-                        href="/partnerships"
-                        class="inline-flex items-center px-6 py-3 bg-center-accent text-white font-bold rounded-lg hover:bg-center-accent/90 shadow-md hover:shadow-lg transition-all duration-200"
+                        href="/centers/springfield"
+                        class="block w-full text-center bg-corporate-primary text-white font-bold py-4 rounded-xl hover:bg-corporate-primary/90 transition-colors"
                     >
-                        Learn About Partnerships →
+                        View Full Springfield Center Details
                     </a>
                 </div>
-                <div class="bg-gradient-to-br from-center-primary/5 to-center-accent/5 rounded-3xl p-8 text-center min-h-[400px] flex flex-col items-center justify-center">
-                    <div class="text-7xl mb-6">🤝</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                        Partnership Opportunities
-                    </h3>
-                    <p class="text-gray-600 mb-6">
-                        Join us in building the future of after-school learning
-                    </p>
-                    <div class="space-y-3 text-sm text-gray-600">
-                        <p>✓ Franchise opportunities available</p>
-                        <p>✓ White-label partnerships for existing centers</p>
-                        <p>✓ School district collaborations</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Can't Wait? Alternative Options -->
-    <section class="py-16 bg-gray-50">
+    <!-- Testimonials -->
+    <TestimonialBlock testimonials={testimonials} />
+
+    <!-- Location Interest Map -->
+    <section class="py-20 bg-white">
         <div class="container mx-auto px-4 max-w-6xl">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-gray-900 mb-3">
-                    Can't Wait for a Center? Try These Now
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Coming to a Neighborhood Near You
                 </h2>
-                <p class="text-gray-600">
-                    Badge-based learning available today while you wait
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    We're opening centers based on community demand. See planned locations and request yours.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <!-- Map Placeholder -->
+            <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl p-12 text-center border-2 border-dashed border-gray-300 mb-8">
+                <div class="text-6xl mb-4">🗺️</div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                    Interactive Map Coming Soon
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    50+ locations planned across Ohio, expanding nationwide based on demand
+                </p>
+                <a 
+                    href="#waitlist"
+                    class="inline-flex items-center text-corporate-primary font-semibold hover:text-corporate-secondary transition-colors"
+                >
+                    Request Your Location
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Current Planned Locations -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {['Columbus', 'Cleveland', 'Cincinnati', 'Toledo', 'Akron', 'Dayton', 'Youngstown', 'Canton'].map((city) => (
+                    <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+                        <div class="text-2xl mb-2">📍</div>
+                        <div class="font-semibold text-gray-900">{city}</div>
+                        <div class="text-xs text-gray-600 mt-1">Q2 2026</div>
+                    </div>
+                ))}
+            </div>
+
+            <p class="text-center text-gray-600 text-sm mt-6">
+                Don't see your city? Join the waitlist to bring Mind Foundry to your community.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Common Questions</h2>
+                <p class="text-xl text-gray-600">
+                    Everything you need to know about our learning centers
+                </p>
+            </div>
+
+            <div class="space-y-6">
+                {faqs.map((faq) => (
+                    <details class="group bg-white rounded-2xl border border-gray-200 hover:border-corporate-primary transition-colors">
+                        <summary class="flex items-center justify-between cursor-pointer p-6">
+                            <h3 class="text-lg font-bold text-gray-900 pr-4">
+                                {faq.question}
+                            </h3>
+                            <svg class="w-6 h-6 text-corporate-primary transform group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </summary>
+                        <div class="px-6 pb-6 text-gray-700 leading-relaxed">
+                            {faq.answer}
+                        </div>
+                    </details>
+                ))}
+            </div>
+
+            <div class="text-center mt-10">
+                <a 
+                    href="/help"
+                    class="inline-flex items-center text-corporate-primary font-semibold hover:text-corporate-secondary transition-colors"
+                >
+                    More questions? Visit our Help Center
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist CTA -->
+    <section id="waitlist" class="py-20 bg-gradient-to-br from-corporate-primary to-corporate-secondary">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Join the Waitlist
+            </h2>
+            <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                Be the first to know when centers open in your area. Waitlist members get priority enrollment and exclusive launch events.
+            </p>
+
+            <a 
+                href="/waitlist"
+                class="inline-flex items-center justify-center px-8 py-4 bg-white text-corporate-primary font-bold rounded-full shadow-lg hover:bg-gray-50 transform hover:scale-105 transition-all duration-200 text-lg"
+            >
+                Request Your Location
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+            </a>
+
+            <p class="text-white/80 text-sm mt-8">
+                Already have a book or taking online courses? You can still join us in person when centers open!
+            </p>
+        </div>
+    </section>
+
+    <!-- Alternative Options -->
+    <section class="py-12 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <p class="text-center text-gray-700 mb-6 text-lg">
+                <strong>Can't wait until Q2 2026?</strong> Start learning today with our other options:
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
                     href="/books"
-                    class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-center-accent transition-all duration-300"
+                    class="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-gray-300 text-gray-900 font-semibold rounded-xl hover:border-corporate-primary hover:text-corporate-primary transition-all"
                 >
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-14 h-14 rounded-xl bg-center-accent/10 flex items-center justify-center text-3xl">
-                            📚
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-center-accent transition-colors">
-                                Learn At Home
-                            </h3>
-                            <p class="text-sm text-gray-600">Available now</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-3">
-                        Self-paced workbooks with the same badge system. Start learning today for just $24.99.
-                    </p>
-                    <span class="text-center-accent font-semibold group-hover:gap-2 inline-flex items-center gap-1 transition-all">
-                        Shop Books <span class="transform group-hover:translate-x-1 transition-transform">→</span>
-                    </span>
+                    <span class="mr-2">📚</span>
+                    Browse At-Home Books
                 </a>
-
                 <a 
                     href="/online"
-                    class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-corporate-primary transition-all duration-300"
+                    class="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-gray-300 text-gray-900 font-semibold rounded-xl hover:border-corporate-primary hover:text-corporate-primary transition-all"
                 >
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-14 h-14 rounded-xl bg-corporate-primary/10 flex items-center justify-center text-3xl">
-                            💻
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-corporate-primary transition-colors">
-                                Learn Online
-                            </h3>
-                            <p class="text-sm text-gray-600">Launching soon</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-3">
-                        Digital platform with 100+ badges, interactive challenges, and 24/7 access.
-                    </p>
-                    <span class="text-corporate-primary font-semibold group-hover:gap-2 inline-flex items-center gap-1 transition-all">
-                        Join Waitlist <span class="transform group-hover:translate-x-1 transition-transform">→</span>
-                    </span>
+                    <span class="mr-2">💻</span>
+                    Explore Online Courses
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final Interest Capture (Clean version) -->
-    <section id="request" class="py-20 bg-white">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <div class="bg-gradient-to-br from-center-primary/10 to-center-accent/10 rounded-3xl p-10 text-center shadow-xl border border-gray-100">
-                <div class="text-6xl mb-6">🏫</div>
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    Help Us Choose Locations
-                </h2>
-                <p class="text-xl text-gray-600 mb-8">
-                    The more interest we see from your city, the sooner we'll open there
-                </p>
-                
-                <form class="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-md border border-gray-100">
-                    <div class="space-y-3 mb-4">
-                        <input 
-                            type="text" 
-                            placeholder="Your name"
-                            class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-center-primary focus:border-transparent text-gray-900 font-medium"
-                            required
-                        />
-                        <input 
-                            type="email" 
-                            placeholder="Your email"
-                            class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-center-primary focus:border-transparent text-gray-900 font-medium"
-                            required
-                        />
-                        <div class="grid grid-cols-2 gap-3">
-                            <input 
-                                type="text" 
-                                placeholder="Your city"
-                                class="px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-center-primary focus:border-transparent text-gray-900 font-medium"
-                                required
-                            />
-                            <input 
-                                type="text" 
-                                placeholder="State"
-                                class="px-5 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-center-primary focus:border-transparent text-gray-900 font-medium"
-                                required
-                            />
-                        </div>
-                    </div>
-                    <button 
-                        type="submit"
-                        class="w-full px-8 py-4 bg-center-primary text-text-dark font-bold text-lg rounded-xl hover:bg-center-primary/90 shadow-md hover:shadow-lg transition-all duration-200"
-                    >
-                        Request a Center
-                    </button>
-                    <p class="text-sm text-gray-600 mt-3">
-                        ✨ Get priority enrollment when we open in your area
-                    </p>
-                </form>
             </div>
         </div>
     </section>

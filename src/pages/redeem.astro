@@ -1,0 +1,220 @@
+---
+/**
+ * Manual Code Entry Page
+ * Route: /redeem
+ * 
+ * Fallback for users who can't scan QR or want to manually enter code.
+ * Validates format, then redirects to /redeem/[code]
+ */
+
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Redeem Your Book Code">
+  <div class="min-h-screen bg-gradient-to-br from-corporate-primary/5 to-corporate-secondary/5 flex items-center justify-center p-4">
+    <div class="max-w-md w-full">
+      
+      <div class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-200">
+        
+        <!-- Icon -->
+        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-corporate-secondary/20 to-corporate-primary/20 mx-auto mb-6 flex items-center justify-center">
+          <svg class="w-10 h-10 text-corporate-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+        </div>
+
+        <!-- Header -->
+        <h1 class="text-3xl font-bold text-gray-900 text-center mb-2">
+          Activate Your Book
+        </h1>
+        <p class="text-center text-gray-600 mb-8">
+          Enter the code from inside your book to unlock 6 months free access
+        </p>
+
+        <!-- Code Entry Form -->
+        <form id="code-entry-form" class="space-y-6">
+          <!-- Code Input -->
+          <div>
+            <label for="code" class="block text-sm font-semibold text-gray-700 mb-3">
+              Your Book Code
+            </label>
+            
+            <!-- Code Input with Segments -->
+            <div class="flex gap-3 justify-center mb-2">
+              <input
+                type="text"
+                id="code-part-1"
+                maxlength="4"
+                placeholder="XXXX"
+                class="w-20 px-4 py-3 border-2 border-gray-300 rounded-xl text-center font-mono font-bold text-lg uppercase focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                required
+              />
+              <span class="text-2xl text-gray-400 self-center">-</span>
+              <input
+                type="text"
+                id="code-part-2"
+                maxlength="4"
+                placeholder="XXXX"
+                class="w-20 px-4 py-3 border-2 border-gray-300 rounded-xl text-center font-mono font-bold text-lg uppercase focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                required
+              />
+              <span class="text-2xl text-gray-400 self-center">-</span>
+              <input
+                type="text"
+                id="code-part-3"
+                maxlength="4"
+                placeholder="XXXX"
+                class="w-20 px-4 py-3 border-2 border-gray-300 rounded-xl text-center font-mono font-bold text-lg uppercase focus:ring-2 focus:ring-corporate-primary focus:border-transparent transition-all"
+                required
+              />
+            </div>
+            
+            <p class="text-xs text-gray-500 text-center">
+              Format: XXXX-XXXX-XXXX (letters and numbers)
+            </p>
+          </div>
+
+          <!-- Error Message (hidden by default) -->
+          <div id="error-message" class="hidden p-4 bg-red-50 border border-red-200 rounded-xl">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <p class="text-sm font-semibold text-red-900">Invalid Code Format</p>
+                <p class="text-xs text-red-700 mt-1">Please enter a valid code with letters and numbers</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="w-full bg-gradient-to-r from-corporate-primary to-corporate-secondary text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 text-lg"
+          >
+            Continue
+            <svg class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Help Section -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer text-sm font-semibold text-gray-700">
+              <span>Where do I find my code?</span>
+              <svg class="w-5 h-5 text-gray-400 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="mt-4 text-sm text-gray-600 space-y-2">
+              <p>Your book code is located:</p>
+              <ul class="list-disc list-inside space-y-1 ml-2">
+                <li>Inside the front cover</li>
+                <li>Or on the first page</li>
+                <li>Look for a QR code and text below it</li>
+              </ul>
+              <p class="mt-3">
+                Still can't find it? <a href="/contact" class="text-corporate-primary font-semibold hover:underline">Contact support</a>
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <!-- Alternative Options -->
+        <div class="mt-6 text-center">
+          <p class="text-sm text-gray-600 mb-3">Don't have a book yet?</p>
+          <a 
+            href="/books"
+            class="inline-flex items-center text-corporate-primary font-semibold hover:text-corporate-secondary transition-colors"
+          >
+            Browse Our Books
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <div class="text-center mt-6">
+        <a href="/" class="text-sm text-gray-600 hover:text-corporate-primary transition-colors">
+          ← Back to Mind Foundry
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Auto-focus and auto-advance between code segments
+  const codeParts = [
+    document.getElementById('code-part-1') as HTMLInputElement,
+    document.getElementById('code-part-2') as HTMLInputElement,
+    document.getElementById('code-part-3') as HTMLInputElement,
+  ];
+
+  codeParts.forEach((input, index) => {
+    if (!input) return;
+
+    // Auto-advance to next field
+    input.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement;
+      
+      // Convert to uppercase
+      target.value = target.value.toUpperCase();
+      
+      // Auto-advance when filled
+      if (target.value.length === 4 && index < codeParts.length - 1) {
+        codeParts[index + 1]?.focus();
+      }
+    });
+
+    // Handle backspace to previous field
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && input.value === '' && index > 0) {
+        codeParts[index - 1]?.focus();
+      }
+    });
+
+    // Only allow alphanumeric
+    input.addEventListener('beforeinput', (e: InputEvent) => {
+      const char = e.data;
+      if (char && !/^[A-Za-z0-9]$/.test(char)) {
+        e.preventDefault();
+      }
+    });
+  });
+
+  // Form submission
+  document.getElementById('code-entry-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const errorMessage = document.getElementById('error-message');
+    
+    // Get code parts
+    const part1 = codeParts[0]?.value || '';
+    const part2 = codeParts[1]?.value || '';
+    const part3 = codeParts[2]?.value || '';
+    
+    // Validate format
+    const codePattern = /^[A-Z0-9]{4}$/;
+    if (!codePattern.test(part1) || !codePattern.test(part2) || !codePattern.test(part3)) {
+      errorMessage?.classList.remove('hidden');
+      return;
+    }
+    
+    // Hide error if shown
+    errorMessage?.classList.add('hidden');
+    
+    // Construct full code and redirect
+    const fullCode = `${part1}-${part2}-${part3}`;
+    window.location.href = `/redeem/${fullCode}`;
+  });
+
+  // Focus first input on load
+  codeParts[0]?.focus();
+</script>

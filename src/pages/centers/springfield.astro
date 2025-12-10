@@ -1,13 +1,16 @@
 ---
-import CenterLayout from '../layouts/CenterLayout.astro';
-import CenterHero from '../components/CenterHero.astro';
-import CenterQuickInfo from '../components/CenterQuickInfo.astro';
-import DirectorSpotlight from '../components/DirectorSpotlight.astro';
-import WhyChooseUs from '../components/WhyChooseUs.astro';
-import CourseCard from '../components/CourseCard.astro';
-import TestimonialBlock from '../components/TestimonialBlock.astro';
-import FacilityShowcase from '../components/FacilityShowcase.astro';
-import LocationMap from '../components/LocationMap.astro';
+// src/pages/centers/springfield.astro
+// Moved from src/pages/springfield.astro → Added one level of ../ to imports
+
+import CenterLayout from '../../layouts/CenterLayout.astro';
+import CenterHero from '../../components/CenterHero.astro';
+import CenterQuickInfo from '../../components/CenterQuickInfo.astro';
+import DirectorSpotlight from '../../components/DirectorSpotlight.astro';
+import WhyChooseUs from '../../components/WhyChooseUs.astro';
+import CourseCard from '../../components/CourseCard.astro';
+import TestimonialBlock from '../../components/TestimonialBlock.astro';
+import FacilityShowcase from '../../components/FacilityShowcase.astro';
+import LocationMap from '../../components/LocationMap.astro';
 
 // 1. Fetch specific location data for Springfield
 const locationFiles = import.meta.glob('/content/locations/springfield.md', { eager: true });
@@ -203,7 +206,7 @@ const facilityPhotos = [
     <FacilityShowcase 
         title="Our Safe & Modern Facility"
         photos={facilityPhotos}
-        galleryLink="/springfield/gallery"
+        galleryLink="/centers/springfield/gallery"
     />
 
     <!-- Location Map -->
