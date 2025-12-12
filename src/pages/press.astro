@@ -1,0 +1,228 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+
+const pressReleases = [
+  {
+    date: 'November 2024',
+    title: 'Mind Foundry Announces Q2 2026 Learning Center Expansion',
+    summary: 'Educational technology company to open first physical learning centers in Ohio, bringing badge-based learning to local communities.',
+    link: '#'
+  },
+  {
+    date: 'September 2024',
+    title: 'Mind Foundry Reaches 10,000 Active Students Milestone',
+    summary: 'Growing adoption of badge-based curriculum demonstrates demand for mastery-focused education alternatives.',
+    link: '#'
+  },
+  {
+    date: 'June 2024',
+    title: 'Mind Foundry Launches New Workbook Series for Middle Schoolers',
+    summary: 'Expanded curriculum brings Six Core Capacities framework to students ages 11-14.',
+    link: '#'
+  },
+  {
+    date: 'March 2024',
+    title: 'Mind Foundry Named to EdTech Innovation 50 List',
+    summary: 'Recognition highlights company\'s unique approach to competency-based learning.',
+    link: '#'
+  }
+];
+
+const mediaFeatures = [
+  { outlet: 'EdWeek', quote: '"A refreshing alternative to traditional grading..."', logo: '📰' },
+  { outlet: 'TechCrunch', quote: '"Badge-based learning done right..."', logo: '💻' },
+  { outlet: 'Parents Magazine', quote: '"Finally, an education system that focuses on real skills..."', logo: '📖' },
+  { outlet: 'Columbus Dispatch', quote: '"Local EdTech startup reimagines childhood education..."', logo: '🗞️' }
+];
+
+const brandAssets = [
+  { name: 'Logo Package', description: 'Primary and secondary logos in various formats', icon: '🎨' },
+  { name: 'Brand Guidelines', description: 'Colors, typography, and usage rules', icon: '📐' },
+  { name: 'Product Images', description: 'High-resolution workbook and app screenshots', icon: '📷' },
+  { name: 'Founder Photos', description: 'Professional headshots of leadership team', icon: '👤' }
+];
+
+const facts = [
+  { label: 'Founded', value: '2019' },
+  { label: 'Headquarters', value: 'Columbus, OH' },
+  { label: 'Active Students', value: '10,000+' },
+  { label: 'Badges Earned', value: '50,000+' },
+  { label: 'Core Capacities', value: '6' },
+  { label: 'Age Range', value: '5-18' }
+];
+---
+
+<CorporateLayout title="Press & Media - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-navy via-mf-blue to-mf-teal py-20 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-mf-mint/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-6">
+          <span class="text-white/90 font-corp-body">Newsroom</span>
+        </div>
+        <h1 class="font-display text-h1 text-white mb-6 drop-shadow-lg">
+          Press & Media
+        </h1>
+        <p class="text-xl text-white/90 font-corp-body leading-relaxed">
+          Resources for journalists covering Mind Foundry and the future of education.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Facts -->
+  <section class="py-12 bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {facts.map((fact) => (
+          <div class="text-center">
+            <div class="text-2xl font-display text-mf-teal">{fact.value}</div>
+            <div class="text-sm text-text-body font-corp-body">{fact.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Media Contact -->
+  <section class="py-16 bg-gradient-to-b from-mf-mint/10 to-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Media Contact Card -->
+        <div class="lg:col-span-1">
+          <div class="bg-gradient-to-br from-mf-teal to-mf-blue rounded-2xl p-8 text-white sticky top-8">
+            <h2 class="font-display text-h3 mb-4">Media Contact</h2>
+            <p class="text-white/90 font-corp-body mb-6">
+              For press inquiries, interview requests, or media kit access:
+            </p>
+            <div class="space-y-4">
+              <div>
+                <p class="font-display">Press Team</p>
+                <a href="mailto:press@mindfoundry.com" class="text-mf-mint hover:text-white transition-colors">
+                  press@mindfoundry.com
+                </a>
+              </div>
+              <div>
+                <p class="font-display">Phone</p>
+                <a href="tel:+15551234567" class="text-mf-mint hover:text-white transition-colors">
+                  (555) 123-4567
+                </a>
+              </div>
+            </div>
+            <hr class="border-white/20 my-6" />
+            <p class="text-sm text-white/80 font-corp-body">
+              We typically respond to media inquiries within 24 hours.
+            </p>
+          </div>
+        </div>
+
+        <!-- Press Releases -->
+        <div class="lg:col-span-2">
+          <h2 class="font-display text-h2 text-text-dark mb-6">Press Releases</h2>
+          <div class="space-y-4">
+            {pressReleases.map((release) => (
+              <a href={release.link} class="block bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:border-mf-teal hover:shadow-xl transition-all group">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-mf-teal/10 flex items-center justify-center flex-shrink-0 group-hover:bg-mf-teal/20 transition-colors">
+                    <svg class="w-6 h-6 text-mf-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                    </svg>
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm text-mf-teal font-corp-body mb-1">{release.date}</p>
+                    <h3 class="font-display text-lg text-text-dark group-hover:text-mf-teal transition-colors mb-2">
+                      {release.title}
+                    </h3>
+                    <p class="text-text-body font-corp-body text-sm">{release.summary}</p>
+                  </div>
+                  <svg class="w-5 h-5 text-gray-400 group-hover:text-mf-teal transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media Features -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">In the Media</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-2xl mx-auto">
+          What people are saying about Mind Foundry.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {mediaFeatures.map((feature) => (
+          <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200">
+            <div class="text-4xl mb-4">{feature.logo}</div>
+            <p class="font-display text-mf-navy mb-2">{feature.outlet}</p>
+            <p class="text-text-body font-corp-body text-sm italic">{feature.quote}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Assets -->
+  <section class="py-16 bg-gradient-to-b from-mf-mint/10 to-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Brand Assets</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-2xl mx-auto">
+          Download official Mind Foundry brand materials for your coverage.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {brandAssets.map((asset) => (
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:border-mf-teal hover:shadow-xl transition-all group cursor-pointer">
+            <div class="text-4xl mb-4">{asset.icon}</div>
+            <h3 class="font-display text-text-dark mb-2 group-hover:text-mf-teal transition-colors">{asset.name}</h3>
+            <p class="text-sm text-text-body font-corp-body mb-4">{asset.description}</p>
+            <span class="text-mf-teal font-corp-body text-sm flex items-center gap-1">
+              Download
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
+            </span>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a
+          href="mailto:press@mindfoundry.com?subject=Media Kit Request"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-mf-teal text-white font-display rounded-xl hover:bg-mf-teal/90 transition-colors"
+        >
+          Request Full Media Kit
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Overview -->
+  <section class="py-16 bg-gradient-to-r from-mf-navy to-mf-blue">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="font-display text-h2 text-white mb-6">About Mind Foundry</h2>
+      <p class="text-lg text-white/90 font-corp-body mb-8 max-w-3xl mx-auto leading-relaxed">
+        Mind Foundry is an educational technology company transforming how children ages 5-18 learn and develop skills. Through our badge-based curriculum, children master six core capacities—Curiosity, Reasoning, Expression, Focus, Collaboration, and Adaptability—that prepare them for success in any field. Founded in 2019 and headquartered in Columbus, Ohio, Mind Foundry serves over 10,000 active students through at-home workbooks, with in-person learning centers launching in Q2 2026.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/about" class="px-6 py-3 bg-mf-pink text-white font-display rounded-xl hover:bg-mf-pink/90 transition-colors">
+          Learn More About Us
+        </a>
+        <a href="/mission" class="px-6 py-3 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border border-white/30">
+          Our Mission
+        </a>
+      </div>
+    </div>
+  </section>
+</CorporateLayout>

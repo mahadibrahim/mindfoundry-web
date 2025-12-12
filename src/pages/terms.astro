@@ -1,0 +1,381 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+
+const lastUpdated = 'December 1, 2024';
+
+const sections = [
+  { id: 'agreement', title: '1. Agreement to Terms', color: 'mf-teal' },
+  { id: 'services', title: '2. Description of Services', color: 'mf-blue' },
+  { id: 'account', title: '3. Account Registration', color: 'mf-pink' },
+  { id: 'purchases', title: '4. Product Purchases and Refunds', color: 'mf-mint' },
+  { id: 'coppa', title: '5. Children\'s Accounts (COPPA)', color: 'mf-navy' },
+  { id: 'use', title: '6. Acceptable Use', color: 'mf-teal' },
+  { id: 'ip', title: '7. Intellectual Property', color: 'mf-blue' },
+  { id: 'warranties', title: '8. Disclaimer of Warranties', color: 'mf-pink' },
+  { id: 'liability', title: '9. Limitation of Liability', color: 'mf-navy' },
+  { id: 'changes', title: '10. Changes to Terms', color: 'mf-teal' },
+  { id: 'law', title: '11. Governing Law', color: 'mf-blue' },
+  { id: 'contact', title: '12. Contact Us', color: 'mf-pink' },
+];
+---
+
+<CorporateLayout title="Terms of Service - Mind Foundry">
+  <!-- Hero Banner -->
+  <section class="bg-gradient-to-r from-mf-navy via-mf-blue to-mf-teal py-16 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-48 h-48 bg-mf-mint/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl text-center relative z-10">
+      <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-4">
+        <span class="text-white/90 font-corp-body">Legal</span>
+      </div>
+      <h1 class="font-display text-h1 text-white mb-4 drop-shadow-lg">Terms of Service</h1>
+      <p class="text-xl text-white/90 max-w-2xl mx-auto font-corp-body">
+        Last updated: {lastUpdated}
+      </p>
+    </div>
+  </section>
+
+  <div class="bg-gradient-to-b from-mf-mint/10 to-white min-h-screen">
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+        <!-- Sidebar Navigation -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-2xl shadow-xl p-6 sticky top-8 border-l-4 border-mf-teal">
+            <h3 class="font-display text-lg text-text-dark mb-4">Quick Navigation</h3>
+            <nav class="space-y-2">
+              {sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="block text-sm text-text-body hover:text-mf-teal transition-colors py-1 border-l-2 border-transparent hover:border-mf-teal pl-3 font-corp-body"
+                >
+                  {section.title}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+          <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+            <!-- Introduction Card -->
+            <div class="bg-gradient-to-r from-mf-teal to-mf-blue p-8 text-white">
+              <div class="flex items-start gap-4">
+                <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-3xl flex-shrink-0">
+                  📜
+                </div>
+                <div>
+                  <h2 class="font-display text-h3 mb-2">Welcome to Mind Foundry</h2>
+                  <p class="text-white/90 font-corp-body">
+                    These terms govern your use of our educational products and services. Please read them carefully.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-8 space-y-10">
+
+              <!-- Section 1 -->
+              <section id="agreement" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-teal flex items-center justify-center text-white font-bold">1</div>
+                  <h2 class="font-display text-h3 text-text-dark">Agreement to Terms</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>
+                    By accessing or using Mind Foundry's website, products, and services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our Services.
+                  </p>
+                  <p>
+                    These Terms apply to all visitors, users, and others who access or use the Services. By using the Services, you represent that you are at least 18 years old, or if you are under 18, that you have obtained parental or guardian consent to use the Services.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="services" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-blue flex items-center justify-center text-white font-bold">2</div>
+                  <h2 class="font-display text-h3 text-text-dark">Description of Services</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>Mind Foundry provides educational products and services designed for children ages 5-18, including:</p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                    <div class="bg-mf-teal/10 rounded-xl p-4 border-2 border-mf-teal/20">
+                      <span class="text-2xl mb-2 block">📚</span>
+                      <span class="font-display text-text-dark">Physical workbooks</span>
+                      <p class="text-sm mt-1">Badge-based learning curriculum</p>
+                    </div>
+                    <div class="bg-mf-blue/10 rounded-xl p-4 border-2 border-mf-blue/20">
+                      <span class="text-2xl mb-2 block">💻</span>
+                      <span class="font-display text-text-dark">Digital platform</span>
+                      <p class="text-sm mt-1">Track badges and progress</p>
+                    </div>
+                    <div class="bg-mf-pink/10 rounded-xl p-4 border-2 border-mf-pink/20">
+                      <span class="text-2xl mb-2 block">🏫</span>
+                      <span class="font-display text-text-dark">Learning centers</span>
+                      <p class="text-sm mt-1">In-person instruction (where available)</p>
+                    </div>
+                    <div class="bg-mf-mint/10 rounded-xl p-4 border-2 border-mf-mint/20">
+                      <span class="text-2xl mb-2 block">🌐</span>
+                      <span class="font-display text-text-dark">Online platform</span>
+                      <p class="text-sm mt-1">Coming soon</p>
+                    </div>
+                  </div>
+                  <p>We reserve the right to modify, suspend, or discontinue any part of our Services at any time without prior notice.</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="account" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-pink flex items-center justify-center text-white font-bold">3</div>
+                  <h2 class="font-display text-h3 text-text-dark">Account Registration</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>To access certain features of our Services, you may be required to create an account. When you create an account, you agree to:</p>
+                  <ul class="space-y-3 my-4">
+                    {[
+                      'Provide accurate, current, and complete information',
+                      'Maintain and update your information to keep it accurate',
+                      'Keep your password secure and confidential',
+                      'Accept responsibility for all activities under your account',
+                      'Notify us immediately of any unauthorized use'
+                    ].map((item) => (
+                      <li class="flex items-start gap-3">
+                        <span class="w-6 h-6 rounded-full bg-mf-pink/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg class="w-4 h-4 text-mf-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                          </svg>
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p>We reserve the right to suspend or terminate accounts that violate these Terms or for any other reason at our discretion.</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="purchases" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-mint flex items-center justify-center text-mf-navy font-bold">4</div>
+                  <h2 class="font-display text-h3 text-text-dark">Product Purchases and Refunds</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <div class="bg-gradient-to-r from-mf-mint/20 to-mf-teal/20 rounded-2xl p-6 border-2 border-mf-mint">
+                    <h4 class="font-display text-text-dark mb-2 flex items-center gap-2">
+                      <span class="text-xl">📖</span> Workbook Purchases
+                    </h4>
+                    <p>All workbook purchases are subject to our <strong>60-day satisfaction guarantee</strong>. If you are not satisfied with your purchase, you may return it within 60 days for a full refund. Books must be in resalable condition with unused digital codes.</p>
+                  </div>
+                  <div class="bg-gradient-to-r from-mf-blue/20 to-mf-navy/20 rounded-2xl p-6 border-2 border-mf-blue">
+                    <h4 class="font-display text-text-dark mb-2 flex items-center gap-2">
+                      <span class="text-xl">🔑</span> Digital Access
+                    </h4>
+                    <p>Book codes provide <strong>6 months of free access</strong> to our digital badge tracking platform. Digital access is non-transferable and expires 6 months from activation.</p>
+                  </div>
+                  <div class="bg-gradient-to-r from-mf-pink/20 to-mf-teal/20 rounded-2xl p-6 border-2 border-mf-pink">
+                    <h4 class="font-display text-text-dark mb-2 flex items-center gap-2">
+                      <span class="text-xl">🔄</span> Subscriptions
+                    </h4>
+                    <p>If you purchase a subscription service, you may cancel at any time. Refunds for subscriptions are provided on a pro-rata basis for unused time.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="coppa" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-navy flex items-center justify-center text-white font-bold">5</div>
+                  <h2 class="font-display text-h3 text-text-dark">Children's Accounts and COPPA Compliance</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <div class="bg-mf-navy/5 rounded-2xl p-6 border-l-4 border-mf-navy">
+                    <p class="mb-4">Mind Foundry is committed to protecting children's privacy. Our Services are designed to be used by children under parental supervision. In compliance with the Children's Online Privacy Protection Act (COPPA):</p>
+                    <ul class="space-y-3">
+                      {[
+                        'Parent or guardian accounts are required to create child profiles',
+                        'We collect minimal personal information from children',
+                        'Parents may review, modify, or delete their child\'s information at any time',
+                        'We do not condition a child\'s participation on disclosure of more personal information than reasonably necessary'
+                      ].map((item) => (
+                        <li class="flex items-start gap-3">
+                          <span class="w-6 h-6 rounded-full bg-mf-navy/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg class="w-4 h-4 text-mf-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p>For more information about our data practices, please see our <a href="/privacy" class="text-mf-teal hover:text-mf-pink font-bold transition-colors">Privacy Policy</a>.</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="use" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-teal flex items-center justify-center text-white font-bold">6</div>
+                  <h2 class="font-display text-h3 text-text-dark">Acceptable Use</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>You agree not to use our Services to:</p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-4">
+                    {[
+                      'Violate any applicable laws or regulations',
+                      'Infringe on the rights of others',
+                      'Transmit harmful or offensive content',
+                      'Attempt unauthorized access to our systems',
+                      'Interfere with or disrupt the Services',
+                      'Share account credentials with others',
+                      'Use for unauthorized commercial purposes',
+                      'Resell or redistribute book codes'
+                    ].map((item) => (
+                      <div class="flex items-center gap-2 bg-red-50 rounded-lg px-3 py-2 border border-red-200">
+                        <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                        <span class="text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="ip" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-blue flex items-center justify-center text-white font-bold">7</div>
+                  <h2 class="font-display text-h3 text-text-dark">Intellectual Property</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>
+                    All content, features, and functionality of our Services, including but not limited to text, graphics, logos, images, curriculum materials, and software, are owned by Mind Foundry and are protected by copyright, trademark, and other intellectual property laws.
+                  </p>
+                  <p>
+                    You may not copy, modify, distribute, sell, or lease any part of our Services without our prior written consent. However, you may use our educational materials for personal, non-commercial purposes as intended.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="warranties" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-pink flex items-center justify-center text-white font-bold">8</div>
+                  <h2 class="font-display text-h3 text-text-dark">Disclaimer of Warranties</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <div class="bg-gray-100 rounded-xl p-6 border-2 border-gray-200">
+                    <p class="text-sm uppercase tracking-wide mb-4 font-bold text-gray-600">Important Notice</p>
+                    <p class="text-gray-700">
+                      THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE.
+                    </p>
+                  </div>
+                  <p>
+                    While we strive to provide high-quality educational content, we make no guarantees about specific educational outcomes. Results may vary based on individual effort, ability, and other factors.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 9 -->
+              <section id="liability" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-navy flex items-center justify-center text-white font-bold">9</div>
+                  <h2 class="font-display text-h3 text-text-dark">Limitation of Liability</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <div class="bg-gray-100 rounded-xl p-6 border-2 border-gray-200">
+                    <p class="text-gray-700">
+                      TO THE FULLEST EXTENT PERMITTED BY LAW, MIND FOUNDRY SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICES. OUR TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID US IN THE TWELVE MONTHS PRECEDING THE CLAIM.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 10 -->
+              <section id="changes" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-teal flex items-center justify-center text-white font-bold">10</div>
+                  <h2 class="font-display text-h3 text-text-dark">Changes to Terms</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>
+                    We may update these Terms from time to time. We will notify you of significant changes by posting the new Terms on this page and updating the "Last updated" date. Your continued use of the Services after any changes constitutes acceptance of the new Terms.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 11 -->
+              <section id="law" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-blue flex items-center justify-center text-white font-bold">11</div>
+                  <h2 class="font-display text-h3 text-text-dark">Governing Law</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>
+                    These Terms shall be governed by and construed in accordance with the laws of the State of Ohio, without regard to its conflict of law provisions. Any disputes arising under these Terms shall be resolved in the state or federal courts located in Franklin County, Ohio.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 12 -->
+              <section id="contact" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-pink flex items-center justify-center text-white font-bold">12</div>
+                  <h2 class="font-display text-h3 text-text-dark">Contact Us</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>If you have any questions about these Terms, please contact us at:</p>
+                  <div class="bg-gradient-to-br from-mf-teal/10 to-mf-blue/10 rounded-2xl p-6 border-2 border-mf-teal/30">
+                    <div class="flex items-start gap-4">
+                      <div class="w-12 h-12 rounded-xl bg-mf-teal flex items-center justify-center text-white text-xl flex-shrink-0">
+                        📧
+                      </div>
+                      <div>
+                        <p class="font-display text-text-dark text-lg">Mind Foundry, Inc.</p>
+                        <p class="text-text-body mt-2">
+                          123 Learning Lane, Suite 400<br/>
+                          Columbus, OH 43215
+                        </p>
+                        <p class="mt-3">
+                          <a href="mailto:legal@mindfoundry.com" class="text-mf-teal hover:text-mf-pink font-bold transition-colors">legal@mindfoundry.com</a>
+                        </p>
+                        <p class="mt-1">(555) 123-4567</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-50 px-8 py-6 border-t-2 border-gray-100">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <a href="/" class="inline-flex items-center gap-2 text-mf-teal hover:text-mf-pink font-display transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                  </svg>
+                  Back to Home
+                </a>
+                <a href="/privacy" class="inline-flex items-center gap-2 text-mf-blue hover:text-mf-pink font-display transition-colors">
+                  Privacy Policy
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</CorporateLayout>

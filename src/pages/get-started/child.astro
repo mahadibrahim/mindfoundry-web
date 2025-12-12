@@ -1,0 +1,223 @@
+---
+export const prerender = false;
+
+import CorporateLayout from '../../layouts/CorporateLayout.astro';
+
+const ageRanges = [
+  { value: '5-7', label: 'Ages 5-7', description: 'Early learners' },
+  { value: '8-10', label: 'Ages 8-10', description: 'Elementary' },
+  { value: '11-13', label: 'Ages 11-13', description: 'Middle school' },
+  { value: '14-18', label: 'Ages 14-18', description: 'High school' }
+];
+
+const capacities = [
+  { id: 'curiosity', name: 'Curiosity', icon: '🔍', color: 'mf-teal' },
+  { id: 'reasoning', name: 'Reasoning', icon: '🧩', color: 'mf-blue' },
+  { id: 'expression', name: 'Expression', icon: '🎨', color: 'mf-pink' },
+  { id: 'focus', name: 'Focus', icon: '🎯', color: 'mf-mint' },
+  { id: 'collaboration', name: 'Collaboration', icon: '🤝', color: 'mf-navy' },
+  { id: 'adaptability', name: 'Adaptability', icon: '🌊', color: 'mf-teal' }
+];
+---
+
+<CorporateLayout title="Add Your Child - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-teal via-mf-blue to-mf-navy py-12 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10 text-center">
+      <h1 class="font-display text-h2 text-white mb-2">Add Your Child</h1>
+      <p class="text-lg text-white/90 font-corp-body">Step 2 of 2: Child Profile</p>
+    </div>
+  </section>
+
+  <div class="bg-gradient-to-b from-mf-mint/10 to-white py-12">
+    <div class="container mx-auto px-4 max-w-xl">
+
+      <!-- Progress Steps -->
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <span class="text-sm font-corp-body text-green-600">Parent Info</span>
+        </div>
+        <div class="w-12 h-0.5 bg-mf-teal"></div>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-mf-teal flex items-center justify-center text-white font-display text-sm">2</div>
+          <span class="text-sm font-display text-mf-teal">Add Child</span>
+        </div>
+      </div>
+
+      <!-- Form Card -->
+      <div class="bg-white rounded-3xl shadow-2xl p-8">
+        <div class="text-center mb-8">
+          <div class="w-20 h-20 rounded-full bg-mf-pink/20 flex items-center justify-center text-4xl mx-auto mb-4">
+            👧
+          </div>
+          <h2 class="font-display text-xl text-text-dark">Tell us about your child</h2>
+          <p class="text-sm text-text-body font-corp-body mt-1">This helps us personalize their learning experience</p>
+        </div>
+
+        <form id="child-form" class="space-y-6">
+
+          <!-- Child's Name -->
+          <div>
+            <label class="block text-sm font-corp-body text-text-body mb-1">Child's First Name *</label>
+            <input
+              type="text"
+              name="childName"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent text-gray-900 bg-white placeholder:text-gray-400"
+              placeholder="Emma"
+            />
+            <p class="text-xs text-text-body mt-1">Only first name is needed for privacy</p>
+          </div>
+
+          <!-- Age Range -->
+          <div>
+            <label class="block text-sm font-corp-body text-text-body mb-2">Age Range *</label>
+            <div class="grid grid-cols-2 gap-3">
+              {ageRanges.map((age) => (
+                <label class="relative cursor-pointer">
+                  <input
+                    type="radio"
+                    name="ageRange"
+                    value={age.value}
+                    required
+                    class="peer sr-only"
+                  />
+                  <div class="p-4 border-2 border-gray-200 rounded-xl peer-checked:border-mf-teal peer-checked:bg-mf-teal/5 hover:border-mf-teal/50 transition-all">
+                    <p class="font-display text-text-dark">{age.label}</p>
+                    <p class="text-xs text-text-body">{age.description}</p>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Interests (optional) -->
+          <div>
+            <label class="block text-sm font-corp-body text-text-body mb-2">
+              Which capacities interest them most? <span class="text-gray-400">(optional)</span>
+            </label>
+            <div class="grid grid-cols-2 gap-2">
+              {capacities.map((cap) => (
+                <label class="flex items-center gap-2 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-mf-teal/10 transition-colors">
+                  <input
+                    type="checkbox"
+                    name="interests"
+                    value={cap.id}
+                    class="rounded text-mf-teal focus:ring-mf-teal"
+                  />
+                  <span class="text-lg">{cap.icon}</span>
+                  <span class="text-sm text-text-body">{cap.name}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Avatar Selection -->
+          <div>
+            <label class="block text-sm font-corp-body text-text-body mb-2">Choose an Avatar</label>
+            <div class="flex flex-wrap gap-3 justify-center">
+              {['🦁', '🦊', '🐼', '🦄', '🐸', '🦋', '🚀', '⭐'].map((emoji, i) => (
+                <label class="cursor-pointer">
+                  <input
+                    type="radio"
+                    name="avatar"
+                    value={emoji}
+                    class="peer sr-only"
+                    checked={i === 0}
+                  />
+                  <div class="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center text-2xl border-2 border-transparent peer-checked:border-mf-teal peer-checked:bg-mf-teal/10 hover:bg-gray-200 transition-all">
+                    {emoji}
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="w-full py-4 bg-gradient-to-r from-mf-teal to-mf-blue text-white font-display rounded-xl hover:opacity-90 transition-opacity shadow-lg flex items-center justify-center gap-2"
+          >
+            Create Account
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </button>
+
+          <!-- Skip for now -->
+          <button
+            type="button"
+            id="skip-btn"
+            class="w-full py-3 text-mf-teal font-corp-body hover:text-mf-pink transition-colors"
+          >
+            Skip for now - I'll add children later
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Add Another Child Note -->
+      <p class="text-center text-sm text-text-body font-corp-body mt-6">
+        You can add more children from your dashboard after account creation.
+      </p>
+
+    </div>
+  </div>
+
+  <script>
+    // Check if parent data exists
+    const parentData = sessionStorage.getItem('parentData');
+    if (!parentData) {
+      // Redirect back to parent form if no data
+      window.location.href = '/get-started/parent';
+    }
+
+    // Form submission
+    const form = document.getElementById('child-form');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form as HTMLFormElement);
+      const childData = Object.fromEntries(formData.entries());
+
+      // Get selected interests
+      const interests = formData.getAll('interests');
+      childData.interests = interests.join(', ');
+
+      // Combine with parent data
+      const parent = JSON.parse(parentData || '{}');
+      const fullData = {
+        parent,
+        child: childData
+      };
+
+      console.log('Account creation data:', fullData);
+
+      // In production, this would send to API
+      // For now, redirect to confirmation
+      sessionStorage.setItem('accountData', JSON.stringify(fullData));
+      sessionStorage.removeItem('parentData');
+      window.location.href = '/get-started/confirmation';
+    });
+
+    // Skip button
+    const skipBtn = document.getElementById('skip-btn');
+    skipBtn?.addEventListener('click', () => {
+      const parent = JSON.parse(parentData || '{}');
+      const fullData = {
+        parent,
+        child: null
+      };
+
+      sessionStorage.setItem('accountData', JSON.stringify(fullData));
+      sessionStorage.removeItem('parentData');
+      window.location.href = '/get-started/confirmation';
+    });
+  </script>
+</CorporateLayout>

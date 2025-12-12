@@ -1,0 +1,208 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+
+const cookieTypes = [
+  {
+    name: 'Essential Cookies',
+    description: 'Required for the website to function properly. These cannot be disabled.',
+    examples: ['Session management', 'Security tokens', 'Login status'],
+    required: true
+  },
+  {
+    name: 'Functional Cookies',
+    description: 'Remember your preferences and settings to enhance your experience.',
+    examples: ['Language preferences', 'Theme settings', 'Saved form data'],
+    required: false
+  },
+  {
+    name: 'Analytics Cookies',
+    description: 'Help us understand how visitors use our website so we can improve it.',
+    examples: ['Page views', 'Time on site', 'Navigation paths'],
+    required: false
+  },
+  {
+    name: 'Marketing Cookies',
+    description: 'Used to show you relevant advertisements and measure their effectiveness.',
+    examples: ['Ad targeting', 'Campaign tracking', 'Conversion measurement'],
+    required: false
+  }
+];
+---
+
+<CorporateLayout title="Cookie Policy - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-navy via-mf-blue to-mf-teal py-16 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="container mx-auto px-4 max-w-4xl relative z-10 text-center">
+      <div class="inline-block px-4 py-2 bg-white/20 rounded-full mb-6">
+        <span class="text-white/90 font-corp-body text-sm">Last updated: December 2024</span>
+      </div>
+      <h1 class="font-display text-h1 text-white mb-4">Cookie Policy</h1>
+      <p class="text-xl text-white/90 font-corp-body">
+        How we use cookies to improve your experience
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+
+      <!-- Introduction -->
+      <div class="prose prose-lg max-w-none mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-4">What Are Cookies?</h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-6">
+          Cookies are small text files that are stored on your device when you visit a website. They help websites remember information about your visit, like your preferred language and other settings. This can make your next visit easier and the site more useful to you.
+        </p>
+        <p class="text-text-body font-corp-body leading-relaxed">
+          At Mind Foundry, we use cookies to provide a safe, secure, and personalized learning experience for families. We are committed to being transparent about our cookie usage, especially given our focus on children's education.
+        </p>
+      </div>
+
+      <!-- Cookie Types -->
+      <div class="mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-6">Types of Cookies We Use</h2>
+        <div class="space-y-6">
+          {cookieTypes.map((cookie) => (
+            <div class="bg-gray-50 rounded-2xl p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-display text-lg text-text-dark">{cookie.name}</h3>
+                {cookie.required ? (
+                  <span class="px-3 py-1 bg-mf-teal/20 text-mf-teal text-xs font-display rounded-full">Required</span>
+                ) : (
+                  <span class="px-3 py-1 bg-gray-200 text-gray-600 text-xs font-display rounded-full">Optional</span>
+                )}
+              </div>
+              <p class="text-text-body font-corp-body mb-4">{cookie.description}</p>
+              <div class="flex flex-wrap gap-2">
+                {cookie.examples.map((example) => (
+                  <span class="px-3 py-1 bg-white text-sm text-text-body rounded-lg border border-gray-200">
+                    {example}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Managing Cookies -->
+      <div class="mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-4">Managing Your Cookie Preferences</h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-6">
+          You have control over the cookies we use. Here's how you can manage them:
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-mf-teal/10 rounded-2xl p-6">
+            <div class="text-3xl mb-3">🔧</div>
+            <h3 class="font-display text-text-dark mb-2">Browser Settings</h3>
+            <p class="text-sm text-text-body font-corp-body">
+              Most browsers allow you to control cookies through their settings. You can block or delete cookies, though this may affect site functionality.
+            </p>
+          </div>
+          <div class="bg-mf-pink/10 rounded-2xl p-6">
+            <div class="text-3xl mb-3">⚙️</div>
+            <h3 class="font-display text-text-dark mb-2">Our Cookie Settings</h3>
+            <p class="text-sm text-text-body font-corp-body">
+              Use our cookie preference center (accessible via the footer) to customize which optional cookies you allow on our site.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Children's Privacy -->
+      <div class="bg-mf-navy/10 rounded-2xl p-8 mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-4 flex items-center gap-3">
+          <span class="text-3xl">👨‍👩‍👧‍👦</span>
+          Cookies and Children's Privacy
+        </h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-4">
+          We take special care when it comes to children's data. For users under 13:
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-3 text-text-body font-corp-body">
+            <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            We only use essential cookies necessary for the platform to function
+          </li>
+          <li class="flex items-start gap-3 text-text-body font-corp-body">
+            <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            No marketing or advertising cookies are used
+          </li>
+          <li class="flex items-start gap-3 text-text-body font-corp-body">
+            <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            Analytics are aggregated and anonymized
+          </li>
+          <li class="flex items-start gap-3 text-text-body font-corp-body">
+            <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            Parents can request deletion of all cookie data
+          </li>
+        </ul>
+      </div>
+
+      <!-- Third-Party Cookies -->
+      <div class="mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-4">Third-Party Cookies</h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-4">
+          Some cookies on our site are placed by third-party services we use:
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-3 px-4 font-display text-text-dark">Service</th>
+                <th class="text-left py-3 px-4 font-display text-text-dark">Purpose</th>
+                <th class="text-left py-3 px-4 font-display text-text-dark">More Info</th>
+              </tr>
+            </thead>
+            <tbody class="text-text-body font-corp-body">
+              <tr class="border-b border-gray-100">
+                <td class="py-3 px-4">Google Analytics</td>
+                <td class="py-3 px-4">Website analytics</td>
+                <td class="py-3 px-4"><a href="https://policies.google.com/privacy" class="text-mf-teal hover:text-mf-pink" target="_blank" rel="noopener">Privacy Policy</a></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-3 px-4">Stripe</td>
+                <td class="py-3 px-4">Payment processing</td>
+                <td class="py-3 px-4"><a href="https://stripe.com/privacy" class="text-mf-teal hover:text-mf-pink" target="_blank" rel="noopener">Privacy Policy</a></td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-3 px-4">Intercom</td>
+                <td class="py-3 px-4">Customer support chat</td>
+                <td class="py-3 px-4"><a href="https://www.intercom.com/legal/privacy" class="text-mf-teal hover:text-mf-pink" target="_blank" rel="noopener">Privacy Policy</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="bg-gray-50 rounded-2xl p-8 text-center">
+        <h2 class="font-display text-h3 text-text-dark mb-4">Questions About Our Cookies?</h2>
+        <p class="text-text-body font-corp-body mb-6">
+          If you have any questions about how we use cookies, please contact our privacy team.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-mf-teal text-white font-display rounded-xl hover:bg-mf-teal/90 transition-colors"
+        >
+          Contact Us
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+</CorporateLayout>

@@ -1,0 +1,336 @@
+---
+export const prerender = false;
+
+import CorporateLayout from '../../layouts/CorporateLayout.astro';
+
+const organizationTypes = [
+  'K-12 School',
+  'School District',
+  'University/College',
+  'Nonprofit Organization',
+  'Youth Organization (Scouts, 4-H, etc.)',
+  'Religious Organization',
+  'Community Center/Library',
+  'Corporation',
+  'Government Agency',
+  'Other'
+];
+
+const quantityRanges = [
+  '10-49 units',
+  '50-99 units',
+  '100-199 units',
+  '200-499 units',
+  '500-999 units',
+  '1,000+ units'
+];
+
+const timeframes = [
+  'Within 2 weeks',
+  'Within 1 month',
+  '1-3 months',
+  '3-6 months',
+  'Just exploring options'
+];
+---
+
+<CorporateLayout title="Request a Quote - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-pink via-mf-teal to-mf-blue py-16 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-mf-mint/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10 text-center">
+      <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-6">
+        <span class="text-white/90 font-corp-body">Get Started</span>
+      </div>
+      <h1 class="font-display text-h1 text-white mb-4 drop-shadow-lg">
+        Request a Custom Quote
+      </h1>
+      <p class="text-xl text-white/90 font-corp-body max-w-2xl mx-auto">
+        Tell us about your organization and we'll create a tailored proposal within 24 hours.
+      </p>
+    </div>
+  </section>
+
+  <div class="bg-gradient-to-b from-mf-mint/10 to-white py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-3xl shadow-2xl p-8">
+            <form id="quote-form" class="space-y-6">
+
+              <!-- Organization Info -->
+              <div>
+                <h3 class="font-display text-lg text-text-dark mb-4 flex items-center gap-2">
+                  <span class="w-8 h-8 rounded-lg bg-mf-teal flex items-center justify-center text-white text-sm">1</span>
+                  Organization Information
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Organization Name *</label>
+                    <input type="text" name="organization" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Organization Type *</label>
+                    <select name="org_type" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent">
+                      <option value="">Select type...</option>
+                      {organizationTypes.map((type) => (
+                        <option value={type}>{type}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Website</label>
+                    <input type="url" name="website" placeholder="https://" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Tax-Exempt / Nonprofit?</label>
+                    <select name="nonprofit" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent">
+                      <option value="no">No</option>
+                      <option value="yes">Yes - 501(c)(3) or equivalent</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact Info -->
+              <div>
+                <h3 class="font-display text-lg text-text-dark mb-4 flex items-center gap-2">
+                  <span class="w-8 h-8 rounded-lg bg-mf-blue flex items-center justify-center text-white text-sm">2</span>
+                  Contact Information
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Your Name *</label>
+                    <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Job Title</label>
+                    <input type="text" name="title" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Email Address *</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Phone Number</label>
+                    <input type="tel" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order Details -->
+              <div>
+                <h3 class="font-display text-lg text-text-dark mb-4 flex items-center gap-2">
+                  <span class="w-8 h-8 rounded-lg bg-mf-pink flex items-center justify-center text-white text-sm">3</span>
+                  Order Details
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Estimated Quantity *</label>
+                    <select name="quantity" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent">
+                      <option value="">Select range...</option>
+                      {quantityRanges.map((range) => (
+                        <option value={range}>{range}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-corp-body text-text-body mb-1">Timeline *</label>
+                    <select name="timeline" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent">
+                      <option value="">Select timeframe...</option>
+                      {timeframes.map((time) => (
+                        <option value={time}>{time}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <label class="block text-sm font-corp-body text-text-body mb-1">Age Groups Served (select all that apply)</label>
+                  <div class="flex flex-wrap gap-3">
+                    {['Ages 5-7', 'Ages 8-10', 'Ages 11-13', 'Ages 14-18'].map((age) => (
+                      <label class="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-mf-teal/10 transition-colors">
+                        <input type="checkbox" name="ages" value={age} class="rounded text-mf-teal focus:ring-mf-teal" />
+                        <span class="text-sm text-text-body">{age}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Additional Info -->
+              <div>
+                <h3 class="font-display text-lg text-text-dark mb-4 flex items-center gap-2">
+                  <span class="w-8 h-8 rounded-lg bg-mf-navy flex items-center justify-center text-white text-sm">4</span>
+                  Additional Information
+                </h3>
+                <div>
+                  <label class="block text-sm font-corp-body text-text-body mb-1">Tell us about your program goals</label>
+                  <textarea name="goals" rows="4" placeholder="How do you plan to use Mind Foundry? What outcomes are you hoping to achieve?" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent"></textarea>
+                </div>
+                <div class="mt-4">
+                  <label class="block text-sm font-corp-body text-text-body mb-1">Any questions for our team?</label>
+                  <textarea name="questions" rows="2" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent"></textarea>
+                </div>
+              </div>
+
+              <!-- How did you hear -->
+              <div>
+                <label class="block text-sm font-corp-body text-text-body mb-1">How did you hear about Mind Foundry?</label>
+                <select name="source" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-mf-teal focus:border-transparent">
+                  <option value="">Select...</option>
+                  <option value="search">Search engine</option>
+                  <option value="social">Social media</option>
+                  <option value="referral">Colleague/Friend referral</option>
+                  <option value="conference">Conference/Event</option>
+                  <option value="press">News/Press coverage</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <!-- Submit -->
+              <div class="pt-4">
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-mf-teal to-mf-blue text-white font-display rounded-xl hover:opacity-90 transition-opacity shadow-lg">
+                  Request My Quote
+                </button>
+                <p class="text-xs text-text-body text-center mt-3 font-corp-body">
+                  We typically respond within 24 hours on business days.
+                </p>
+              </div>
+
+            </form>
+
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="hidden text-center py-12">
+              <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <h3 class="font-display text-2xl text-text-dark mb-3">Quote Request Received!</h3>
+              <p class="text-text-body font-corp-body mb-6">
+                Thank you for your interest in Mind Foundry. Our team will review your request and get back to you within 24 hours with a custom quote.
+              </p>
+              <a href="/" class="text-mf-teal hover:text-mf-pink font-display transition-colors">
+                Return to Home
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-6">
+
+          <!-- Why Request a Quote -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <h3 class="font-display text-lg text-text-dark mb-4">Why Get a Custom Quote?</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-text-body font-corp-body">Personalized pricing based on your volume</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-text-body font-corp-body">Nonprofit discounts applied automatically</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-text-body font-corp-body">Implementation recommendations</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-sm text-text-body font-corp-body">No obligation or pressure</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Discount Preview -->
+          <div class="bg-gradient-to-br from-mf-teal to-mf-blue rounded-2xl p-6 text-white">
+            <h3 class="font-display text-lg mb-4">Volume Discounts</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between">
+                <span>10-49 units</span>
+                <span class="font-display">15% off</span>
+              </div>
+              <div class="flex justify-between">
+                <span>50-199 units</span>
+                <span class="font-display">25% off</span>
+              </div>
+              <div class="flex justify-between">
+                <span>200-499 units</span>
+                <span class="font-display">35% off</span>
+              </div>
+              <div class="flex justify-between">
+                <span>500+ units</span>
+                <span class="font-display">40%+ off</span>
+              </div>
+            </div>
+            <hr class="border-white/20 my-4" />
+            <p class="text-sm text-white/80">+ Additional 10% for registered nonprofits</p>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <h3 class="font-display text-lg text-text-dark mb-4">Prefer to Talk?</h3>
+            <p class="text-sm text-text-body font-corp-body mb-4">
+              Our sales team is happy to answer questions and help you find the right solution.
+            </p>
+            <div class="space-y-3">
+              <a href="mailto:sales@mindfoundry.com" class="flex items-center gap-2 text-mf-teal hover:text-mf-pink transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                sales@mindfoundry.com
+              </a>
+              <a href="tel:+15551234567" class="flex items-center gap-2 text-mf-teal hover:text-mf-pink transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                (555) 123-4567
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('quote-form');
+    const successMessage = document.getElementById('success-message');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form as HTMLFormElement);
+      const data = Object.fromEntries(formData.entries());
+
+      // Get all checked age groups
+      const ages = formData.getAll('ages');
+      data.ages = ages.join(', ');
+
+      try {
+        // In production, this would send to an API endpoint
+        console.log('Quote request:', data);
+
+        // Show success message
+        (form as HTMLElement).classList.add('hidden');
+        successMessage?.classList.remove('hidden');
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('There was an error submitting your request. Please try again.');
+      }
+    });
+  </script>
+</CorporateLayout>

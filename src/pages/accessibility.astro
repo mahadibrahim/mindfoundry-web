@@ -1,0 +1,232 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+
+const accessibilityFeatures = [
+  {
+    icon: '⌨️',
+    title: 'Keyboard Navigation',
+    description: 'All interactive elements can be accessed using keyboard-only navigation. Use Tab to move between elements and Enter to activate them.'
+  },
+  {
+    icon: '🔊',
+    title: 'Screen Reader Support',
+    description: 'Our site is compatible with popular screen readers including JAWS, NVDA, and VoiceOver. We use proper ARIA labels and semantic HTML.'
+  },
+  {
+    icon: '🎨',
+    title: 'Color Contrast',
+    description: 'Text and interactive elements meet WCAG 2.1 AA contrast requirements. Our color palette was designed with accessibility in mind.'
+  },
+  {
+    icon: '📏',
+    title: 'Resizable Text',
+    description: 'All text can be resized up to 200% without loss of content or functionality. Use your browser\'s zoom feature or text-only zoom.'
+  },
+  {
+    icon: '🎬',
+    title: 'Video Captions',
+    description: 'All video content includes closed captions. Instructional videos also include audio descriptions where appropriate.'
+  },
+  {
+    icon: '🖱️',
+    title: 'Alternative Input',
+    description: 'Our platform supports various input methods including touch, mouse, keyboard, and voice control where supported by your device.'
+  }
+];
+
+const wcagGuidelines = [
+  { level: 'A', description: 'Essential accessibility features', status: 'Compliant' },
+  { level: 'AA', description: 'Enhanced accessibility for broader audience', status: 'Compliant' },
+  { level: 'AAA', description: 'Highest level of accessibility', status: 'Partial' }
+];
+---
+
+<CorporateLayout title="Accessibility - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-blue via-mf-teal to-mf-mint py-16 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="container mx-auto px-4 max-w-4xl relative z-10 text-center">
+      <div class="inline-block px-4 py-2 bg-white/20 rounded-full mb-6">
+        <span class="text-white/90 font-corp-body text-sm">WCAG 2.1 AA Compliant</span>
+      </div>
+      <h1 class="font-display text-h1 text-white mb-4">Accessibility Statement</h1>
+      <p class="text-xl text-white/90 font-corp-body">
+        Learning should be accessible to everyone
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+
+      <!-- Our Commitment -->
+      <div class="mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-4">Our Commitment</h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-4">
+          Mind Foundry is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.
+        </p>
+        <p class="text-text-body font-corp-body leading-relaxed">
+          We believe that every child deserves access to quality education, regardless of ability. Our platform is designed to be inclusive and usable by learners with diverse needs, including those who use assistive technologies.
+        </p>
+      </div>
+
+      <!-- Accessibility Features -->
+      <div class="mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-6">Accessibility Features</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          {accessibilityFeatures.map((feature) => (
+            <div class="bg-gray-50 rounded-2xl p-6">
+              <div class="text-3xl mb-3">{feature.icon}</div>
+              <h3 class="font-display text-lg text-text-dark mb-2">{feature.title}</h3>
+              <p class="text-sm text-text-body font-corp-body">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- WCAG Compliance -->
+      <div class="mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-6">WCAG Compliance Status</h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-6">
+          We strive to meet the Web Content Accessibility Guidelines (WCAG) 2.1. Here's our current compliance status:
+        </p>
+        <div class="space-y-4">
+          {wcagGuidelines.map((guideline) => (
+            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-mf-teal/20 flex items-center justify-center font-display text-mf-teal font-bold">
+                  {guideline.level}
+                </div>
+                <div>
+                  <h4 class="font-display text-text-dark">Level {guideline.level}</h4>
+                  <p class="text-sm text-text-body font-corp-body">{guideline.description}</p>
+                </div>
+              </div>
+              <span class={`px-4 py-2 rounded-full text-sm font-display ${
+                guideline.status === 'Compliant'
+                  ? 'bg-green-100 text-green-700'
+                  : 'bg-yellow-100 text-yellow-700'
+              }`}>
+                {guideline.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- For Parents and Educators -->
+      <div class="bg-mf-teal/10 rounded-2xl p-8 mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-4 flex items-center gap-3">
+          <span class="text-3xl">👨‍👩‍👧</span>
+          For Parents and Educators
+        </h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-4">
+          We understand that children learn differently, and some may need additional support. Here's how Mind Foundry accommodates diverse learning needs:
+        </p>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 text-text-body font-corp-body">
+            <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span><strong>Adjustable pacing:</strong> Children can work through content at their own speed</span>
+          </li>
+          <li class="flex items-start gap-3 text-text-body font-corp-body">
+            <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span><strong>Multi-sensory learning:</strong> Activities engage visual, auditory, and kinesthetic learners</span>
+          </li>
+          <li class="flex items-start gap-3 text-text-body font-corp-body">
+            <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span><strong>Clear instructions:</strong> Simple, consistent navigation and instructions throughout</span>
+          </li>
+          <li class="flex items-start gap-3 text-text-body font-corp-body">
+            <svg class="w-5 h-5 text-mf-teal flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span><strong>Reduced visual clutter:</strong> Clean, focused interfaces that minimize distractions</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Assistive Technology -->
+      <div class="mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-4">Compatible Assistive Technologies</h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-6">
+          Our platform has been tested with the following assistive technologies:
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="text-center p-4 bg-gray-50 rounded-xl">
+            <div class="text-2xl mb-2">🖥️</div>
+            <p class="text-sm font-display text-text-dark">JAWS</p>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-xl">
+            <div class="text-2xl mb-2">🔊</div>
+            <p class="text-sm font-display text-text-dark">NVDA</p>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-xl">
+            <div class="text-2xl mb-2">🍎</div>
+            <p class="text-sm font-display text-text-dark">VoiceOver</p>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-xl">
+            <div class="text-2xl mb-2">🤖</div>
+            <p class="text-sm font-display text-text-dark">TalkBack</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Known Issues -->
+      <div class="mb-12">
+        <h2 class="font-display text-h3 text-text-dark mb-4">Known Limitations</h2>
+        <p class="text-text-body font-corp-body leading-relaxed mb-4">
+          We're continuously working to improve accessibility. Currently known limitations include:
+        </p>
+        <ul class="space-y-2 text-text-body font-corp-body">
+          <li class="flex items-start gap-3">
+            <span class="text-mf-pink">•</span>
+            Some older PDF workbook files may not be fully accessible. We're working on updated versions.
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-mf-pink">•</span>
+            Third-party embedded content may have varying levels of accessibility.
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-mf-pink">•</span>
+            Some complex interactive activities may require alternative formats.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Feedback -->
+      <div class="bg-gradient-to-br from-mf-navy to-mf-blue rounded-2xl p-8 text-white text-center">
+        <h2 class="font-display text-h3 mb-4">Help Us Improve</h2>
+        <p class="text-white/90 font-corp-body mb-6 max-w-xl mx-auto">
+          We welcome your feedback on the accessibility of Mind Foundry. If you encounter any barriers or have suggestions for improvement, please let us know.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-mf-navy font-display rounded-xl hover:bg-gray-100 transition-colors"
+          >
+            Report an Issue
+          </a>
+          <a
+            href="mailto:accessibility@mindfoundry.com"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border border-white/30"
+          >
+            accessibility@mindfoundry.com
+          </a>
+        </div>
+        <p class="text-white/70 text-sm font-corp-body mt-6">
+          We aim to respond to accessibility feedback within 2 business days.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</CorporateLayout>

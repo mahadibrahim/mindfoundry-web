@@ -15,35 +15,43 @@ export default {
         'text-dark': '#1E1E1E', // Large/Medium/Small Header Text
         'text-body': '#3B3B3B', // Body text and small text
 
+        // --- Style Guide Brand Colors ---
+        'mf-teal': '#2B9EB3',        // Button/Highlight (primary teal)
+        'mf-pink': '#E85A71',        // Important Button/Highlight (coral/pink)
+        'mf-navy': '#1B4965',        // Tournament Background (dark navy)
+        'mf-blue': '#4A90D9',        // Tournament Background 2 (bright blue)
+        'mf-teal-dark': '#2B9EB3',   // League Hero Background
+        'mf-mint': '#7FD8D4',        // League Background 2 (mint/aqua)
+        'mf-footer': '#0D2B3E',      // Footer dark navy
+        'mf-cyan': '#5FCFCF',        // Link color (cyan)
+
         // --- Corporate Site Colors (Based on "League Color Palette") ---
-        // Aligns with: "Bright, optimistic, tech-forward"
         corporate: {
-          'primary': '#00A896', // Main Hero/Title Background (A vibrant teal)
-          'secondary': '#7FFFD4', // A lighter version of the primary (Aqua)
-          'bg-dark': '#011F4B', // Dark Background (Deep Navy, often used for Footer)
-          'bg-light': '#0097DA', // Background 2 (Bright Blue)
+          'primary': '#2B9EB3',   // Main teal from style guide
+          'secondary': '#7FD8D4', // Mint/aqua from style guide
+          'accent': '#E85A71',    // Pink for important CTAs
+          'bg-dark': '#0D2B3E',   // Footer navy
+          'bg-light': '#4A90D9',  // Bright blue
         },
 
-        // --- Center Site Colors (Based on "Tournament Color Palette" & "Warm, welcoming" tone) ---
-        // We repurpose the Button/Highlight colors for the Center brand emphasis.
+        // --- Center Site Colors (Based on "Tournament Color Palette") ---
         center: {
-          // Assuming 'Button/Highlight' is the primary action color for local conversion
-          'primary': '#FFC72C', // Bright Yellow/Gold for "Schedule a Visit"
-          'secondary': '#FF6600', // Assuming 'Important Button/Highlight' (A strong Orange for enrollment)
-          'bg-light': '#F5F5F5', // General light background for "Cozy, inviting" feel (default white/light grey)
-          'accent': '#1E1E1E', // Dark contrast color for text
+          'primary': '#1B4965',   // Tournament navy
+          'secondary': '#4A90D9', // Tournament blue
+          'accent': '#E85A71',    // Pink for important actions
+          'bg-light': '#F5F5F5',  // Light background
         },
 
-        // --- Shorthand aliases for dashboard components ---
-        // These map to the design system for cleaner component code
-        'corp-primary': '#011F4B',    // Deep Navy (corporate.bg-dark)
-        'corp-secondary': '#00A8E8',  // Teal/Cyan
-        'corp-light': '#005A9C',      // Medium blue
-        'corp-dark': '#0A1828',       // Very dark navy
-        'center-primary': '#FFC72C',  // Yellow/Gold (center.primary)
-        'center-accent': '#FF6600',   // Orange (center.secondary)
-        'center-secondary': '#FF8C42', // Light orange
-        'center-light': '#F5F5F5',    // Light gray (center.bg-light)
+        // --- Shorthand aliases for components ---
+        'corp-primary': '#2B9EB3',    // Teal
+        'corp-secondary': '#7FD8D4',  // Mint
+        'corp-accent': '#E85A71',     // Pink/Coral
+        'corp-navy': '#1B4965',       // Dark navy
+        'corp-dark': '#0D2B3E',       // Footer navy
+        'center-primary': '#1B4965',  // Navy
+        'center-accent': '#E85A71',   // Pink
+        'center-secondary': '#4A90D9', // Blue
+        'center-light': '#F5F5F5',    // Light gray
       },
 
       // ----------------------------------

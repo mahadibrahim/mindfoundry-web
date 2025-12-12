@@ -1,0 +1,493 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+
+const lastUpdated = 'December 1, 2024';
+
+const sections = [
+  { id: 'intro', title: '1. Introduction', color: 'mf-teal' },
+  { id: 'collect', title: '2. Information We Collect', color: 'mf-blue' },
+  { id: 'coppa', title: '3. Children\'s Privacy (COPPA)', color: 'mf-pink' },
+  { id: 'use', title: '4. How We Use Your Information', color: 'mf-mint' },
+  { id: 'sharing', title: '5. Information Sharing', color: 'mf-navy' },
+  { id: 'security', title: '6. Data Security', color: 'mf-teal' },
+  { id: 'retention', title: '7. Data Retention', color: 'mf-blue' },
+  { id: 'rights', title: '8. Your Rights and Choices', color: 'mf-pink' },
+  { id: 'cookies', title: '9. Cookies and Tracking', color: 'mf-navy' },
+  { id: 'links', title: '10. Third-Party Links', color: 'mf-teal' },
+  { id: 'changes', title: '11. Changes to This Policy', color: 'mf-blue' },
+  { id: 'contact', title: '12. Contact Us', color: 'mf-pink' },
+];
+---
+
+<CorporateLayout title="Privacy Policy - Mind Foundry">
+  <!-- Hero Banner -->
+  <section class="bg-gradient-to-r from-mf-teal via-mf-blue to-mf-navy py-16 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-mf-mint/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-48 h-48 bg-mf-pink/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl text-center relative z-10">
+      <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-4">
+        <span class="text-white/90 font-corp-body">Your Privacy Matters</span>
+      </div>
+      <h1 class="font-display text-h1 text-white mb-4 drop-shadow-lg">Privacy Policy</h1>
+      <p class="text-xl text-white/90 max-w-2xl mx-auto font-corp-body">
+        Last updated: {lastUpdated}
+      </p>
+    </div>
+  </section>
+
+  <div class="bg-gradient-to-b from-mf-mint/10 to-white min-h-screen">
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+
+      <!-- Privacy at a Glance -->
+      <div class="bg-white rounded-3xl shadow-2xl p-8 mb-8 border-t-4 border-mf-teal -mt-8 relative z-20">
+        <h2 class="font-display text-h2 text-text-dark mb-6 flex items-center gap-3">
+          <span class="w-12 h-12 rounded-2xl bg-mf-teal flex items-center justify-center text-2xl">🛡️</span>
+          Privacy at a Glance
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-gradient-to-br from-mf-teal/10 to-mf-mint/10 rounded-2xl p-5 border-2 border-mf-teal/20 hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-xl bg-mf-teal flex items-center justify-center mb-3">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <p class="font-display text-text-dark mb-1">Minimal Data</p>
+            <p class="text-sm text-text-body font-corp-body">We collect only what's necessary</p>
+          </div>
+          <div class="bg-gradient-to-br from-mf-pink/10 to-mf-teal/10 rounded-2xl p-5 border-2 border-mf-pink/20 hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-xl bg-mf-pink flex items-center justify-center mb-3">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+              </svg>
+            </div>
+            <p class="font-display text-text-dark mb-1">Never Sold</p>
+            <p class="text-sm text-text-body font-corp-body">We never sell your information</p>
+          </div>
+          <div class="bg-gradient-to-br from-mf-blue/10 to-mf-navy/10 rounded-2xl p-5 border-2 border-mf-blue/20 hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-xl bg-mf-blue flex items-center justify-center mb-3">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <p class="font-display text-text-dark mb-1">COPPA Compliant</p>
+            <p class="text-sm text-text-body font-corp-body">Children's privacy protected</p>
+          </div>
+          <div class="bg-gradient-to-br from-mf-navy/10 to-mf-mint/10 rounded-2xl p-5 border-2 border-mf-navy/20 hover:scale-105 transition-transform">
+            <div class="w-10 h-10 rounded-xl bg-mf-navy flex items-center justify-center mb-3">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+            </div>
+            <p class="font-display text-text-dark mb-1">Data Control</p>
+            <p class="text-sm text-text-body font-corp-body">Request deletion anytime</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+        <!-- Sidebar Navigation -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-2xl shadow-xl p-6 sticky top-8 border-l-4 border-mf-blue">
+            <h3 class="font-display text-lg text-text-dark mb-4">Quick Navigation</h3>
+            <nav class="space-y-2">
+              {sections.map((section) => (
+                <a
+                  href={`#${section.id}`}
+                  class="block text-sm text-text-body hover:text-mf-blue transition-colors py-1 border-l-2 border-transparent hover:border-mf-blue pl-3 font-corp-body"
+                >
+                  {section.title}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+          <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+            <!-- Introduction Card -->
+            <div class="bg-gradient-to-r from-mf-blue to-mf-teal p-8 text-white">
+              <div class="flex items-start gap-4">
+                <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-3xl flex-shrink-0">
+                  🔒
+                </div>
+                <div>
+                  <h2 class="font-display text-h3 mb-2">Your Privacy is Our Priority</h2>
+                  <p class="text-white/90 font-corp-body">
+                    We're committed to protecting your information, especially when it comes to children's data. This policy explains how we handle your data.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-8 space-y-10">
+
+              <!-- Section 1 -->
+              <section id="intro" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-teal flex items-center justify-center text-white font-bold">1</div>
+                  <h2 class="font-display text-h3 text-text-dark">Introduction</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>
+                    Mind Foundry, Inc. ("Mind Foundry," "we," "us," or "our") is committed to protecting the privacy of our users, especially children. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, products, and services.
+                  </p>
+                  <p>
+                    By using our Services, you consent to the data practices described in this policy. If you do not agree with our policies, please do not use our Services.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="collect" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-blue flex items-center justify-center text-white font-bold">2</div>
+                  <h2 class="font-display text-h3 text-text-dark">Information We Collect</h2>
+                </div>
+                <div class="pl-13 space-y-6 font-corp-body text-text-body">
+
+                  <div>
+                    <h3 class="font-display text-lg text-text-dark mb-3 flex items-center gap-2">
+                      <span class="w-8 h-8 rounded-lg bg-mf-blue/20 flex items-center justify-center text-mf-blue">📝</span>
+                      Information You Provide
+                    </h3>
+                    <p class="mb-4">We collect information you voluntarily provide when you:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div class="bg-mf-teal/10 rounded-xl p-4 border border-mf-teal/20">
+                        <p class="font-bold text-text-dark mb-1">Create an account</p>
+                        <p class="text-sm">Name, email address, password</p>
+                      </div>
+                      <div class="bg-mf-blue/10 rounded-xl p-4 border border-mf-blue/20">
+                        <p class="font-bold text-text-dark mb-1">Set up child profiles</p>
+                        <p class="text-sm">Child's first name, age/grade level</p>
+                      </div>
+                      <div class="bg-mf-pink/10 rounded-xl p-4 border border-mf-pink/20">
+                        <p class="font-bold text-text-dark mb-1">Make a purchase</p>
+                        <p class="text-sm">Billing address, payment info (via secure processor)</p>
+                      </div>
+                      <div class="bg-mf-mint/10 rounded-xl p-4 border border-mf-mint/20">
+                        <p class="font-bold text-text-dark mb-1">Contact us or join waitlists</p>
+                        <p class="text-sm">Name, email, message, location</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 class="font-display text-lg text-text-dark mb-3 flex items-center gap-2">
+                      <span class="w-8 h-8 rounded-lg bg-mf-navy/20 flex items-center justify-center text-mf-navy">🔄</span>
+                      Information Collected Automatically
+                    </h3>
+                    <p class="mb-4">When you use our Services, we may automatically collect:</p>
+                    <ul class="space-y-2">
+                      {[
+                        { label: 'Device information', desc: 'Browser type, operating system, device type' },
+                        { label: 'Usage data', desc: 'Pages visited, features used, time spent' },
+                        { label: 'Log data', desc: 'IP address, access times, referring URLs' },
+                        { label: 'Learning progress', desc: 'Badges earned, activities completed' }
+                      ].map((item) => (
+                        <li class="flex items-start gap-3 bg-gray-50 rounded-lg p-3">
+                          <span class="w-6 h-6 rounded-full bg-mf-navy/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg class="w-4 h-4 text-mf-navy" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                          </span>
+                          <div>
+                            <span class="font-bold text-text-dark">{item.label}:</span>
+                            <span class="text-text-body"> {item.desc}</span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 3 - COPPA -->
+              <section id="coppa" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-pink flex items-center justify-center text-white font-bold">3</div>
+                  <h2 class="font-display text-h3 text-text-dark">Children's Privacy (COPPA Compliance)</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <div class="bg-gradient-to-br from-mf-pink/10 to-mf-teal/10 rounded-2xl p-6 border-2 border-mf-pink/30">
+                    <p class="mb-4">We take children's privacy seriously and comply with the Children's Online Privacy Protection Act (COPPA). Our practices for users under 13:</p>
+                    <div class="space-y-3">
+                      {[
+                        { icon: '👨‍👩‍👧', text: 'Parental consent required: Parent/guardian accounts are required to create child profiles' },
+                        { icon: '📋', text: 'Minimal data collection: We only collect a child\'s first name and age to personalize their learning' },
+                        { icon: '🚫', text: 'No behavioral advertising: We do not serve targeted advertising to children' },
+                        { icon: '💬', text: 'No social features: Children cannot communicate with other users' },
+                        { icon: '⚙️', text: 'Parental controls: Parents can review, modify, or delete their child\'s information anytime' }
+                      ].map((item) => (
+                        <div class="flex items-start gap-3">
+                          <span class="text-2xl flex-shrink-0">{item.icon}</span>
+                          <span>{item.text}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="bg-mf-navy rounded-2xl p-6 text-white">
+                    <h4 class="font-display text-lg mb-2 flex items-center gap-2">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      Parent Rights
+                    </h4>
+                    <p class="text-white/90">
+                      Parents may review their child's personal information, request deletion, and refuse further collection by contacting us at <a href="mailto:privacy@mindfoundry.com" class="text-mf-mint hover:text-white font-bold transition-colors underline">privacy@mindfoundry.com</a>.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="use" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-mint flex items-center justify-center text-mf-navy font-bold">4</div>
+                  <h2 class="font-display text-h3 text-text-dark">How We Use Your Information</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>We use the information we collect to:</p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {[
+                      'Provide, maintain, and improve our Services',
+                      'Process transactions and send related information',
+                      'Track learning progress and badge achievements',
+                      'Send administrative communications',
+                      'Respond to comments and support requests',
+                      'Send marketing communications (with consent)',
+                      'Analyze usage to improve educational content',
+                      'Detect and prevent fraud or abuse'
+                    ].map((item, i) => (
+                      <div class="flex items-center gap-3 bg-mf-mint/10 rounded-lg p-3 border border-mf-mint/20">
+                        <span class="w-6 h-6 rounded-full bg-mf-mint flex items-center justify-center text-mf-navy font-bold text-sm flex-shrink-0">
+                          {i + 1}
+                        </span>
+                        <span class="text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="sharing" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-navy flex items-center justify-center text-white font-bold">5</div>
+                  <h2 class="font-display text-h3 text-text-dark">Information Sharing</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <div class="bg-gradient-to-r from-mf-teal to-mf-blue rounded-2xl p-6 text-white mb-4">
+                    <p class="font-display text-xl flex items-center gap-2">
+                      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+                      </svg>
+                      We never sell your personal information.
+                    </p>
+                  </div>
+                  <p>We may share information in these limited circumstances:</p>
+                  <ul class="space-y-3">
+                    {[
+                      { title: 'Service providers', desc: 'Third parties who help us operate our Services (payment processing, email delivery, hosting)' },
+                      { title: 'Legal requirements', desc: 'When required by law or to protect our rights' },
+                      { title: 'Business transfers', desc: 'In connection with a merger, acquisition, or sale of assets' },
+                      { title: 'With your consent', desc: 'For any other purpose with your explicit permission' }
+                    ].map((item) => (
+                      <li class="flex items-start gap-3 bg-gray-50 rounded-xl p-4 border border-gray-200">
+                        <span class="w-8 h-8 rounded-lg bg-mf-navy/10 flex items-center justify-center flex-shrink-0">
+                          <svg class="w-5 h-5 text-mf-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                          </svg>
+                        </span>
+                        <div>
+                          <span class="font-bold text-text-dark">{item.title}:</span>
+                          <span class="text-text-body"> {item.desc}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="security" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-teal flex items-center justify-center text-white font-bold">6</div>
+                  <h2 class="font-display text-h3 text-text-dark">Data Security</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>We implement appropriate technical and organizational measures to protect your information, including:</p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {[
+                      { icon: '🔐', title: 'Encryption', desc: 'Data in transit (HTTPS) and at rest' },
+                      { icon: '🔑', title: 'Password Security', desc: 'Secure password hashing' },
+                      { icon: '🔍', title: 'Assessments', desc: 'Regular security reviews' },
+                      { icon: '🚪', title: 'Access Controls', desc: 'Limited employee access' },
+                      { icon: '💳', title: 'PCI Compliant', desc: 'Secure payment processing' }
+                    ].map((item) => (
+                      <div class="bg-gradient-to-br from-mf-teal/10 to-mf-blue/10 rounded-xl p-4 border border-mf-teal/20 text-center">
+                        <span class="text-3xl mb-2 block">{item.icon}</span>
+                        <p class="font-display text-text-dark">{item.title}</p>
+                        <p class="text-sm mt-1">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="retention" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-blue flex items-center justify-center text-white font-bold">7</div>
+                  <h2 class="font-display text-h3 text-text-dark">Data Retention</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>
+                    We retain your information for as long as your account is active or as needed to provide Services. You may request deletion of your account and associated data at any time. Some information may be retained as required by law or for legitimate business purposes (e.g., transaction records for tax purposes).
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="rights" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-pink flex items-center justify-center text-white font-bold">8</div>
+                  <h2 class="font-display text-h3 text-text-dark">Your Rights and Choices</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>You have the following rights regarding your personal information:</p>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {[
+                      { icon: '👁️', title: 'Access', desc: 'Request a copy of your data' },
+                      { icon: '✏️', title: 'Correction', desc: 'Update inaccurate information' },
+                      { icon: '🗑️', title: 'Deletion', desc: 'Request deletion of your data' },
+                      { icon: '📦', title: 'Portability', desc: 'Receive data in portable format' },
+                      { icon: '🔕', title: 'Opt-out', desc: 'Unsubscribe from marketing' }
+                    ].map((item) => (
+                      <div class="bg-mf-pink/10 rounded-xl p-4 border-2 border-mf-pink/20 hover:border-mf-pink transition-colors">
+                        <span class="text-2xl mb-2 block">{item.icon}</span>
+                        <p class="font-display text-text-dark">{item.title}</p>
+                        <p class="text-sm mt-1">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p class="mt-4">
+                    To exercise these rights, contact us at <a href="mailto:privacy@mindfoundry.com" class="text-mf-teal hover:text-mf-pink font-bold transition-colors">privacy@mindfoundry.com</a>.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 9 -->
+              <section id="cookies" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-navy flex items-center justify-center text-white font-bold">9</div>
+                  <h2 class="font-display text-h3 text-text-dark">Cookies and Tracking</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>We use cookies and similar technologies to:</p>
+                  <ul class="space-y-2 my-4">
+                    {[
+                      'Keep you logged in',
+                      'Remember your preferences',
+                      'Understand how you use our Services',
+                      'Improve our Services based on usage patterns'
+                    ].map((item) => (
+                      <li class="flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-mf-navy"></span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p>
+                    You can control cookies through your browser settings. Note that disabling cookies may affect the functionality of our Services.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 10 -->
+              <section id="links" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-teal flex items-center justify-center text-white font-bold">10</div>
+                  <h2 class="font-display text-h3 text-text-dark">Third-Party Links</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>
+                    Our Services may contain links to third-party websites. We are not responsible for the privacy practices of these sites. We encourage you to read the privacy policies of any third-party sites you visit.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 11 -->
+              <section id="changes" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-blue flex items-center justify-center text-white font-bold">11</div>
+                  <h2 class="font-display text-h3 text-text-dark">Changes to This Policy</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>
+                    We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the new policy on this page and updating the "Last updated" date. For material changes affecting children's data, we will obtain new parental consent as required.
+                  </p>
+                </div>
+              </section>
+
+              <!-- Section 12 -->
+              <section id="contact" class="scroll-mt-8">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-mf-pink flex items-center justify-center text-white font-bold">12</div>
+                  <h2 class="font-display text-h3 text-text-dark">Contact Us</h2>
+                </div>
+                <div class="pl-13 space-y-4 font-corp-body text-text-body">
+                  <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
+                  <div class="bg-gradient-to-br from-mf-blue/10 to-mf-teal/10 rounded-2xl p-6 border-2 border-mf-blue/30">
+                    <div class="flex items-start gap-4">
+                      <div class="w-12 h-12 rounded-xl bg-mf-blue flex items-center justify-center text-white text-xl flex-shrink-0">
+                        📬
+                      </div>
+                      <div>
+                        <p class="font-display text-text-dark text-lg">Mind Foundry, Inc.</p>
+                        <p class="text-mf-teal font-bold">Attn: Privacy Officer</p>
+                        <p class="text-text-body mt-2">
+                          123 Learning Lane, Suite 400<br/>
+                          Columbus, OH 43215
+                        </p>
+                        <p class="mt-3">
+                          <a href="mailto:privacy@mindfoundry.com" class="text-mf-blue hover:text-mf-pink font-bold transition-colors">privacy@mindfoundry.com</a>
+                        </p>
+                        <p class="mt-1">(555) 123-4567</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-50 px-8 py-6 border-t-2 border-gray-100">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <a href="/" class="inline-flex items-center gap-2 text-mf-teal hover:text-mf-pink font-display transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                  </svg>
+                  Back to Home
+                </a>
+                <a href="/terms" class="inline-flex items-center gap-2 text-mf-blue hover:text-mf-pink font-display transition-colors">
+                  Terms of Service
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</CorporateLayout>

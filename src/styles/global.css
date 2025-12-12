@@ -17,9 +17,27 @@ body {
     /* Use the font-corp-body (Helvetica fallback) as the site default */
     font-family: theme('fontFamily.corp-body');
     /* Apply base body text color */
-    color: theme('colors.text-body'); 
+    color: theme('colors.text-body');
     /* Disable ugly scroll behavior */
     scroll-behavior: smooth;
+}
+
+/* Ensure form inputs have visible text - use !important to override Tailwind's text-white */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+    color: #111827 !important; /* gray-900 */
+    background-color: white !important;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #9ca3af !important; /* gray-400 */
 }
 
 /* Base style for heading elements to enforce the Quattrocento font */

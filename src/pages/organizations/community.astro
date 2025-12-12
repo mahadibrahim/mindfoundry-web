@@ -1,0 +1,208 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../../layouts/CorporateLayout.astro';
+
+const organizationTypes = [
+  {
+    title: 'Youth Organizations',
+    examples: 'Boy Scouts, Girl Scouts, 4-H, Boys & Girls Clubs',
+    description: 'Perfect complement to existing badge programs with a focus on life skills development.',
+    icon: '🏕️',
+    color: 'mf-teal'
+  },
+  {
+    title: 'Religious Organizations',
+    examples: 'Churches, Synagogues, Mosques, Religious Schools',
+    description: 'Enrich youth programs with engaging educational content that develops the whole child.',
+    icon: '⛪',
+    color: 'mf-blue'
+  },
+  {
+    title: 'Community Centers',
+    examples: 'YMCAs, Recreation Centers, Community Clubs',
+    description: 'Provide structured learning opportunities in after-school and weekend programs.',
+    icon: '🏛️',
+    color: 'mf-pink'
+  },
+  {
+    title: 'Libraries',
+    examples: 'Public Libraries, Library Systems',
+    description: 'Enhance summer reading programs and youth services with badge-based learning.',
+    icon: '📖',
+    color: 'mf-mint'
+  },
+  {
+    title: 'Sports & Recreation',
+    examples: 'Little League, Soccer Clubs, Dance Studios',
+    description: 'Develop focus, collaboration, and adaptability alongside athletic skills.',
+    icon: '⚽',
+    color: 'mf-navy'
+  },
+  {
+    title: 'Nonprofits',
+    examples: 'Educational Nonprofits, Tutoring Programs, Mentorship Organizations',
+    description: 'Amplify your mission with proven curriculum that tracks measurable outcomes.',
+    icon: '💝',
+    color: 'mf-teal'
+  }
+];
+
+const benefits = [
+  { icon: '📦', title: 'Turnkey Program', description: 'Everything you need to get started—workbooks, guides, digital access' },
+  { icon: '👥', title: 'Volunteer-Friendly', description: 'Easy-to-follow materials don\'t require teaching expertise' },
+  { icon: '🏆', title: 'Visible Progress', description: 'Digital badges give kids tangible achievements to celebrate' },
+  { icon: '💵', title: 'Nonprofit Pricing', description: 'Special discounts for registered nonprofit organizations' },
+  { icon: '📈', title: 'Impact Reporting', description: 'Track and report outcomes for grant applications and stakeholders' },
+  { icon: '🤝', title: 'Partnership Support', description: 'Dedicated account manager to help your program succeed' }
+];
+
+const impactStats = [
+  { value: '200+', label: 'Community Partners' },
+  { value: '15K+', label: 'Kids Reached' },
+  { value: '30%', label: 'Nonprofit Discount' },
+  { value: '4.8/5', label: 'Partner Rating' }
+];
+---
+
+<CorporateLayout title="Community Programs - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-pink via-mf-teal to-mf-blue py-20 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-mf-mint/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-6">
+          <span class="text-white/90 font-corp-body">For Community Groups</span>
+        </div>
+        <h1 class="font-display text-h1 text-white mb-6 drop-shadow-lg">
+          Empower Your Community's Youth
+        </h1>
+        <p class="text-xl text-white/90 font-corp-body leading-relaxed mb-8">
+          Bring Mind Foundry's badge-based learning to your youth programs, clubs, and community organizations.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/organizations/quote" class="px-8 py-4 bg-white text-mf-teal font-display rounded-xl hover:bg-white/90 transition-colors shadow-lg">
+            Get Started
+          </a>
+          <a href="/contact" class="px-8 py-4 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border-2 border-white/30">
+            Talk to Our Team
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats -->
+  <section class="py-12 bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {impactStats.map((stat) => (
+          <div class="text-center">
+            <div class="text-3xl font-display text-mf-teal">{stat.value}</div>
+            <div class="text-sm text-text-body font-corp-body">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Organization Types -->
+  <section class="py-16 bg-gradient-to-b from-mf-mint/10 to-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Perfect For Your Organization</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-2xl mx-auto">
+          Mind Foundry works with a wide variety of youth-serving organizations.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {organizationTypes.map((org) => (
+          <div class={`bg-white rounded-2xl p-6 shadow-lg border-l-4 border-${org.color} hover:shadow-xl transition-shadow`}>
+            <div class="text-4xl mb-4">{org.icon}</div>
+            <h3 class="font-display text-lg text-text-dark mb-1">{org.title}</h3>
+            <p class="text-xs text-mf-teal font-corp-body mb-3">{org.examples}</p>
+            <p class="text-text-body font-corp-body text-sm">{org.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Why Partner With Mind Foundry</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {benefits.map((benefit) => (
+          <div class="flex gap-4 p-6 bg-gradient-to-br from-mf-teal/5 to-mf-blue/5 rounded-2xl border border-mf-teal/20">
+            <div class="text-3xl flex-shrink-0">{benefit.icon}</div>
+            <div>
+              <h3 class="font-display text-text-dark mb-1">{benefit.title}</h3>
+              <p class="text-sm text-text-body font-corp-body">{benefit.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-16 bg-gradient-to-b from-white to-mf-mint/10">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">How It Works</h2>
+      </div>
+      <div class="space-y-6">
+        <div class="flex gap-6 items-start">
+          <div class="w-12 h-12 rounded-full bg-mf-teal flex items-center justify-center text-white font-display text-xl flex-shrink-0">1</div>
+          <div class="flex-1 bg-white rounded-2xl p-6 shadow-lg">
+            <h3 class="font-display text-lg text-text-dark mb-2">Tell Us About Your Organization</h3>
+            <p class="text-text-body font-corp-body">Share your goals, audience, and how you'd like to use Mind Foundry. We'll recommend the best approach.</p>
+          </div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="w-12 h-12 rounded-full bg-mf-blue flex items-center justify-center text-white font-display text-xl flex-shrink-0">2</div>
+          <div class="flex-1 bg-white rounded-2xl p-6 shadow-lg">
+            <h3 class="font-display text-lg text-text-dark mb-2">Get Your Custom Quote</h3>
+            <p class="text-text-body font-corp-body">We'll create a package tailored to your needs with bulk pricing and nonprofit discounts as applicable.</p>
+          </div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="w-12 h-12 rounded-full bg-mf-pink flex items-center justify-center text-white font-display text-xl flex-shrink-0">3</div>
+          <div class="flex-1 bg-white rounded-2xl p-6 shadow-lg">
+            <h3 class="font-display text-lg text-text-dark mb-2">Launch Your Program</h3>
+            <p class="text-text-body font-corp-body">Receive materials, training resources, and ongoing support to ensure your program succeeds.</p>
+          </div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="w-12 h-12 rounded-full bg-mf-navy flex items-center justify-center text-white font-display text-xl flex-shrink-0">4</div>
+          <div class="flex-1 bg-white rounded-2xl p-6 shadow-lg">
+            <h3 class="font-display text-lg text-text-dark mb-2">Track & Celebrate Progress</h3>
+            <p class="text-text-body font-corp-body">Watch kids earn badges and develop skills. Use our reporting tools to demonstrate impact.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-gradient-to-r from-mf-teal to-mf-blue">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="font-display text-h2 text-white mb-6">Ready to Make a Difference?</h2>
+      <p class="text-xl text-white/90 font-corp-body mb-8 max-w-2xl mx-auto">
+        Join 200+ community organizations already using Mind Foundry to develop capable, confident youth.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/organizations/quote" class="px-8 py-4 bg-mf-pink text-white font-display rounded-xl hover:bg-mf-pink/90 transition-colors shadow-lg">
+          Request Partnership Info
+        </a>
+        <a href="/organizations/pricing" class="px-8 py-4 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border-2 border-white/30">
+          View Pricing
+        </a>
+      </div>
+    </div>
+  </section>
+</CorporateLayout>

@@ -1,0 +1,161 @@
+---
+export const prerender = false;
+
+import CorporateLayout from '../../layouts/CorporateLayout.astro';
+
+const nextSteps = [
+  {
+    icon: '📧',
+    title: 'Check Your Email',
+    description: 'We sent a verification link to confirm your account.'
+  },
+  {
+    icon: '📚',
+    title: 'Get Your First Workbook',
+    description: 'Purchase a workbook to start earning badges.'
+  },
+  {
+    icon: '🎫',
+    title: 'Redeem Your Code',
+    description: 'Each book includes a code for 6 months free digital access.'
+  },
+  {
+    icon: '🏆',
+    title: 'Start Earning Badges',
+    description: 'Track progress and celebrate achievements!'
+  }
+];
+---
+
+<CorporateLayout title="Account Created - Mind Foundry">
+  <div class="min-h-screen bg-gradient-to-b from-mf-mint/20 to-white py-16">
+    <div class="container mx-auto px-4 max-w-2xl">
+
+      <!-- Success Card -->
+      <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center">
+
+        <!-- Celebration Animation -->
+        <div class="relative mb-8">
+          <div class="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mx-auto animate-bounce">
+            <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div class="absolute -top-2 -left-2 text-4xl animate-pulse">🎉</div>
+          <div class="absolute -top-2 -right-2 text-4xl animate-pulse delay-100">🎊</div>
+        </div>
+
+        <h1 class="font-display text-h2 text-text-dark mb-4">Welcome to Mind Foundry!</h1>
+        <p class="text-lg text-text-body font-corp-body mb-2">
+          Your account has been created successfully.
+        </p>
+        <p id="account-email" class="text-mf-teal font-corp-body mb-8"></p>
+
+        <!-- Child Added Confirmation -->
+        <div id="child-info" class="hidden bg-mf-teal/10 rounded-2xl p-6 mb-8 text-left">
+          <h3 class="font-display text-text-dark mb-3 flex items-center gap-2">
+            <span id="child-avatar" class="text-2xl"></span>
+            <span>Child Profile Created</span>
+          </h3>
+          <div class="flex items-center gap-4">
+            <div>
+              <p class="text-sm text-text-body font-corp-body">Name</p>
+              <p id="child-name" class="font-display text-text-dark"></p>
+            </div>
+            <div>
+              <p class="text-sm text-text-body font-corp-body">Age Range</p>
+              <p id="child-age" class="font-display text-text-dark"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="text-left mb-8">
+          <h2 class="font-display text-lg text-text-dark mb-4 text-center">What's Next?</h2>
+          <div class="space-y-4">
+            {nextSteps.map((step, i) => (
+              <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                <div class="w-10 h-10 rounded-xl bg-mf-teal/20 flex items-center justify-center text-xl flex-shrink-0">
+                  {step.icon}
+                </div>
+                <div>
+                  <h4 class="font-display text-text-dark">{step.title}</h4>
+                  <p class="text-sm text-text-body font-corp-body">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/books"
+            class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-mf-teal to-mf-blue text-white font-display rounded-xl hover:opacity-90 transition-opacity shadow-lg"
+          >
+            Shop Workbooks
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a
+            href="/dashboard"
+            class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-white text-mf-teal font-display rounded-xl hover:bg-gray-50 transition-colors border-2 border-mf-teal"
+          >
+            Go to Dashboard
+          </a>
+        </div>
+
+        <!-- Redeem Code Option -->
+        <div class="mt-8 pt-8 border-t border-gray-200">
+          <p class="text-sm text-text-body font-corp-body mb-3">Already have a workbook?</p>
+          <a
+            href="/redeem"
+            class="inline-flex items-center gap-2 text-mf-pink hover:text-mf-teal font-display transition-colors"
+          >
+            <span>🎫</span>
+            Redeem Your Book Code
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Help Link -->
+      <p class="text-center text-sm text-text-body font-corp-body mt-8">
+        Need help? <a href="/help" class="text-mf-teal hover:text-mf-pink">Visit our Help Center</a> or <a href="/contact" class="text-mf-teal hover:text-mf-pink">Contact Support</a>
+      </p>
+
+    </div>
+  </div>
+
+  <script>
+    // Get account data
+    const accountData = sessionStorage.getItem('accountData');
+
+    if (accountData) {
+      const data = JSON.parse(accountData);
+
+      // Show email
+      const emailEl = document.getElementById('account-email');
+      if (emailEl && data.parent?.email) {
+        emailEl.textContent = data.parent.email;
+      }
+
+      // Show child info if added
+      if (data.child?.childName) {
+        const childInfo = document.getElementById('child-info');
+        const childAvatar = document.getElementById('child-avatar');
+        const childName = document.getElementById('child-name');
+        const childAge = document.getElementById('child-age');
+
+        if (childInfo) childInfo.classList.remove('hidden');
+        if (childAvatar) childAvatar.textContent = data.child.avatar || '⭐';
+        if (childName) childName.textContent = data.child.childName;
+        if (childAge) childAge.textContent = data.child.ageRange;
+      }
+
+      // Clean up session storage
+      sessionStorage.removeItem('accountData');
+    }
+  </script>
+</CorporateLayout>

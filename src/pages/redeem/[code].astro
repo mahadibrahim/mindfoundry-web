@@ -227,22 +227,25 @@ const isValidCode = code && /^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(code);
     };
     
     try {
-      // TODO: Replace with actual API call
-      // const response = await fetch('/api/redeem', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // });
-      
-      // Mock API call for now
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Simulate success - redirect to welcome page
-      window.location.href = `/welcome?child=${encodeURIComponent(data.childName as string)}`;
-      
-    } catch (error) {
+      // Submit to redeem API
+      const response = await fetch('/api/redeem', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success && result.redirect) {
+        // Success - redirect to welcome page
+        window.location.href = result.redirect;
+      } else {
+        throw new Error(result.error || 'Failed to redeem code');
+      }
+
+    } catch (error: any) {
       // Show error
-      alert('Something went wrong. Please try again.');
+      alert(error.message || 'Something went wrong. Please try again.');
       submitButton.disabled = false;
       submitButton.innerHTML = originalText;
     }

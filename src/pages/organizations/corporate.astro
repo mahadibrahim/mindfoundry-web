@@ -1,0 +1,222 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../../layouts/CorporateLayout.astro';
+
+const partnershipTypes = [
+  {
+    title: 'Employee Benefits',
+    description: 'Offer Mind Foundry as a family benefit for employees with children ages 5-18.',
+    features: ['Subsidized workbooks for employees', 'Family learning programs', 'Work-life balance support', 'Corporate bulk discounts'],
+    icon: '👨‍👩‍👧‍👦',
+    color: 'mf-teal'
+  },
+  {
+    title: 'Corporate Social Responsibility',
+    description: 'Fund educational access for underserved communities through Mind Foundry.',
+    features: ['Sponsor local schools or community groups', 'Tax-deductible donations', 'Impact reporting', 'Brand visibility opportunities'],
+    icon: '🌍',
+    color: 'mf-blue'
+  },
+  {
+    title: 'Workforce Development',
+    description: 'Partner to develop the next generation of skilled, capable employees.',
+    features: ['STEM skill development', 'Critical thinking training', 'Collaboration & communication', 'Long-term talent pipeline'],
+    icon: '🚀',
+    color: 'mf-pink'
+  },
+  {
+    title: 'Co-Branding Opportunities',
+    description: 'Create custom Mind Foundry programs aligned with your brand and values.',
+    features: ['Custom workbook themes', 'Branded badges', 'Joint marketing', 'Exclusive content partnerships'],
+    icon: '🤝',
+    color: 'mf-navy'
+  }
+];
+
+const caseStudies = [
+  {
+    company: 'Tech Company',
+    industry: 'Technology',
+    type: 'Employee Benefits',
+    result: 'Provided Mind Foundry workbooks to 500+ employee families, improving work-life satisfaction scores by 23%.',
+    logo: '💻'
+  },
+  {
+    company: 'Regional Bank',
+    industry: 'Financial Services',
+    type: 'CSR Program',
+    result: 'Sponsored Mind Foundry curriculum in 15 underserved schools, reaching 2,000+ students.',
+    logo: '🏦'
+  },
+  {
+    company: 'Manufacturing Co.',
+    industry: 'Manufacturing',
+    type: 'Workforce Development',
+    result: 'Partnered on STEM-focused curriculum to develop future technical talent in local community.',
+    logo: '🏭'
+  }
+];
+
+const benefits = [
+  { icon: '📊', title: 'Measurable Impact', description: 'Clear metrics on badges earned and skills developed' },
+  { icon: '🎯', title: 'Aligned with ESG Goals', description: 'Education investment supports sustainability reporting' },
+  { icon: '💼', title: 'Talent Development', description: 'Build tomorrow\'s workforce starting today' },
+  { icon: '❤️', title: 'Employee Satisfaction', description: 'Family benefits increase retention and engagement' },
+  { icon: '📣', title: 'Brand Association', description: 'Align your brand with innovative education' },
+  { icon: '🤝', title: 'Dedicated Partnership Team', description: 'White-glove service for corporate partners' }
+];
+---
+
+<CorporateLayout title="Corporate Partnerships - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-navy via-mf-blue to-mf-teal py-20 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-mf-mint/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-6">
+          <span class="text-white/90 font-corp-body">Corporate Partnerships</span>
+        </div>
+        <h1 class="font-display text-h1 text-white mb-6 drop-shadow-lg">
+          Partner With Purpose
+        </h1>
+        <p class="text-xl text-white/90 font-corp-body leading-relaxed mb-8">
+          Align your company with the future of education. Partner with Mind Foundry to support employee families, invest in communities, and develop tomorrow's workforce.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/organizations/quote" class="px-8 py-4 bg-mf-pink text-white font-display rounded-xl hover:bg-mf-pink/90 transition-colors shadow-lg">
+            Explore Partnership
+          </a>
+          <a href="/contact" class="px-8 py-4 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border-2 border-white/30">
+            Contact Our Team
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Types -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Partnership Opportunities</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-2xl mx-auto">
+          Multiple ways to create impact through Mind Foundry.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {partnershipTypes.map((type) => (
+          <div class={`bg-white rounded-2xl p-8 shadow-lg border-2 border-${type.color}/20 hover:border-${type.color} transition-all`}>
+            <div class={`w-16 h-16 rounded-2xl bg-${type.color}/20 flex items-center justify-center text-3xl mb-6`}>
+              {type.icon}
+            </div>
+            <h3 class="font-display text-xl text-text-dark mb-3">{type.title}</h3>
+            <p class="text-text-body font-corp-body mb-6">{type.description}</p>
+            <ul class="space-y-2">
+              {type.features.map((feature) => (
+                <li class="flex items-center gap-2 text-sm text-text-body">
+                  <svg class={`w-5 h-5 text-${type.color}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-16 bg-gradient-to-b from-mf-mint/10 to-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Why Companies Partner With Us</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {benefits.map((benefit) => (
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div class="text-4xl mb-4">{benefit.icon}</div>
+            <h3 class="font-display text-lg text-text-dark mb-2">{benefit.title}</h3>
+            <p class="text-text-body font-corp-body text-sm">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Partner Success Stories</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-2xl mx-auto">
+          See how leading companies are making an impact with Mind Foundry.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {caseStudies.map((study) => (
+          <div class="bg-gradient-to-br from-mf-teal/10 to-mf-blue/10 rounded-2xl p-6 border border-mf-teal/20">
+            <div class="text-5xl mb-4">{study.logo}</div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs px-2 py-1 bg-mf-teal/20 text-mf-teal rounded-full font-corp-body">{study.type}</span>
+              <span class="text-xs text-text-body">{study.industry}</span>
+            </div>
+            <p class="text-text-body font-corp-body text-sm">{study.result}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-16 bg-gradient-to-b from-white to-mf-mint/10">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Our Partnership Process</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-mf-teal mx-auto flex items-center justify-center text-white font-display text-xl mb-4">1</div>
+          <h4 class="font-display text-text-dark mb-2">Discovery Call</h4>
+          <p class="text-sm text-text-body font-corp-body">Understand your goals and explore fit</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-mf-blue mx-auto flex items-center justify-center text-white font-display text-xl mb-4">2</div>
+          <h4 class="font-display text-text-dark mb-2">Custom Proposal</h4>
+          <p class="text-sm text-text-body font-corp-body">Tailored partnership structure and pricing</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-mf-pink mx-auto flex items-center justify-center text-white font-display text-xl mb-4">3</div>
+          <h4 class="font-display text-text-dark mb-2">Implementation</h4>
+          <p class="text-sm text-text-body font-corp-body">Launch with full support</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-mf-navy mx-auto flex items-center justify-center text-white font-display text-xl mb-4">4</div>
+          <h4 class="font-display text-text-dark mb-2">Impact Reporting</h4>
+          <p class="text-sm text-text-body font-corp-body">Ongoing metrics and success stories</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-gradient-to-r from-mf-navy to-mf-blue">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="font-display text-h2 text-white mb-6">Let's Build Something Together</h2>
+      <p class="text-xl text-white/90 font-corp-body mb-8 max-w-2xl mx-auto">
+        Schedule a call with our corporate partnerships team to explore how Mind Foundry can help achieve your company's goals.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/organizations/quote" class="px-8 py-4 bg-mf-pink text-white font-display rounded-xl hover:bg-mf-pink/90 transition-colors shadow-lg">
+          Schedule a Call
+        </a>
+        <a href="mailto:partnerships@mindfoundry.com" class="px-8 py-4 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border-2 border-white/30">
+          Email Us Directly
+        </a>
+      </div>
+    </div>
+  </section>
+</CorporateLayout>

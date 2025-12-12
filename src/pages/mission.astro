@@ -1,0 +1,218 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../layouts/CorporateLayout.astro';
+
+const capacities = [
+  {
+    name: 'Curiosity',
+    icon: '🔍',
+    color: 'mf-teal',
+    description: 'The drive to ask questions, explore the unknown, and seek understanding.',
+    skills: ['Asking thoughtful questions', 'Research & investigation', 'Wonder & exploration', 'Open-minded inquiry']
+  },
+  {
+    name: 'Reasoning',
+    icon: '🧩',
+    color: 'mf-blue',
+    description: 'The ability to think logically, solve problems, and make sound decisions.',
+    skills: ['Critical thinking', 'Problem-solving', 'Pattern recognition', 'Logical analysis']
+  },
+  {
+    name: 'Expression',
+    icon: '🎨',
+    color: 'mf-pink',
+    description: 'Communicating ideas clearly and creatively in multiple forms.',
+    skills: ['Written communication', 'Verbal expression', 'Creative arts', 'Storytelling']
+  },
+  {
+    name: 'Focus',
+    icon: '🎯',
+    color: 'mf-mint',
+    description: 'Sustained attention, persistence, and the ability to see tasks through.',
+    skills: ['Concentration', 'Goal-setting', 'Time management', 'Perseverance']
+  },
+  {
+    name: 'Collaboration',
+    icon: '🤝',
+    color: 'mf-navy',
+    description: 'Working effectively with others, showing empathy, and building relationships.',
+    skills: ['Teamwork', 'Active listening', 'Conflict resolution', 'Empathy']
+  },
+  {
+    name: 'Adaptability',
+    icon: '🌊',
+    color: 'mf-teal',
+    description: 'Flexibility in thinking, resilience in setbacks, and openness to change.',
+    skills: ['Flexibility', 'Resilience', 'Growth mindset', 'Embracing change']
+  }
+];
+
+const principles = [
+  {
+    title: 'Mastery, Not Memorization',
+    description: 'Traditional education often rewards memorizing facts. We reward demonstrated capability. A badge from Mind Foundry means a child can actually do something—not just recite information.',
+    icon: '🏆'
+  },
+  {
+    title: 'Progress at Their Pace',
+    description: 'Every child learns differently. Our system allows children to move at their own speed, spending more time on challenging concepts and accelerating through areas of strength.',
+    icon: '⏱️'
+  },
+  {
+    title: 'Meaningful Achievement',
+    description: 'Unlike participation trophies, our badges require genuine effort and skill demonstration. When a child earns a badge, they know they truly earned it.',
+    icon: '⭐'
+  },
+  {
+    title: 'Whole-Child Development',
+    description: 'We don\'t just teach academic skills. Our six core capacities develop the complete person—preparing children for life, not just tests.',
+    icon: '🌱'
+  }
+];
+---
+
+<CorporateLayout title="Our Mission - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-teal via-mf-blue to-mf-navy py-20 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-mf-mint/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10 text-center">
+      <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-6">
+        <span class="text-white/90 font-corp-body">Why We Exist</span>
+      </div>
+      <h1 class="font-display text-h1 text-white mb-6 drop-shadow-lg max-w-4xl mx-auto">
+        Developing Capable, Confident, Curious Children
+      </h1>
+      <p class="text-xl text-white/90 font-corp-body max-w-3xl mx-auto leading-relaxed">
+        Our mission is to transform how children learn by focusing on real skill development through engaging, badge-based education that prepares them for life—not just tests.
+      </p>
+    </div>
+  </section>
+
+  <!-- The Problem We're Solving -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-display text-h2 text-text-dark mb-6">The Problem With Traditional Education</h2>
+          <div class="space-y-4 text-text-body font-corp-body">
+            <p>
+              For decades, education has focused on grades, test scores, and seat time. Students memorize facts to pass exams, then quickly forget what they "learned."
+            </p>
+            <p>
+              This system produces students who can ace tests but struggle with real-world challenges. They've collected credentials without developing genuine capabilities.
+            </p>
+            <p>
+              Meanwhile, children lose their natural love of learning, viewing education as something to endure rather than enjoy.
+            </p>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="bg-red-50 rounded-2xl p-6 border-2 border-red-200">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl">📊</span>
+              <div>
+                <h4 class="font-display text-text-dark mb-1">Grades Over Growth</h4>
+                <p class="text-sm text-text-body font-corp-body">Focus on letter grades misses what students actually learned</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-red-50 rounded-2xl p-6 border-2 border-red-200">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl">🧠</span>
+              <div>
+                <h4 class="font-display text-text-dark mb-1">Memorize & Forget</h4>
+                <p class="text-sm text-text-body font-corp-body">Information cramming doesn't create lasting knowledge</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-red-50 rounded-2xl p-6 border-2 border-red-200">
+            <div class="flex items-start gap-4">
+              <span class="text-3xl">😔</span>
+              <div>
+                <h4 class="font-display text-text-dark mb-1">Lost Love of Learning</h4>
+                <p class="text-sm text-text-body font-corp-body">Children become disengaged and see school as a chore</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Solution: The Six Capacities -->
+  <section class="py-16 bg-gradient-to-b from-mf-mint/10 to-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">The Six Core Capacities</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-3xl mx-auto">
+          Instead of teaching isolated subjects, Mind Foundry develops six fundamental capacities that prepare children for success in any field.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {capacities.map((capacity) => (
+          <div class={`bg-white rounded-2xl p-6 shadow-lg border-2 border-${capacity.color}/20 hover:border-${capacity.color} transition-colors`}>
+            <div class={`w-16 h-16 rounded-2xl bg-${capacity.color}/20 flex items-center justify-center text-3xl mb-4`}>
+              {capacity.icon}
+            </div>
+            <h3 class="font-display text-xl text-text-dark mb-2">{capacity.name}</h3>
+            <p class="text-text-body font-corp-body text-sm mb-4">{capacity.description}</p>
+            <div class="space-y-2">
+              {capacity.skills.map((skill) => (
+                <div class="flex items-center gap-2 text-sm">
+                  <span class={`w-2 h-2 rounded-full bg-${capacity.color}`}></span>
+                  <span class="text-text-body">{skill}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Principles -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Our Learning Philosophy</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-2xl mx-auto">
+          Four principles guide how we design every aspect of Mind Foundry.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {principles.map((principle, i) => (
+          <div class="flex gap-6 p-6 bg-gradient-to-br from-mf-teal/5 to-mf-blue/5 rounded-2xl border border-mf-teal/20">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-mf-teal to-mf-blue flex items-center justify-center text-3xl flex-shrink-0">
+              {principle.icon}
+            </div>
+            <div>
+              <h3 class="font-display text-lg text-text-dark mb-2">{principle.title}</h3>
+              <p class="text-text-body font-corp-body text-sm">{principle.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="py-16 bg-gradient-to-r from-mf-navy via-mf-blue to-mf-teal relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-64 h-64 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="container mx-auto px-4 max-w-4xl text-center relative z-10">
+      <h2 class="font-display text-h2 text-white mb-6">Our Vision for the Future</h2>
+      <p class="text-xl text-white/90 font-corp-body mb-8 max-w-3xl mx-auto leading-relaxed">
+        We envision a world where every child has access to learning experiences that develop their full potential. Where badges earned in childhood become stepping stones to lifelong success. Where learning is a joy, not a chore.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/books" class="px-8 py-4 bg-mf-pink text-white font-display rounded-xl hover:bg-mf-pink/90 transition-colors shadow-lg">
+          Start Your Child's Journey
+        </a>
+        <a href="/about" class="px-8 py-4 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border-2 border-white/30">
+          Learn About Our Team
+        </a>
+      </div>
+    </div>
+  </section>
+</CorporateLayout>

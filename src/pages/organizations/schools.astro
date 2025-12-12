@@ -1,0 +1,203 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../../layouts/CorporateLayout.astro';
+
+const programTypes = [
+  {
+    title: 'Classroom Integration',
+    description: 'Bring Mind Foundry workbooks directly into your classroom as a supplement to existing curriculum.',
+    features: ['Teacher guides included', 'Aligned with standards', 'Progress tracking dashboard', 'Bulk pricing available'],
+    icon: '📚',
+    color: 'mf-teal'
+  },
+  {
+    title: 'After-School Programs',
+    description: 'Engage students with badge-based learning in after-school or extended day programs.',
+    features: ['Flexible scheduling', 'Self-directed learning', 'Multi-age groupings', 'Instructor support materials'],
+    icon: '🌟',
+    color: 'mf-blue'
+  },
+  {
+    title: 'Summer Learning',
+    description: 'Combat summer slide with engaging, skill-building activities that keep kids learning.',
+    features: ['Prevent learning loss', 'Fun, hands-on activities', 'Works for all ages', 'Includes digital badges'],
+    icon: '☀️',
+    color: 'mf-pink'
+  },
+  {
+    title: 'Special Education',
+    description: 'Adaptive curriculum that meets students where they are and celebrates individual growth.',
+    features: ['Competency-based progression', 'Individualized pacing', 'Visual progress indicators', 'Sensory-friendly materials'],
+    icon: '💫',
+    color: 'mf-mint'
+  }
+];
+
+const benefits = [
+  { icon: '🎯', title: 'Skill-Based Assessment', description: 'Move beyond grades to demonstrate real competency' },
+  { icon: '🎮', title: 'Engaging Content', description: 'Students love earning badges and tracking progress' },
+  { icon: '📊', title: 'Teacher Dashboard', description: 'Easy progress monitoring for entire classrooms' },
+  { icon: '🔧', title: 'Flexible Implementation', description: 'Use as supplement, enrichment, or core curriculum' },
+  { icon: '💰', title: 'Bulk Discounts', description: 'Significant savings for school-wide adoption' },
+  { icon: '📞', title: 'Dedicated Support', description: 'Onboarding assistance and ongoing training' }
+];
+
+const testimonials = [
+  {
+    quote: "Mind Foundry has transformed how my students think about learning. They're excited to earn badges and actually retain what they learn.",
+    author: "Sarah M.",
+    role: "5th Grade Teacher, Columbus City Schools"
+  },
+  {
+    quote: "The teacher dashboard makes it easy to track 30 students' progress. I can immediately see who needs extra support.",
+    author: "Marcus T.",
+    role: "Middle School Principal"
+  }
+];
+---
+
+<CorporateLayout title="School Programs - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-teal via-mf-blue to-mf-navy py-20 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-mf-mint/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-6">
+            <span class="text-white/90 font-corp-body">For Schools</span>
+          </div>
+          <h1 class="font-display text-h1 text-white mb-6 drop-shadow-lg">
+            Transform Learning in Your School
+          </h1>
+          <p class="text-xl text-white/90 font-corp-body leading-relaxed mb-8">
+            Bring badge-based, competency-focused education to your students with Mind Foundry's school programs.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/organizations/quote" class="px-8 py-4 bg-mf-pink text-white font-display rounded-xl hover:bg-mf-pink/90 transition-colors shadow-lg">
+              Request a Quote
+            </a>
+            <a href="/contact" class="px-8 py-4 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border-2 border-white/30">
+              Schedule a Demo
+            </a>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-sm">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white/20 rounded-2xl p-6 text-center">
+                <div class="text-4xl font-display text-white">500+</div>
+                <div class="text-white/80 text-sm">Schools Served</div>
+              </div>
+              <div class="bg-white/20 rounded-2xl p-6 text-center">
+                <div class="text-4xl font-display text-white">50K+</div>
+                <div class="text-white/80 text-sm">Students Reached</div>
+              </div>
+              <div class="bg-white/20 rounded-2xl p-6 text-center">
+                <div class="text-4xl font-display text-white">40%</div>
+                <div class="text-white/80 text-sm">Bulk Discount</div>
+              </div>
+              <div class="bg-white/20 rounded-2xl p-6 text-center">
+                <div class="text-4xl font-display text-white">98%</div>
+                <div class="text-white/80 text-sm">Satisfaction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Types -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Program Options</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-2xl mx-auto">
+          Flexible implementation options to fit your school's unique needs.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {programTypes.map((program) => (
+          <div class={`bg-white rounded-2xl p-8 shadow-lg border-2 border-${program.color}/20 hover:border-${program.color} transition-all`}>
+            <div class={`w-16 h-16 rounded-2xl bg-${program.color}/20 flex items-center justify-center text-3xl mb-6`}>
+              {program.icon}
+            </div>
+            <h3 class="font-display text-xl text-text-dark mb-3">{program.title}</h3>
+            <p class="text-text-body font-corp-body mb-6">{program.description}</p>
+            <ul class="space-y-2">
+              {program.features.map((feature) => (
+                <li class="flex items-center gap-2 text-sm text-text-body">
+                  <svg class={`w-5 h-5 text-${program.color}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-16 bg-gradient-to-b from-mf-mint/10 to-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Why Schools Choose Mind Foundry</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {benefits.map((benefit) => (
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div class="text-4xl mb-4">{benefit.icon}</div>
+            <h3 class="font-display text-lg text-text-dark mb-2">{benefit.title}</h3>
+            <p class="text-text-body font-corp-body text-sm">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">What Educators Say</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {testimonials.map((testimonial) => (
+          <div class="bg-gradient-to-br from-mf-teal/10 to-mf-blue/10 rounded-2xl p-8 border border-mf-teal/20">
+            <svg class="w-8 h-8 text-mf-teal mb-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="text-text-body font-corp-body mb-6 italic">"{testimonial.quote}"</p>
+            <div>
+              <p class="font-display text-text-dark">{testimonial.author}</p>
+              <p class="text-sm text-mf-teal">{testimonial.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-gradient-to-r from-mf-navy to-mf-blue">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="font-display text-h2 text-white mb-6">Ready to Transform Your School?</h2>
+      <p class="text-xl text-white/90 font-corp-body mb-8 max-w-2xl mx-auto">
+        Get a customized quote for your school or district. Our team will help you find the perfect implementation approach.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/organizations/quote" class="px-8 py-4 bg-mf-pink text-white font-display rounded-xl hover:bg-mf-pink/90 transition-colors shadow-lg">
+          Get Custom Quote
+        </a>
+        <a href="/organizations/pricing" class="px-8 py-4 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border-2 border-white/30">
+          View Pricing
+        </a>
+      </div>
+    </div>
+  </section>
+</CorporateLayout>

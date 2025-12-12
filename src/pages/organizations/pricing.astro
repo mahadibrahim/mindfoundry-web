@@ -1,0 +1,237 @@
+---
+export const prerender = true;
+
+import CorporateLayout from '../../layouts/CorporateLayout.astro';
+
+const pricingTiers = [
+  {
+    name: 'Starter',
+    quantity: '10-49 units',
+    discount: '15%',
+    pricePerUnit: '$21.24',
+    originalPrice: '$24.99',
+    features: ['Workbooks with digital access', 'Basic progress tracking', 'Email support', 'Digital badge system'],
+    color: 'mf-teal',
+    popular: false
+  },
+  {
+    name: 'Growth',
+    quantity: '50-199 units',
+    discount: '25%',
+    pricePerUnit: '$18.74',
+    originalPrice: '$24.99',
+    features: ['Everything in Starter', 'Teacher/leader dashboard', 'Implementation guide', 'Priority email support', 'Quarterly check-ins'],
+    color: 'mf-blue',
+    popular: true
+  },
+  {
+    name: 'Scale',
+    quantity: '200-499 units',
+    discount: '35%',
+    pricePerUnit: '$16.24',
+    originalPrice: '$24.99',
+    features: ['Everything in Growth', 'Dedicated account manager', 'Custom onboarding', 'Phone support', 'Progress reporting'],
+    color: 'mf-pink',
+    popular: false
+  },
+  {
+    name: 'Enterprise',
+    quantity: '500+ units',
+    discount: '40%+',
+    pricePerUnit: 'Custom',
+    originalPrice: '$24.99',
+    features: ['Everything in Scale', 'Custom curriculum options', 'API integration', 'White-label options', 'Executive reviews', 'Custom reporting'],
+    color: 'mf-navy',
+    popular: false
+  }
+];
+
+const addOns = [
+  { name: 'Teacher Training Workshop', description: '2-hour virtual training for up to 20 staff', price: '$500' },
+  { name: 'Custom Badge Design', description: 'Create unique badges aligned with your org', price: '$250/badge' },
+  { name: 'Progress Report Package', description: 'Quarterly impact reports for stakeholders', price: '$200/quarter' },
+  { name: 'On-site Launch Event', description: 'Mind Foundry team visits to kick off program', price: 'Contact us' }
+];
+
+const faqs = [
+  {
+    q: 'What\'s included with each workbook?',
+    a: 'Each workbook includes hands-on activities, a unique QR code for 6 months of digital badge tracking, and access to our parent/teacher dashboard.'
+  },
+  {
+    q: 'Do you offer nonprofit discounts?',
+    a: 'Yes! Registered 501(c)(3) nonprofits receive an additional 10% off bulk pricing. Contact us with your EIN to apply the discount.'
+  },
+  {
+    q: 'Can we mix different workbook types in our order?',
+    a: 'Absolutely. Your total order quantity determines your discount tier, regardless of which specific workbooks you choose.'
+  },
+  {
+    q: 'What if we need to order more later?',
+    a: 'Reorders within 12 months qualify for your established discount tier, even if the reorder quantity is smaller.'
+  },
+  {
+    q: 'Do you offer payment plans?',
+    a: 'For orders over $5,000, we offer Net 30 terms and can discuss payment plans. Schools with PO systems are welcome.'
+  },
+  {
+    q: 'How long does shipping take?',
+    a: 'Standard bulk orders ship within 5-7 business days. Rush shipping is available for an additional fee.'
+  }
+];
+---
+
+<CorporateLayout title="Bulk Pricing - Mind Foundry">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-mf-teal via-mf-blue to-mf-navy py-20 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-mf-pink/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-mf-mint/30 rounded-full blur-2xl"></div>
+    <div class="container mx-auto px-4 max-w-6xl relative z-10 text-center">
+      <div class="inline-block px-6 py-2 bg-white/20 rounded-full mb-6">
+        <span class="text-white/90 font-corp-body">Volume Discounts</span>
+      </div>
+      <h1 class="font-display text-h1 text-white mb-6 drop-shadow-lg">
+        Bulk Pricing for Organizations
+      </h1>
+      <p class="text-xl text-white/90 font-corp-body max-w-3xl mx-auto leading-relaxed">
+        Save up to 40% when you order Mind Foundry workbooks for your school, organization, or company.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Tiers -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {pricingTiers.map((tier) => (
+          <div class={`relative bg-white rounded-2xl p-6 shadow-lg border-2 ${tier.popular ? `border-${tier.color}` : 'border-gray-200'} hover:shadow-xl transition-shadow`}>
+            {tier.popular && (
+              <div class={`absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-${tier.color} text-white text-xs font-display rounded-full`}>
+                Most Popular
+              </div>
+            )}
+            <div class={`w-12 h-12 rounded-xl bg-${tier.color}/20 flex items-center justify-center mb-4`}>
+              <span class={`text-${tier.color} font-display text-lg`}>{tier.discount}</span>
+            </div>
+            <h3 class="font-display text-xl text-text-dark mb-1">{tier.name}</h3>
+            <p class="text-sm text-text-body font-corp-body mb-4">{tier.quantity}</p>
+            <div class="mb-6">
+              <span class="text-3xl font-display text-text-dark">{tier.pricePerUnit}</span>
+              <span class="text-text-body text-sm">/unit</span>
+              <p class="text-xs text-text-body line-through">Retail: {tier.originalPrice}</p>
+            </div>
+            <ul class="space-y-2 mb-6">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-2 text-sm text-text-body">
+                  <svg class={`w-5 h-5 text-${tier.color} flex-shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/organizations/quote"
+              class={`block text-center py-3 rounded-xl font-display transition-colors ${tier.popular ? `bg-${tier.color} text-white hover:opacity-90` : `bg-${tier.color}/10 text-${tier.color} hover:bg-${tier.color}/20`}`}
+            >
+              Get Quote
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Savings Calculator -->
+  <section class="py-16 bg-gradient-to-b from-mf-mint/10 to-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-200">
+        <div class="text-center mb-8">
+          <h2 class="font-display text-h2 text-text-dark mb-2">See Your Savings</h2>
+          <p class="text-text-body font-corp-body">Example savings at different order quantities</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center p-6 bg-mf-teal/10 rounded-2xl">
+            <p class="text-sm text-text-body font-corp-body mb-1">50 Workbooks</p>
+            <p class="text-3xl font-display text-mf-teal mb-1">$312</p>
+            <p class="text-xs text-text-body">saved vs retail</p>
+          </div>
+          <div class="text-center p-6 bg-mf-blue/10 rounded-2xl">
+            <p class="text-sm text-text-body font-corp-body mb-1">200 Workbooks</p>
+            <p class="text-3xl font-display text-mf-blue mb-1">$1,750</p>
+            <p class="text-xs text-text-body">saved vs retail</p>
+          </div>
+          <div class="text-center p-6 bg-mf-pink/10 rounded-2xl">
+            <p class="text-sm text-text-body font-corp-body mb-1">500 Workbooks</p>
+            <p class="text-3xl font-display text-mf-pink mb-1">$5,000+</p>
+            <p class="text-xs text-text-body">saved vs retail</p>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <a href="/organizations/quote" class="inline-flex items-center gap-2 px-8 py-4 bg-mf-teal text-white font-display rounded-xl hover:bg-mf-teal/90 transition-colors">
+            Get Your Custom Quote
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add-Ons -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Optional Add-Ons</h2>
+        <p class="text-lg text-text-body font-corp-body max-w-2xl mx-auto">
+          Enhance your program with additional services.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {addOns.map((addon) => (
+          <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200">
+            <h3 class="font-display text-text-dark mb-2">{addon.name}</h3>
+            <p class="text-sm text-text-body font-corp-body mb-4">{addon.description}</p>
+            <p class="text-mf-teal font-display">{addon.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="py-16 bg-gradient-to-b from-white to-mf-mint/10">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-h2 text-text-dark mb-4">Pricing FAQs</h2>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <h3 class="font-display text-text-dark mb-2">{faq.q}</h3>
+            <p class="text-text-body font-corp-body text-sm">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-gradient-to-r from-mf-navy to-mf-blue">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="font-display text-h2 text-white mb-6">Ready to Order?</h2>
+      <p class="text-xl text-white/90 font-corp-body mb-8 max-w-2xl mx-auto">
+        Get a personalized quote based on your specific needs. Our team responds within 24 hours.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/organizations/quote" class="px-8 py-4 bg-mf-pink text-white font-display rounded-xl hover:bg-mf-pink/90 transition-colors shadow-lg">
+          Request a Quote
+        </a>
+        <a href="/contact" class="px-8 py-4 bg-white/20 text-white font-display rounded-xl hover:bg-white/30 transition-colors border-2 border-white/30">
+          Contact Sales
+        </a>
+      </div>
+    </div>
+  </section>
+</CorporateLayout>
